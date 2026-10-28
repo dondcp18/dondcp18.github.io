@@ -53,7 +53,10 @@ button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:2px solid #E0B050;outline-offset:3px}
 
 /* Calendar landing */
-#cal{position:fixed;inset:0;display:grid;place-items:center;padding:1.25rem;background:linear-gradient(170deg,var(--l1),var(--l2))}
+#cal{position:fixed;inset:0;display:grid;place-items:center;padding:1.25rem;background:linear-gradient(170deg,var(--l1),var(--l2));isolation:isolate;overflow:hidden}
+/* The couple's motion-blur photo sits behind the calendar, not behind the date text directly. */
+#cal::before{content:"";position:absolute;z-index:-2;inset:-2%;background:url("IMG_1271.jpg") center 57%/cover no-repeat;filter:saturate(.72) contrast(1.02) blur(1.5px);transform:scale(1.025);opacity:.72;pointer-events:none}
+#cal::after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(180deg,rgba(7,10,25,.76),rgba(13,13,35,.82) 52%,rgba(5,8,22,.88));pointer-events:none}
 .box{width:min(440px,100%);text-align:center}
 .box h1{font:italic 600 var(--calendar-title-size)/1 var(--serif);margin:0 0 .4rem}
 .sub{color:var(--mute);margin:0 0 2.2rem}
@@ -193,12 +196,12 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 .rec svg{width:100%;height:100%;overflow:visible}.rec-disc{transform-origin:50px 57px}.rec.on .rec-disc{animation:vinylSpin 3.8s linear infinite}
 .rec-arm{transform-origin:78px 22px;transform:rotate(0deg);transition:transform .7s cubic-bezier(.2,.8,.2,1)}.rec.on .rec-arm{transform:rotate(55deg)}
 .player-info{display:flex;flex-direction:column;gap:.08rem;min-width:0;max-width:9.4rem;color:#f7f2ff;text-align:left;line-height:1.15}
-.player-kicker{font-size:.48rem;letter-spacing:.12em;text-transform:uppercase;color:var(--player-accent)}.player-title{font:italic 400 .9rem/1.1 var(--serif);white-space:nowrap}.player-status{display:none}
+.player-kicker{display:none}.player-title{font:italic 400 .76rem/1.1 var(--serif);white-space:nowrap;max-width:7.5rem;overflow:hidden;text-overflow:ellipsis}.player-status{display:none}
 .player-controls{display:flex;align-items:center;gap:.2rem;margin-top:.12rem}.player-controls button{width:1.35rem;height:1.35rem;border:1px solid rgba(229,218,255,.2);border-radius:50%;background:rgba(255,255,255,.045);color:#f8f3ff;display:grid;place-items:center;padding:0;transition:background .2s,border-color .2s}.player-controls button svg{width:11px;height:11px;display:block}.player-controls button.play-control{width:1.55rem;height:1.55rem;background:rgba(217,189,123,.14);border-color:rgba(217,189,123,.48)}.player-controls button.play-control svg{width:12px;height:12px}.player-controls button:hover{background:rgba(192,174,255,.18);border-color:rgba(229,218,255,.5)}
-.spotify-link{align-self:flex-start;color:rgba(235,221,180,.78);font:500 .52rem var(--sans);letter-spacing:.025em;text-decoration:none;border-bottom:1px solid rgba(217,189,123,.22);padding-bottom:1px;margin-top:.05rem}.spotify-link:hover{color:#fff;border-color:var(--player-accent)}
+.spotify-link{display:none}
 @keyframes vinylSpin{to{transform:rotate(360deg)}}
-@media(max-width:520px){.player-shell{right:.45rem;bottom:calc(env(safe-area-inset-bottom,0px) + .5rem);gap:.38rem;padding:.28rem .45rem .28rem .28rem}.rec{width:2.3rem;height:2.3rem}.player-info{max-width:8.5rem}.player-title{font-size:.83rem}.player-kicker{font-size:.45rem}.player-controls button{width:1.25rem;height:1.25rem}.player-controls button.play-control{width:1.45rem;height:1.45rem}}
-@media(max-width:360px){.player-shell{gap:.28rem}.rec{width:2rem;height:2rem}.player-info{max-width:7.8rem}.player-title{font-size:.78rem}.spotify-link{font-size:.48rem}}
+@media(max-width:520px){.player-shell{right:.45rem;bottom:calc(env(safe-area-inset-bottom,0px) + .5rem);gap:.38rem;padding:.28rem .45rem .28rem .28rem}.rec{width:2.3rem;height:2.3rem}.player-info{max-width:7.5rem}.player-title{font-size:.72rem}.player-controls button{width:1.25rem;height:1.25rem}.player-controls button.play-control{width:1.45rem;height:1.45rem}}
+@media(max-width:360px){.player-shell{gap:.28rem}.rec{width:2rem;height:2rem}.player-info{max-width:6.8rem}.player-title{font-size:.68rem}}
 
 @media (max-width:520px){dl{grid-template-columns:1fr;gap:.1rem}dd{margin-bottom:.9rem}.cd{gap:1rem}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}.ltr,.rv,#intro .fu,.mono text,#cal .box>*{opacity:1;transform:none}.nm{-webkit-mask-image:none;mask-image:none;opacity:1}.edge{opacity:.7}.pen{display:none}.mk .b{stroke-dashoffset:0}.mk.gl{display:none}}
@@ -338,8 +341,9 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 @keyframes cardUnfold{0%{transform:scale(1) rotateX(0)}55%{transform:scale(1.015) rotateX(-2deg)}100%{transform:scale(1.04) rotateX(-3deg);opacity:.15}}
 @keyframes inkDissolve{to{opacity:0;transform:translateY(-5px)}}
 #intro.opening-done .cover-stage{opacity:0;transform:translateY(-8px);transition:opacity .35s,transform .35s}
-#cal{background:radial-gradient(ellipse 78% 65% at 50% 38%,#252443 0%,#17172f 44%,#0b1024 77%,#050914 100%);color:#f5f0e5;isolation:isolate}
-#cal::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 24%,rgba(2,5,15,.18) 58%,rgba(0,2,8,.7) 100%),radial-gradient(circle at 13% 20%,rgba(217,189,123,.16) 0 1px,transparent 2px),radial-gradient(circle at 82% 70%,rgba(217,189,123,.14) 0 1px,transparent 2px),radial-gradient(circle at 74% 17%,rgba(217,189,123,.1) 0 1px,transparent 2px);background-size:auto,173px 190px,227px 210px,191px 167px}
+#cal{background:radial-gradient(ellipse 78% 65% at 50% 38%,#252443 0%,#17172f 44%,#0b1024 77%,#050914 100%);color:#f5f0e5;isolation:isolate;overflow:hidden}
+#cal::before{content:"";position:absolute;inset:-2%;z-index:-2;pointer-events:none;background:url("IMG_1271.jpg") center 57%/cover no-repeat;filter:saturate(.72) contrast(1.02) blur(1.5px);transform:scale(1.025);opacity:.72}
+#cal::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(7,10,25,.72),rgba(13,13,35,.78) 52%,rgba(5,8,22,.86)),radial-gradient(circle at 13% 20%,rgba(217,189,123,.16) 0 1px,transparent 2px),radial-gradient(circle at 82% 70%,rgba(217,189,123,.14) 0 1px,transparent 2px),radial-gradient(circle at 74% 17%,rgba(217,189,123,.1) 0 1px,transparent 2px);background-size:auto,173px 190px,227px 210px,191px 167px}
 #cal .box{position:relative;z-index:1}.box h1{font-family:var(--calendar-font);color:#f3ead6;text-shadow:0 0 24px rgba(216,190,126,.12)}#cal .sub,#cal .mon,#cal .wk,#cal .d{color:rgba(238,232,219,.7)}#cal .hot{box-shadow:0 0 0 1px rgba(222,197,137,.24),0 0 18px rgba(217,189,123,.1)}#cal .e{box-shadow:0 0 0 1px rgba(255,225,163,.65),0 0 18px rgba(217,189,123,.18)}#cal .w{box-shadow:0 0 0 1px rgba(217,189,123,.45),0 0 18px rgba(160,115,190,.22)}
 #s2 .hero h2{font-family:var(--engagement-font)}#s6 .hero h2{font-family:var(--wedding-font)}
 @media(max-width:520px){.cover-stage{padding:1.2rem .9rem calc(env(safe-area-inset-bottom,0px) + 1rem)}.cover{width:min(84vw,340px);height:min(118vw,500px);min-height:390px;max-height:61svh}.cover-emblem{width:47%;top:42%}.cover-constellations{top:29%;left:8%;right:8%}.cover-date{bottom:13%}.cover-motto{bottom:5.5%}.cover-cta{margin-top:1.2rem}}
@@ -538,7 +542,6 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
     </svg>
   </button>
   <div class="player-info">
-    <span class="player-kicker">SOUNDTRACK · <span id="track-num">01</span></span>
     <span class="player-title" id="track-title">Moonlit Prelude</span>
     <span class="player-status" id="recl">Tap the record to listen</span>
     <div class="player-controls" aria-label="Choose a music piece">
@@ -546,7 +549,6 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
       <button type="button" id="toggle-track" class="play-control" aria-label="Play or pause music" title="Play or pause"><svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><path d="M5 3.2a.8.8 0 0 1 1.2-.69l6.1 4.3a1.45 1.45 0 0 1 0 2.38l-6.1 4.3A.8.8 0 0 1 5 12.8z"/></svg></button>
       <button type="button" id="next-track" aria-label="Next music piece" title="Next"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v10M4 4l6.5 4L4 12z"/></svg></button>
     </div>
-    <a class="spotify-link" href="https://open.spotify.com/search/Lana%20Del%20Rey%20Love" target="_blank" rel="noopener noreferrer">Listen on Spotify ↗</a>
   </div>
 </div>
 
