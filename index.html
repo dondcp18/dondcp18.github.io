@@ -181,7 +181,7 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 /* =========================================================
    WEDDING SOUNDTRACK PLAYER — record, tonearm, playlist controls
    ========================================================= */
-.player-shell{position:fixed;z-index:50;right:1.1rem;bottom:calc(env(safe-area-inset-bottom,0px) + 1rem);display:flex;align-items:center;gap:.7rem;padding:.45rem .55rem .45rem .45rem;border:1px solid rgba(223,215,255,.24);border-radius:4rem;background:linear-gradient(145deg,rgba(27,25,48,.96),rgba(7,9,28,.97));box-shadow:0 12px 36px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(14px);max-width:calc(100vw - 1.2rem);isolation:isolate}
+.player-shell{position:fixed;z-index:50;right:1.1rem;bottom:calc(env(safe-area-inset-bottom,0px) + 1rem);display:flex;align-items:center;gap:.7rem;padding:.45rem .55rem .45rem .45rem;border:1px solid rgba(223,215,255,.24);border-radius:4rem;background:linear-gradient(135deg,rgba(224,231,244,.16),rgba(125,143,173,.09) 48%,rgba(15,24,44,.38));box-shadow:0 12px 36px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.24),inset 0 -1px 0 rgba(255,255,255,.06);backdrop-filter:blur(24px) saturate(145%);-webkit-backdrop-filter:blur(24px) saturate(145%);max-width:calc(100vw - 1.2rem);isolation:isolate}
 .rec{position:relative;flex:0 0 auto;width:5.25rem;height:5.25rem;border:1px solid rgba(233,225,255,.48);padding:.16rem;border-radius:50%;background:radial-gradient(circle at 35% 25%,#484452,#171722 52%,#05060d 78%);box-shadow:0 0 0 3px rgba(255,255,255,.035),inset 0 0 0 2px rgba(0,0,0,.8);display:grid;place-items:center;transition:transform .25s,border-color .25s,box-shadow .25s}
 .rec:hover{transform:translateY(-1px);border-color:#e9d8a5;box-shadow:0 0 0 3px rgba(255,255,255,.045),0 0 18px rgba(191,166,255,.16)}
 .rec svg{width:100%;height:100%;overflow:visible}.rec-disc{transform-origin:50px 57px}.rec.on .rec-disc{animation:vinylSpin 3.8s linear infinite}
@@ -189,6 +189,7 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 .player-info{display:flex;flex-direction:column;gap:.18rem;min-width:7.2rem;max-width:10rem;color:#f7f2ff;text-align:left;line-height:1.2}
 .player-kicker{font-size:.55rem;letter-spacing:.13em;text-transform:uppercase;color:var(--player-accent)}.player-title{font:italic 400 1rem/1.15 var(--serif);white-space:nowrap}.player-status{font:400 .62rem var(--sans);color:#b9b3cc;white-space:nowrap}
 .player-controls{display:flex;align-items:center;gap:.2rem;margin-top:.18rem}.player-controls button{width:1.75rem;height:1.75rem;border:1px solid rgba(229,218,255,.2);border-radius:50%;background:rgba(255,255,255,.045);color:#f8f3ff;display:grid;place-items:center;padding:0;font:500 .8rem var(--sans);transition:background .2s,border-color .2s}.player-controls button:hover{background:rgba(192,174,255,.18);border-color:rgba(229,218,255,.5)}
+.spotify-link{align-self:flex-start;color:rgba(235,221,180,.78);font:500 .58rem var(--sans);letter-spacing:.025em;text-decoration:none;border-bottom:1px solid rgba(217,189,123,.22);padding-bottom:1px;margin-top:.05rem}.spotify-link:hover{color:#fff;border-color:var(--player-accent)}
 @keyframes vinylSpin{to{transform:rotate(360deg)}}
 @media(max-width:520px){.player-shell{right:.55rem;bottom:calc(env(safe-area-inset-bottom,0px) + .65rem);gap:.5rem;padding:.35rem .5rem .35rem .35rem}.rec{width:4.2rem;height:4.2rem}.player-info{min-width:6.4rem}.player-title{font-size:.92rem}.player-kicker{font-size:.5rem}.player-status{font-size:.58rem}.player-controls button{width:1.65rem;height:1.65rem}}
 @media(max-width:360px){.player-shell{gap:.35rem}.rec{width:3.65rem;height:3.65rem}.player-info{min-width:5.7rem}.player-title{font-size:.85rem}}
@@ -280,8 +281,14 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 #intro::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 18%,rgba(0,3,12,.22) 52%,rgba(0,2,8,.88) 100%)}
 #intro::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;background-image:radial-gradient(circle at 12% 21%,#d9bd7b 0 1px,transparent 1.6px),radial-gradient(circle at 82% 17%,#e8d7a5 0 1px,transparent 1.8px),radial-gradient(circle at 18% 77%,#d9bd7b 0 1px,transparent 1.6px),radial-gradient(circle at 88% 76%,#e8d7a5 0 1px,transparent 1.8px);background-size:230px 210px,270px 250px,190px 230px,290px 220px}
 #intro.out{opacity:0;filter:blur(8px);visibility:hidden;pointer-events:none;transform:none}
+.ambient-stars{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}.ambient-stars i{position:absolute;display:block;border-radius:50%;background:#f1d99b;box-shadow:0 0 5px rgba(240,217,155,.55);animation:ambientTwinkle 3.8s ease-in-out infinite}@keyframes ambientTwinkle{0%,100%{opacity:.16;transform:scale(.78)}48%{opacity:.82;transform:scale(1.18)}}
 .cover-stage{position:relative;z-index:1;width:100%;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.2rem 1.5rem;perspective:1400px}
 .cover-halo{position:absolute;width:min(90vw,42rem);aspect-ratio:1.2;border-radius:50%;background:radial-gradient(ellipse,rgba(87,121,166,.2),rgba(25,42,69,.08) 48%,transparent 72%);filter:blur(20px);pointer-events:none}
+.cover-props{position:absolute;inset:0;width:min(100%,720px);pointer-events:none;filter:blur(2.2px);opacity:.42;z-index:0}
+.cover-props svg{position:absolute;height:auto}
+.prop-key{width:clamp(115px,27vw,190px);left:2%;top:13%;transform:rotate(22deg);filter:drop-shadow(0 5px 7px rgba(0,0,0,.65))}
+.prop-pen{width:clamp(145px,34vw,235px);right:1%;bottom:9%;transform:rotate(-23deg);filter:drop-shadow(0 6px 8px rgba(0,0,0,.72))}
+@media(max-width:520px){.cover-props{opacity:.28;filter:blur(2.7px)}.prop-key{left:-8%;top:15%;width:clamp(100px,30vw,145px)}.prop-pen{right:-12%;bottom:12%;width:clamp(130px,38vw,180px)}}
 .cover{position:relative;width:min(82vw,390px);height:min(122vw,560px);min-height:420px;max-height:66svh;isolation:isolate;transform-style:preserve-3d;filter:drop-shadow(0 28px 42px rgba(0,0,0,.48));animation:cardArrive 1.3s cubic-bezier(.2,.7,.2,1) both}
 @keyframes cardArrive{from{opacity:0;transform:translateY(22px) rotateX(5deg) scale(.97)}to{opacity:1;transform:translateY(0) rotateX(0) scale(1)}}
 .cover-front,.cover-inside{position:absolute;inset:0;overflow:hidden;border-radius:3px;background-color:var(--cover-paper);background-image:radial-gradient(ellipse at 18% 8%,rgba(82,109,143,.22),transparent 45%),radial-gradient(ellipse at 83% 92%,rgba(5,10,24,.48),transparent 48%),linear-gradient(132deg,rgba(215,190,129,.07),transparent 28%,rgba(220,194,133,.045) 58%,transparent 75%),repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0px,rgba(255,255,255,.012) 1px,transparent 1px,transparent 4px);border:1px solid rgba(221,193,132,.48);box-shadow:inset 0 0 0 5px rgba(217,189,123,.035),inset 0 0 32px rgba(0,0,0,.2)}
@@ -291,8 +298,13 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 .vein-one{width:70%;top:18%;left:-8%;transform:rotate(24deg)}.vein-two{width:58%;bottom:21%;right:-8%;transform:rotate(-31deg)}
 .gold-dust{position:absolute;width:42%;height:27%;opacity:.35;background:radial-gradient(ellipse at 30% 50%,rgba(232,205,139,.55) 0 1px,transparent 2px),radial-gradient(ellipse at 65% 30%,rgba(232,205,139,.42) 0 1px,transparent 2px),radial-gradient(ellipse at 48% 72%,rgba(232,205,139,.32) 0 1px,transparent 2px),radial-gradient(ellipse at 80% 65%,rgba(232,205,139,.5) 0 1px,transparent 2px);background-size:29px 31px,37px 29px,21px 24px,43px 39px;mask-image:radial-gradient(ellipse,black,transparent 72%)}
 .dust-one{top:0;left:0}.dust-two{right:0;bottom:0;transform:rotate(180deg)}
-.cover-constellations{position:absolute;top:7%;left:7%;right:7%;display:flex;align-items:center;justify-content:space-between;opacity:.9}
-.constellation{width:25%;max-width:88px;overflow:visible;fill:var(--cover-gold-bright);stroke:rgba(225,199,139,.65);stroke-width:.75;stroke-linecap:round;stroke-linejoin:round}
+.cover-constellations{position:absolute;z-index:6;top:29%;left:8%;right:8%;display:flex;align-items:center;justify-content:space-between;opacity:.62;pointer-events:none;mix-blend-mode:screen}
+.constellation{width:25%;max-width:88px;overflow:visible;fill:none;stroke:rgba(225,199,139,.25);stroke-width:.55;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 3px rgba(224,194,126,.08))}
+.constellation circle{fill:#e8d7a5;stroke:none;opacity:.5;animation:starTwinkle 4.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.constellation circle:nth-of-type(2n){animation-delay:-1.7s}
+.constellation circle:nth-of-type(3n){animation-delay:-3.1s}
+.constellation path{stroke-dasharray:1 2;opacity:.75}
+@keyframes starTwinkle{0%,100%{opacity:.28}48%{opacity:.8}}
 .constellation-b{transform:translateY(9px) scale(.9)}
 .cover-emblem{position:absolute;left:50%;top:42%;width:48%;max-width:190px;transform:translate(-50%,-50%);filter:drop-shadow(0 0 12px rgba(216,190,126,.1))}
 .cover-emblem svg{display:block;width:100%;height:auto;overflow:visible}
@@ -324,7 +336,7 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 #cal::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 24%,rgba(2,5,15,.18) 58%,rgba(0,2,8,.7) 100%),radial-gradient(circle at 13% 20%,rgba(217,189,123,.16) 0 1px,transparent 2px),radial-gradient(circle at 82% 70%,rgba(217,189,123,.14) 0 1px,transparent 2px),radial-gradient(circle at 74% 17%,rgba(217,189,123,.1) 0 1px,transparent 2px);background-size:auto,173px 190px,227px 210px,191px 167px}
 #cal .box{position:relative;z-index:1}.box h1{font-family:var(--calendar-font);color:#f3ead6;text-shadow:0 0 24px rgba(216,190,126,.12)}#cal .sub,#cal .mon,#cal .wk,#cal .d{color:rgba(238,232,219,.7)}#cal .hot{box-shadow:0 0 0 1px rgba(222,197,137,.24),0 0 18px rgba(217,189,123,.1)}#cal .e{box-shadow:0 0 0 1px rgba(255,225,163,.65),0 0 18px rgba(217,189,123,.18)}#cal .w{box-shadow:0 0 0 1px rgba(217,189,123,.45),0 0 18px rgba(160,115,190,.22)}
 #s2 .hero h2{font-family:var(--engagement-font)}#s6 .hero h2{font-family:var(--wedding-font)}
-@media(max-width:520px){.cover-stage{padding:1.2rem .9rem calc(env(safe-area-inset-bottom,0px) + 1rem)}.cover{width:min(84vw,340px);height:min(118vw,500px);min-height:390px;max-height:61svh}.cover-emblem{width:47%;top:42%}.cover-constellations{top:7%;left:8%;right:8%}.cover-date{bottom:13%}.cover-motto{bottom:5.5%}.cover-cta{margin-top:1.2rem}}
+@media(max-width:520px){.cover-stage{padding:1.2rem .9rem calc(env(safe-area-inset-bottom,0px) + 1rem)}.cover{width:min(84vw,340px);height:min(118vw,500px);min-height:390px;max-height:61svh}.cover-emblem{width:47%;top:42%}.cover-constellations{top:29%;left:8%;right:8%}.cover-date{bottom:13%}.cover-motto{bottom:5.5%}.cover-cta{margin-top:1.2rem}}
 @media(max-height:650px){.cover{height:62svh;min-height:330px;max-height:440px}.cover-stage{padding-top:.75rem;padding-bottom:.75rem}.cover-cta{margin-top:.8rem}.cover-note{margin-top:.35rem}}
 @media(prefers-reduced-motion:reduce){.cover,.cover-stage{animation:none!important}.cover.opening .wax-seal{animation:sealLift .2s forwards}.cover.opening .cover-flap{transition-duration:.2s}}
 
@@ -335,11 +347,15 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 <div id="intro" role="dialog" aria-label="Don and Reshma wedding invitation" aria-modal="true">
   <div class="cover-stage">
     <div class="cover-halo" aria-hidden="true"></div>
+    <div class="cover-props" aria-hidden="true">
+      <svg class="prop-key" viewBox="0 0 220 100"><defs><linearGradient id="antiqueKeyGold" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#5b3c1d"/><stop offset=".28" stop-color="#d8b46b"/><stop offset=".48" stop-color="#f1d99b"/><stop offset=".72" stop-color="#9a7138"/><stop offset="1" stop-color="#4b321c"/></linearGradient></defs><g fill="none" stroke="url(#antiqueKeyGold)" stroke-linecap="round" stroke-linejoin="round"><circle cx="39" cy="42" r="27" stroke-width="7"/><circle cx="39" cy="42" r="17" stroke-width="2.2"/><path d="M64 42 H190 L201 31 M163 42 V59 H151 M181 42 V54" stroke-width="8"/><path d="M64 38 H186" stroke="#f5dfa2" stroke-width="1.2" opacity=".75"/><path d="M28 26 Q39 16 50 27 M28 58 Q39 68 50 57" stroke-width="1.5"/></g></svg>
+      <svg class="prop-pen" viewBox="0 0 240 62"><defs><linearGradient id="penBarrel" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e1c28a"/><stop offset=".18" stop-color="#80512e"/><stop offset=".52" stop-color="#3a2118"/><stop offset=".78" stop-color="#694127"/><stop offset="1" stop-color="#e2c17a"/></linearGradient><linearGradient id="penNib" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f5e2ad"/><stop offset=".5" stop-color="#a77a3d"/><stop offset="1" stop-color="#51371d"/></linearGradient></defs><path d="M20 29 L188 29 Q199 29 205 34 L188 40 L20 40 Q9 35 20 29Z" fill="url(#penBarrel)" stroke="#d6b26b" stroke-width="1"/><path d="M22 31 H185" stroke="#f4dca0" stroke-width="1" opacity=".65"/><path d="M188 29 L225 34 L188 40Z" fill="url(#penNib)" stroke="#e5c57f" stroke-width=".8"/><path d="M206 33 L225 34 L207 36Z" fill="#241a14"/><path d="M47 29 V40 M54 29 V40 M172 29 V40" stroke="#d8b56f" stroke-width="1.5"/><circle cx="36" cy="34.5" r="2" fill="#e5c783"/></svg>
+    </div>
     <article class="cover" id="cover-card" aria-label="Midnight blue invitation card">
       <div class="cover-inside" aria-hidden="true">
         <span class="inside-rule"></span>
         <span class="inside-monogram">D <i>&amp;</i> R</span>
-        <span class="inside-caption">A celebration in January</span>
+
       </div>
       <div class="cover-flap" aria-hidden="true"></div>
       <div class="cover-front">
@@ -369,16 +385,24 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
           </svg>
         </div>
         <div class="cover-date"><span>JANUARY</span><strong>2027</strong></div>
-        <p class="cover-motto">Two paths. One horizon.</p>
+
       </div>
       <button class="wax-seal" id="wax-seal" type="button" aria-label="Open the sealed invitation">
         <svg viewBox="0 0 100 100" aria-hidden="true">
           <defs><linearGradient id="waxGradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b88b4e"/><stop offset=".42" stop-color="#7d5737"/><stop offset=".72" stop-color="#a87b48"/><stop offset="1" stop-color="#563b2c"/></linearGradient></defs>
           <path d="M50 5 C61 7 66 4 74 14 S94 27 92 40 S98 58 86 69 S75 91 61 91 S42 100 31 89 S8 80 10 64 S1 43 11 31 S24 8 37 10Z" fill="url(#waxGradient)" stroke="#d7b77c" stroke-width="1.1"/>
-          <circle cx="50" cy="50" r="31" fill="none" stroke="#e5c98e" stroke-width="1" opacity=".9"/>
+          <circle cx="50" cy="50" r="31" fill="none" stroke="#e5c98e" stroke-width="1" opacity=".8"/>
           <circle cx="50" cy="50" r="27" fill="none" stroke="#4e382b" stroke-width=".8" opacity=".8"/>
-          <text x="50" y="57" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="26" font-style="italic" fill="#f2dfb1">D&amp;R</text>
-          <path d="M35 67 Q50 61 65 67" fill="none" stroke="#e5c98e" stroke-width="1"/>
+          <g fill="none" stroke="#e8c98d" stroke-width=".95" stroke-linecap="round" stroke-linejoin="round" opacity=".95">
+            <path d="M50 24 C45 31 43 37 47 43 C39 39 34 42 35 48 C36 54 43 56 48 51 C44 59 47 65 52 63 C58 61 57 54 53 49 C61 52 67 48 65 42 C63 37 57 38 53 43 C57 35 55 29 50 24Z"/>
+            <path d="M50 29 C47 37 48 45 50 52 C53 45 53 37 50 29Z M50 51 C45 56 43 60 42 64 M50 51 C56 56 58 60 59 64"/>
+            <path d="M39 35 C34 31 31 33 31 37 C34 40 37 39 39 35Z M61 35 C66 31 69 33 69 37 C66 40 63 39 61 35Z"/>
+            <path d="M35 48 C29 45 26 48 29 52 C32 54 35 52 35 48Z M65 48 C71 45 74 48 71 52 C68 54 65 52 65 48Z"/>
+            <path d="M34 65 Q50 60 66 65 M40 68 Q50 65 60 68"/>
+            <path d="M50 20 V16 M46 22 L43 19 M54 22 L57 19"/>
+          </g>
+          <text x="43" y="79" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="8.5" font-style="italic" fill="#f2dfb1">r</text>
+          <text x="57" y="79" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="8.5" font-style="italic" fill="#f2dfb1">d</text>
         </svg>
       </button>
     </article>
@@ -486,7 +510,7 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
     </svg>
   </button>
   <div class="player-info">
-    <span class="player-kicker">WEDDING SOUNDTRACK · <span id="track-num">01</span></span>
+    <span class="player-kicker">SOUNDTRACK · <span id="track-num">01</span></span>
     <span class="player-title" id="track-title">Moonlit Prelude</span>
     <span class="player-status" id="recl">Tap the record to listen</span>
     <div class="player-controls" aria-label="Choose a music piece">
@@ -494,6 +518,7 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
       <button type="button" id="toggle-track" aria-label="Play or pause music" title="Play or pause">▶</button>
       <button type="button" id="next-track" aria-label="Next music piece" title="Next">›</button>
     </div>
+    <a class="spotify-link" href="https://open.spotify.com/search/Lana%20Del%20Rey%20Love" target="_blank" rel="noopener noreferrer">Listen on Spotify ↗</a>
   </div>
 </div>
 
@@ -560,7 +585,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeScene()
 
 // Intro reveal, extra scene elements
 (function(){
-  var g=document.createElement('div'),x=5;
+  var g=document.createElement('div'),x=5;g.className='ambient-stars';g.setAttribute('aria-hidden','true');$('#intro').appendChild(g);
   function r(){x=(x*9301+49297)%233280;return x/233280}
   for(var i=0;i<80;i++){var e=document.createElement('i'),z=r()*2+.6;
     e.style.cssText='left:'+r()*100+'%;top:'+r()*100+'%;width:'+z+'px;height:'+z+'px;opacity:'+(.3+r()*.6)+';animation-delay:-'+(r()*4)+'s';g.appendChild(e)}
