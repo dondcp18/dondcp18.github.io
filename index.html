@@ -4,23 +4,58 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Don & Reshma — January 2027</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;1,400;1,600&family=Poppins:wght@300;400;500&family=Great+Vibes&display=swap" rel="stylesheet">
+<!-- FONT IMPORTS: if you change a font in QUICK CUSTOMISATION below, add it here too.
+     Google Fonts URL builder: https://fonts.google.com/ -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@400;500;600&family=Mr+De+Haviland&display=swap" rel="stylesheet">
 <style>
-:root{--l1:#FBE9D7;--l2:#E4EAFB;--ink:#2A2540;--mute:#68647F;
- --serif:"Cormorant Garamond",Georgia,serif;--script:"Great Vibes","Allura",cursive;--sans:"Poppins","Helvetica Neue",Arial,sans-serif;
- box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+ :root{
+ /* =========================================================
+    QUICK CUSTOMISATION — edit font names, sizes and colours here.
+    If you change a font, also update the FONT IMPORTS link above.
+    ========================================================= */
+ /* Global font families */
+ --serif:"Cormorant Garamond", Georgia, serif;
+ --script:"Mr De Haviland", cursive;
+ --sans:"DM Sans", "Helvetica Neue", Arial, sans-serif;
+
+ /* Opening card typography */
+ --cover-title-font:"Cormorant Garamond", Georgia, serif;
+ --cover-small-font:"Cinzel", Georgia, serif;
+ --cover-cta-font:"Cormorant Garamond", Georgia, serif;
+ --cover-title-size:clamp(1.55rem,4vw,2.2rem);
+ --cover-date-size:clamp(.78rem,2.5vw,.94rem);
+ --cover-cta-size:1.15rem;
+ --cover-gold:#d9bd7b;
+ --cover-gold-bright:#f0dca7;
+ --cover-navy:#101c32;
+ --cover-paper:#12223a;
+
+ /* Page typography — change each page independently */
+ --calendar-font:"Cormorant Garamond", Georgia, serif;
+ --engagement-font:"Mr De Haviland", cursive;
+ --wedding-font:"Mr De Haviland", cursive;
+ --calendar-title-size:clamp(2.6rem,11vw,4.2rem);
+ --engagement-title-size:clamp(4.2rem,18vw,9rem);
+ --wedding-title-size:clamp(4.2rem,18vw,9rem);
+ --body-copy-size:1.05rem;
+ --player-accent:#d9bd7b;
+
+ /* Calendar colours */
+ --l1:#FBE9D7; --l2:#E4EAFB; --ink:#2A2540; --mute:#68647F;
+ box-sizing:border-box;
+}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--l1:#241B4A;--l2:#0B0E2B;--ink:#F0ECFA;--mute:#A9A5C8}}
 :root[data-theme="dark"]{--l1:#241B4A;--l2:#0B0E2B;--ink:#F0ECFA;--mute:#A9A5C8}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
-body{font:300 1.05rem/1.65 var(--sans);color:var(--ink);background:var(--l2);overflow:hidden}
+body{font:300 var(--body-copy-size)/1.65 var(--sans);color:var(--ink);background:var(--l2);overflow:hidden}
 button{font:inherit;color:inherit;cursor:pointer}
 :focus-visible{outline:2px solid #E0B050;outline-offset:3px}
 
 /* Calendar landing */
 #cal{position:fixed;inset:0;display:grid;place-items:center;padding:1.25rem;background:linear-gradient(170deg,var(--l1),var(--l2))}
 .box{width:min(440px,100%);text-align:center}
-.box h1{font:italic 600 clamp(2.6rem,11vw,4.2rem)/1 var(--serif);margin:0 0 .4rem}
+.box h1{font:italic 600 var(--calendar-title-size)/1 var(--serif);margin:0 0 .4rem}
 .sub{color:var(--mute);margin:0 0 2.2rem}
 .mon{font:italic 400 1.5rem var(--serif);margin:0 0 .8rem}
 .wk,.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:.5rem}
@@ -121,65 +156,7 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 .to6{background:linear-gradient(120deg,#F59A55,#7A3FA0 55%,#1A1D52)}
 .to2{background:linear-gradient(120deg,#8FCBFF,#FFE7A8);color:#1F2A44}
 
-/* Intro reveal */
-#intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;text-align:center;padding:1.5rem;color:#F3EBD8;background:radial-gradient(120% 90% at 50% 20%,#241B4A 0%,#0C0F2E 60%,#060819 100%);transition:opacity 1.3s,transform 1.6s,filter 1.3s,visibility 0s 1.6s}
-#intro.out{opacity:0;transform:scale(1.06);filter:blur(10px);visibility:hidden;pointer-events:none}
-.ig{position:absolute;inset:0;overflow:hidden}
-.ig i{position:absolute;border-radius:50%;background:#fff;animation:tw 4s ease-in-out infinite alternate}
-@keyframes tw{to{opacity:.12}}
-.ii{position:relative;max-width:34rem}
-.mono{width:7.5rem;height:7.5rem;margin:0 auto 1.4rem;overflow:visible}
-.mono .ring{fill:none;stroke:#E0B050;stroke-width:.8;stroke-dasharray:340;stroke-dashoffset:340;animation:ds 2s .2s ease-out forwards}
-.mono .r2{stroke-width:.4;animation-delay:.7s}
-.mono text{font:italic 600 30px var(--serif);fill:#E8C170;opacity:0;animation:fu 1.2s 1.3s forwards}
-@keyframes ds{to{stroke-dashoffset:0}}
-@keyframes fu{to{opacity:1;transform:none}}
-#intro .fu{opacity:0;transform:translateY(14px);animation:fu 1.2s var(--d) ease forwards}
-.s1{font:italic 400 1.25rem var(--serif);margin:0}
-.s2n{font:italic 600 clamp(3rem,13vw,6.5rem)/1.05 var(--serif);margin:.3rem 0;background:linear-gradient(180deg,#FFEFC0,#E0B050 55%,#B98A35);-webkit-background-clip:text;background-clip:text;color:transparent}
-.s3{margin:0;opacity:.85}
-.s4{margin:1.8rem 0 2.2rem}
-.s4::before{content:"";display:block;width:3rem;height:1px;background:#E0B050;margin:0 auto 1.2rem}
-.s4 span{display:block;font:italic 400 1.5rem var(--serif);color:#E8C170}
-.s4 b{display:block;font:400 .95rem var(--sans);letter-spacing:.25em;margin-top:.4rem}
-.s5{border:1px solid #E0B050;background:transparent;color:#F3EBD8;border-radius:999px;padding:.85rem 2.3rem;transition:background .3s,color .3s}
-.s5:hover{background:#E0B050;color:#10133A}
-.s6x{font-size:.8rem;opacity:.6;margin:1.2rem 0 0}
-
-/* Intro v2: edge glow, names traced in light */
-@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
-@property --w{syntax:"<percentage>";inherits:false;initial-value:0%}
-#intro{color:#fff;background:radial-gradient(120% 90% at 50% 40%,#10122B 0%,#070818 70%,#030410 100%)}
-.ig{opacity:.5}
-.edge{position:absolute;inset:0;pointer-events:none;padding:3px;background:conic-gradient(from var(--a),#5B8CFF,#B05CFF,#FF6AA8,#FFA24D,#5BD2FF,#5B8CFF);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;opacity:0;animation:eg 2.2s ease forwards,ea 8s linear infinite}
-.edge.g{padding:22px;filter:blur(26px)}
-@keyframes eg{0%{opacity:0}40%{opacity:1}100%{opacity:.8}}
-@keyframes ea{to{--a:360deg}}
-.nmw{position:relative;display:inline-block;margin:.2rem 0}
-.nm{margin:0;font:400 clamp(3.6rem,17vw,8rem)/1.2 "Allura","Cormorant Garamond",cursive;color:#fff;text-shadow:0 0 16px rgba(160,185,255,.6),0 0 44px rgba(190,130,255,.4);-webkit-mask-image:linear-gradient(90deg,#000 var(--w),transparent calc(var(--w) + 10%));mask-image:linear-gradient(90deg,#000 var(--w),transparent calc(var(--w) + 10%));animation:tr 1.8s 2s cubic-bezier(.5,.1,.3,1) both}
-@keyframes tr{from{--w:-10%;opacity:0}1%{opacity:1}to{--w:100%;opacity:1}}
-.pen{position:absolute;top:12%;bottom:12%;left:-3%;width:2px;border-radius:2px;background:linear-gradient(transparent,#fff,transparent);box-shadow:0 0 18px 6px rgba(170,170,255,.7),0 0 40px 14px rgba(230,140,255,.4);opacity:0;animation:pen 1.8s 2s cubic-bezier(.5,.1,.3,1) both}
-@keyframes pen{0%{left:-3%;opacity:0}8%,92%{opacity:1}100%{left:103%;opacity:0}}
-#intro .s1{font:300 .95rem var(--sans);letter-spacing:.06em}
-#intro .s3{font:300 1rem var(--sans);opacity:.8}
-#intro .s4 span{font:400 2.4rem/1.1 "Allura","Cormorant Garamond",cursive;color:#fff}
-#intro .s4 b{font:300 .9rem var(--sans);letter-spacing:.3em}
-#intro .s4::before{background:rgba(255,255,255,.55)}
-#intro .s5{border-color:rgba(255,255,255,.8);color:#fff;font:400 .95rem var(--sans)}
-#intro .s5:hover{background:#fff;color:#0B0D26}
-
-/* Intro v3: stroked initials only; cursive display type */
-#intro{background:radial-gradient(90% 70% at 50% 45%,#0D1030 0%,#05060F 75%)}
-.mkw{position:relative;width:min(74vw,24rem);margin:0 auto 3rem}
-.mkw::before{content:"";position:absolute;inset:-25%;background:radial-gradient(closest-side,rgba(150,170,255,.14),transparent);opacity:0;animation:mki 2s 1.4s forwards}
-.mk{display:block;width:100%;height:auto;overflow:visible}
-.mk.gl{position:absolute;left:0;top:0;filter:drop-shadow(0 0 3px #fff) drop-shadow(0 0 10px rgba(190,205,255,.9)) drop-shadow(0 0 24px rgba(160,180,255,.5))}
-.mk path{fill:none;stroke-linecap:round;stroke-linejoin:round}
-.mk .b{stroke:rgba(255,255,255,.75);stroke-width:5;stroke-dasharray:1;stroke-dashoffset:1;animation:mkd 2.6s .3s ease-in-out forwards}
-.mk .g{stroke:#fff;stroke-width:10;stroke-dasharray:.13 .87;opacity:0;animation:mkg 3.6s 2.6s linear infinite,mki 1s 2.6s forwards}
-@keyframes mkd{to{stroke-dashoffset:0}}
-@keyframes mkg{to{stroke-dashoffset:-1}}
-@keyframes mki{to{opacity:1}}
+/* Shared display typography — page-specific fonts are set in the customisation variables. */
 .box h1{font:400 clamp(3.8rem,16vw,5.6rem)/1 var(--script)}
 .hero h2{font:400 clamp(4.6rem,21vw,11rem)/.95 var(--script);letter-spacing:0}
 .hero h2 i{font-size:.3em}
@@ -201,32 +178,214 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 @keyframes bloom{from{transform:scale(.5);opacity:.3;filter:brightness(2.2)}}
 @keyframes tg{from{opacity:0}}
 
-/* Record */
-.rec{position:fixed;z-index:50;right:1rem;bottom:calc(env(safe-area-inset-bottom,0px) + 1rem);width:3.6rem;height:3.6rem;border:0;padding:0;border-radius:50%;background:radial-gradient(circle,#E0B050 0 14%,#1b1b25 15% 17%,repeating-radial-gradient(#15151d 0 2px,#262633 3px 4px));box-shadow:0 4px 18px rgba(0,0,0,.4)}
-.rec.on{animation:spin 3s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.rec-l{position:fixed;z-index:50;right:5.1rem;bottom:calc(env(safe-area-inset-bottom,0px) + 1.5rem);font-size:.8rem;padding:.25rem .7rem;border-radius:999px;background:rgba(20,20,40,.6);color:#fff;pointer-events:none}
+/* =========================================================
+   WEDDING SOUNDTRACK PLAYER — record, tonearm, playlist controls
+   ========================================================= */
+.player-shell{position:fixed;z-index:50;right:1.1rem;bottom:calc(env(safe-area-inset-bottom,0px) + 1rem);display:flex;align-items:center;gap:.7rem;padding:.45rem .55rem .45rem .45rem;border:1px solid rgba(223,215,255,.24);border-radius:4rem;background:linear-gradient(145deg,rgba(27,25,48,.96),rgba(7,9,28,.97));box-shadow:0 12px 36px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(14px);max-width:calc(100vw - 1.2rem);isolation:isolate}
+.rec{position:relative;flex:0 0 auto;width:5.25rem;height:5.25rem;border:1px solid rgba(233,225,255,.48);padding:.16rem;border-radius:50%;background:radial-gradient(circle at 35% 25%,#484452,#171722 52%,#05060d 78%);box-shadow:0 0 0 3px rgba(255,255,255,.035),inset 0 0 0 2px rgba(0,0,0,.8);display:grid;place-items:center;transition:transform .25s,border-color .25s,box-shadow .25s}
+.rec:hover{transform:translateY(-1px);border-color:#e9d8a5;box-shadow:0 0 0 3px rgba(255,255,255,.045),0 0 18px rgba(191,166,255,.16)}
+.rec svg{width:100%;height:100%;overflow:visible}.rec-disc{transform-origin:50px 57px}.rec.on .rec-disc{animation:vinylSpin 3.8s linear infinite}
+.rec-arm{transform-origin:78px 22px;transform:rotate(0deg);transition:transform .7s cubic-bezier(.2,.8,.2,1)}.rec.on .rec-arm{transform:rotate(55deg)}
+.player-info{display:flex;flex-direction:column;gap:.18rem;min-width:7.2rem;max-width:10rem;color:#f7f2ff;text-align:left;line-height:1.2}
+.player-kicker{font-size:.55rem;letter-spacing:.13em;text-transform:uppercase;color:var(--player-accent)}.player-title{font:italic 400 1rem/1.15 var(--serif);white-space:nowrap}.player-status{font:400 .62rem var(--sans);color:#b9b3cc;white-space:nowrap}
+.player-controls{display:flex;align-items:center;gap:.2rem;margin-top:.18rem}.player-controls button{width:1.75rem;height:1.75rem;border:1px solid rgba(229,218,255,.2);border-radius:50%;background:rgba(255,255,255,.045);color:#f8f3ff;display:grid;place-items:center;padding:0;font:500 .8rem var(--sans);transition:background .2s,border-color .2s}.player-controls button:hover{background:rgba(192,174,255,.18);border-color:rgba(229,218,255,.5)}
+@keyframes vinylSpin{to{transform:rotate(360deg)}}
+@media(max-width:520px){.player-shell{right:.55rem;bottom:calc(env(safe-area-inset-bottom,0px) + .65rem);gap:.5rem;padding:.35rem .5rem .35rem .35rem}.rec{width:4.2rem;height:4.2rem}.player-info{min-width:6.4rem}.player-title{font-size:.92rem}.player-kicker{font-size:.5rem}.player-status{font-size:.58rem}.player-controls button{width:1.65rem;height:1.65rem}}
+@media(max-width:360px){.player-shell{gap:.35rem}.rec{width:3.65rem;height:3.65rem}.player-info{min-width:5.7rem}.player-title{font-size:.85rem}}
 
 @media (max-width:520px){dl{grid-template-columns:1fr;gap:.1rem}dd{margin-bottom:.9rem}.cd{gap:1rem}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}.ltr,.rv,#intro .fu,.mono text,#cal .box>*{opacity:1;transform:none}.nm{-webkit-mask-image:none;mask-image:none;opacity:1}.edge{opacity:.7}.pen{display:none}.mk .b{stroke-dashoffset:0}.mk.gl{display:none}}
+
+/* =========================================================
+   OPENING SCREEN — centred SVG outline reveal + navy vignette
+   Customisation variables are at the top of :root.
+   ========================================================= */
+#intro{
+  background:radial-gradient(ellipse 48% 42% at 50% 43%, #172b48 0%, #0b1930 42%, #050d1d 72%, #01040c 100%);
+  color:#eef4ff;
+}
+#intro::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at center, transparent 25%, rgba(0,3,12,.24) 58%, rgba(0,2,8,.82) 100%);
+}
+#intro .ii{
+  position:relative;z-index:1;width:min(100%,42rem);padding:1rem .75rem;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.name-art{
+  display:block;width:min(94vw,39rem);height:auto;overflow:visible;
+  margin:0 auto 2.2rem;position:relative;left:-.75rem;
+  filter:drop-shadow(0 0 12px var(--intro-glow));
+}
+.name-art text{
+  font-family:var(--intro-script),"Mr De Haviland",cursive;font-weight:400;
+  text-anchor:middle;dominant-baseline:auto;fill:transparent;
+  stroke:var(--intro-stroke-color);stroke-width:var(--intro-stroke-width);
+  stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0 4000;
+  stroke-dashoffset:0;animation:nameStroke var(--intro-reveal-duration) cubic-bezier(.25,.04,.25,1) 0s forwards;
+}
+.name-art .don,.name-art .reshma{font-size:var(--intro-name-size)}
+.name-art .don,.name-art .amp,.name-art .reshma{--delay:0s}
+.name-art .amp{
+  font-family:var(--intro-amp),Georgia,serif;font-style:italic;
+  stroke-width:calc(var(--intro-stroke-width) * .78);font-size:42px;
+}
+@keyframes nameStroke{
+  0%{stroke-dasharray:0 4000;stroke-dashoffset:0;fill:transparent;opacity:.45}
+  100%{stroke-dasharray:4000 0;stroke-dashoffset:0;fill:transparent;opacity:1}
+}
+#intro #begin{
+  position:relative;z-index:2;border:1px solid rgba(196,216,243,.72);
+  background:linear-gradient(135deg,rgba(120,158,207,.14),rgba(39,70,112,.12));
+  color:#edf4ff;border-radius:999px;padding:.9rem 1.8rem;min-height:3.15rem;
+  font:400 .9rem var(--sans);letter-spacing:.06em;
+  transition:background .25s,border-color .25s,transform .25s;
+}
+#intro #begin:hover{background:rgba(125,165,218,.2);border-color:#e4efff;transform:translateY(-2px)}
+@media(max-width:520px){
+  :root{--intro-name-size:clamp(76px,20vw,108px);--intro-stroke-width:1.55px}
+  .name-art{width:min(100%,35rem);left:-.35rem;margin-bottom:1.8rem}
+  #intro{padding:1rem}
+}
+@media(max-height:650px){.name-art{width:min(76vw,32rem);margin-bottom:1rem}}
+@media(prefers-reduced-motion:reduce){.name-art text{animation:none;stroke-dasharray:4000 0;stroke-dashoffset:0;fill:transparent;stroke:var(--intro-stroke-color)}}
+
+/* =========================================================
+   PAGE-BY-PAGE TYPOGRAPHY — edit the variables at :root above
+   ========================================================= */
+#s2{--page-title-size:var(--engagement-title-size)}
+#s6{--page-title-size:var(--wedding-title-size)}
+#s2 .hero h2,#s6 .hero h2{font-size:var(--page-title-size)}
+#s2 .hero p,#s6 .hero p{font-size:var(--body-copy-size)}
+
+
+
+/* FIX: ensure the invitation overlay and its contents always occupy the viewport */
+#intro{position:fixed!important;inset:0!important;z-index:1000!important;display:flex!important;align-items:center!important;justify-content:center!important;width:100%;height:100%;min-height:100svh}
+#intro .cover-stage{width:100%;height:100%;min-height:100%;flex:1 1 auto}
+#intro .cover{flex:0 0 auto;z-index:2}
+#intro .cover-front{z-index:1}
+#intro .cover-inside{z-index:0}
+#intro .cover-flap{z-index:5}
+#intro .wax-seal{z-index:8}
+#intro .cover-cta,#intro .cover-note{flex-shrink:0}
+#cal{z-index:5}
+#music-player,.music-player,.rec{z-index:1100}
+
+/* =========================================================
+   OPENING INVITATION CARD — navy paper, gold foil and wax seal
+   CUSTOMISE: use the COVER variables in :root above.
+   ========================================================= */
+#intro{isolation:isolate;overflow:hidden;background:radial-gradient(ellipse 52% 48% at 50% 42%,#1b2e4b 0%,#101d34 40%,#070f20 72%,#020711 100%);color:#f6f1e6;transition:opacity .95s,filter .95s,visibility 0s 1s}
+#intro::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 18%,rgba(0,3,12,.22) 52%,rgba(0,2,8,.88) 100%)}
+#intro::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;background-image:radial-gradient(circle at 12% 21%,#d9bd7b 0 1px,transparent 1.6px),radial-gradient(circle at 82% 17%,#e8d7a5 0 1px,transparent 1.8px),radial-gradient(circle at 18% 77%,#d9bd7b 0 1px,transparent 1.6px),radial-gradient(circle at 88% 76%,#e8d7a5 0 1px,transparent 1.8px);background-size:230px 210px,270px 250px,190px 230px,290px 220px}
+#intro.out{opacity:0;filter:blur(8px);visibility:hidden;pointer-events:none;transform:none}
+.cover-stage{position:relative;z-index:1;width:100%;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.2rem 1.5rem;perspective:1400px}
+.cover-halo{position:absolute;width:min(90vw,42rem);aspect-ratio:1.2;border-radius:50%;background:radial-gradient(ellipse,rgba(87,121,166,.2),rgba(25,42,69,.08) 48%,transparent 72%);filter:blur(20px);pointer-events:none}
+.cover{position:relative;width:min(82vw,390px);height:min(122vw,560px);min-height:420px;max-height:66svh;isolation:isolate;transform-style:preserve-3d;filter:drop-shadow(0 28px 42px rgba(0,0,0,.48));animation:cardArrive 1.3s cubic-bezier(.2,.7,.2,1) both}
+@keyframes cardArrive{from{opacity:0;transform:translateY(22px) rotateX(5deg) scale(.97)}to{opacity:1;transform:translateY(0) rotateX(0) scale(1)}}
+.cover-front,.cover-inside{position:absolute;inset:0;overflow:hidden;border-radius:3px;background-color:var(--cover-paper);background-image:radial-gradient(ellipse at 18% 8%,rgba(82,109,143,.22),transparent 45%),radial-gradient(ellipse at 83% 92%,rgba(5,10,24,.48),transparent 48%),linear-gradient(132deg,rgba(215,190,129,.07),transparent 28%,rgba(220,194,133,.045) 58%,transparent 75%),repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0px,rgba(255,255,255,.012) 1px,transparent 1px,transparent 4px);border:1px solid rgba(221,193,132,.48);box-shadow:inset 0 0 0 5px rgba(217,189,123,.035),inset 0 0 32px rgba(0,0,0,.2)}
+.cover-front::before{content:"";position:absolute;inset:10px;border:1px solid rgba(217,189,123,.28);pointer-events:none}
+.cover-front::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(118deg,transparent 0 24%,rgba(230,208,156,.07) 25%,transparent 27% 66%,rgba(230,208,156,.04) 67%,transparent 69%);mix-blend-mode:screen}
+.gold-vein{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(224,194,126,.8),rgba(241,220,170,.28),transparent);opacity:.48;transform-origin:left center;filter:blur(.15px)}
+.vein-one{width:70%;top:18%;left:-8%;transform:rotate(24deg)}.vein-two{width:58%;bottom:21%;right:-8%;transform:rotate(-31deg)}
+.gold-dust{position:absolute;width:42%;height:27%;opacity:.35;background:radial-gradient(ellipse at 30% 50%,rgba(232,205,139,.55) 0 1px,transparent 2px),radial-gradient(ellipse at 65% 30%,rgba(232,205,139,.42) 0 1px,transparent 2px),radial-gradient(ellipse at 48% 72%,rgba(232,205,139,.32) 0 1px,transparent 2px),radial-gradient(ellipse at 80% 65%,rgba(232,205,139,.5) 0 1px,transparent 2px);background-size:29px 31px,37px 29px,21px 24px,43px 39px;mask-image:radial-gradient(ellipse,black,transparent 72%)}
+.dust-one{top:0;left:0}.dust-two{right:0;bottom:0;transform:rotate(180deg)}
+.cover-constellations{position:absolute;top:7%;left:7%;right:7%;display:flex;align-items:center;justify-content:space-between;opacity:.9}
+.constellation{width:25%;max-width:88px;overflow:visible;fill:var(--cover-gold-bright);stroke:rgba(225,199,139,.65);stroke-width:.75;stroke-linecap:round;stroke-linejoin:round}
+.constellation-b{transform:translateY(9px) scale(.9)}
+.cover-emblem{position:absolute;left:50%;top:42%;width:48%;max-width:190px;transform:translate(-50%,-50%);filter:drop-shadow(0 0 12px rgba(216,190,126,.1))}
+.cover-emblem svg{display:block;width:100%;height:auto;overflow:visible}
+.emblem-ring,.emblem-orbit,.emblem-horizon,.emblem-starline{fill:none;stroke:var(--cover-gold);stroke-width:.8}
+.emblem-ring.inner{opacity:.55;stroke-dasharray:1 3}.emblem-orbit{stroke-width:.7;opacity:.7}.emblem-horizon{stroke-width:1.2}.emblem-sun{fill:none;stroke:var(--cover-gold-bright);stroke-width:1.5}.emblem-letter{font-family:var(--cover-title-font);font-size:var(--cover-title-size);font-weight:400;fill:#f0dfb4}.letter-d{font-style:italic}.letter-r{font-style:normal}.emblem-star{fill:var(--cover-gold-bright)}.emblem-starline{stroke-width:.7}
+.cover-date{position:absolute;left:0;right:0;bottom:13%;display:flex;flex-direction:column;align-items:center;gap:.1rem;color:#ead8a8;text-align:center;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.cover-date span{font:500 var(--cover-date-size)/1.4 var(--cover-small-font);letter-spacing:.32em;padding-left:.32em}
+.cover-date strong{font:500 clamp(1.3rem,4vw,1.7rem)/1.2 var(--cover-small-font);letter-spacing:.22em;padding-left:.22em}
+.cover-motto{position:absolute;left:0;right:0;bottom:5.2%;margin:0;text-align:center;font:italic 400 .9rem var(--cover-title-font);letter-spacing:.05em;color:rgba(238,224,190,.7)}
+.cover-inside{z-index:-1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:linear-gradient(145deg,#172943,#0c172a);transform:translateZ(-2px)}
+.inside-rule{width:40%;height:1px;background:linear-gradient(90deg,transparent,var(--cover-gold),transparent)}.inside-monogram{font:italic 400 clamp(2rem,6vw,3rem) var(--cover-title-font);color:#e8d4a0}.inside-monogram i{font-size:.6em}.inside-caption{font:400 .68rem var(--cover-small-font);letter-spacing:.17em;color:rgba(236,225,198,.72);text-transform:uppercase}
+.cover-flap{position:absolute;z-index:5;left:0;right:0;top:0;height:49%;transform-origin:top center;transform-style:preserve-3d;background:linear-gradient(155deg,#1a2b44,#102039 72%,#0b182b);clip-path:polygon(0 0,100% 0,50% 100%);border-top:1px solid rgba(228,205,153,.5);backface-visibility:visible;transition:transform 1.05s cubic-bezier(.22,.68,.16,1),opacity .7s;pointer-events:none}
+.cover-flap::after{content:"";position:absolute;left:50%;top:8%;height:70%;width:1px;background:linear-gradient(transparent,rgba(224,196,132,.3),transparent);transform:rotate(28deg)}
+.wax-seal{position:absolute;z-index:8;left:50%;top:49%;width:clamp(76px,22vw,100px);aspect-ratio:1;transform:translate(-50%,-50%);border:0;border-radius:50%;padding:0;background:transparent;cursor:pointer;filter:drop-shadow(0 5px 6px rgba(0,0,0,.42));transition:filter .25s}
+.wax-seal svg{display:block;width:100%;height:100%;overflow:visible}.wax-seal:hover{filter:drop-shadow(0 0 12px rgba(224,194,126,.28)) drop-shadow(0 5px 6px rgba(0,0,0,.4))}
+.wax-seal:focus-visible{outline:2px solid var(--cover-gold-bright);outline-offset:8px}
+.cover-cta{position:relative;z-index:2;margin-top:1.6rem;padding:.35rem .25rem;color:#f2e8ce;text-decoration:none;font:italic 400 var(--cover-cta-size)/1.4 var(--cover-cta-font);letter-spacing:.02em;border-bottom:1px solid rgba(217,189,123,.5);transition:color .25s,border-color .25s,letter-spacing .25s}
+.cover-cta span{display:inline-block;margin-left:.35rem;color:var(--cover-gold);font:400 .85em var(--sans);transition:transform .25s}.cover-cta:hover{color:#fff;border-color:var(--cover-gold-bright);letter-spacing:.045em}.cover-cta:hover span{transform:translate(3px,-2px)}
+.cover-note{margin:.75rem 0 0;font:300 .7rem var(--sans);letter-spacing:.14em;color:rgba(223,226,236,.53)}
+.cover.opening .wax-seal{animation:sealLift .85s cubic-bezier(.2,.7,.2,1) forwards;pointer-events:none}
+.cover.opening .cover-flap{transform:rotateX(176deg);opacity:.15}
+.cover.opening .cover-front{animation:cardUnfold 1.25s .45s cubic-bezier(.2,.75,.2,1) forwards;transform-origin:bottom center}
+.cover.opening .cover-constellations,.cover.opening .cover-emblem,.cover.opening .cover-date,.cover.opening .cover-motto{animation:inkDissolve .45s .4s ease forwards}
+@keyframes sealLift{0%{transform:translate(-50%,-50%) scale(1);opacity:1}45%{transform:translate(-50%,-90%) scale(1.04);opacity:1}100%{transform:translate(125%,-230%) rotate(18deg) scale(.72);opacity:0}}
+@keyframes cardUnfold{0%{transform:scale(1) rotateX(0)}55%{transform:scale(1.015) rotateX(-2deg)}100%{transform:scale(1.04) rotateX(-3deg);opacity:.15}}
+@keyframes inkDissolve{to{opacity:0;transform:translateY(-5px)}}
+#intro.opening-done .cover-stage{opacity:0;transform:translateY(-8px);transition:opacity .35s,transform .35s}
+#cal{background:radial-gradient(ellipse 78% 65% at 50% 38%,#252443 0%,#17172f 44%,#0b1024 77%,#050914 100%);color:#f5f0e5;isolation:isolate}
+#cal::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at center,transparent 24%,rgba(2,5,15,.18) 58%,rgba(0,2,8,.7) 100%),radial-gradient(circle at 13% 20%,rgba(217,189,123,.16) 0 1px,transparent 2px),radial-gradient(circle at 82% 70%,rgba(217,189,123,.14) 0 1px,transparent 2px),radial-gradient(circle at 74% 17%,rgba(217,189,123,.1) 0 1px,transparent 2px);background-size:auto,173px 190px,227px 210px,191px 167px}
+#cal .box{position:relative;z-index:1}.box h1{font-family:var(--calendar-font);color:#f3ead6;text-shadow:0 0 24px rgba(216,190,126,.12)}#cal .sub,#cal .mon,#cal .wk,#cal .d{color:rgba(238,232,219,.7)}#cal .hot{box-shadow:0 0 0 1px rgba(222,197,137,.24),0 0 18px rgba(217,189,123,.1)}#cal .e{box-shadow:0 0 0 1px rgba(255,225,163,.65),0 0 18px rgba(217,189,123,.18)}#cal .w{box-shadow:0 0 0 1px rgba(217,189,123,.45),0 0 18px rgba(160,115,190,.22)}
+#s2 .hero h2{font-family:var(--engagement-font)}#s6 .hero h2{font-family:var(--wedding-font)}
+@media(max-width:520px){.cover-stage{padding:1.2rem .9rem calc(env(safe-area-inset-bottom,0px) + 1rem)}.cover{width:min(84vw,340px);height:min(118vw,500px);min-height:390px;max-height:61svh}.cover-emblem{width:47%;top:42%}.cover-constellations{top:7%;left:8%;right:8%}.cover-date{bottom:13%}.cover-motto{bottom:5.5%}.cover-cta{margin-top:1.2rem}}
+@media(max-height:650px){.cover{height:62svh;min-height:330px;max-height:440px}.cover-stage{padding-top:.75rem;padding-bottom:.75rem}.cover-cta{margin-top:.8rem}.cover-note{margin-top:.35rem}}
+@media(prefers-reduced-motion:reduce){.cover,.cover-stage{animation:none!important}.cover.opening .wax-seal{animation:sealLift .2s forwards}.cover.opening .cover-flap{transition-duration:.2s}}
+
 </style>
 </head>
 <body>
 
-<div id="intro" role="dialog" aria-label="Save the date">
-  
-  
-  <div class="ii">
-    
-    
-    <div class="mkw" role="img" aria-label="D and R"><svg class="mk" id="mk1" viewBox="-40 -830 2305 913" aria-hidden="true"></svg><svg class="mk gl" id="mk2" viewBox="-40 -830 2305 913" aria-hidden="true"></svg></div>
-    
-    
-    <button class="fu s5" style="--d:4.6s" id="begin">Open the calendar</button>
-    
+<div id="intro" role="dialog" aria-label="Don and Reshma wedding invitation" aria-modal="true">
+  <div class="cover-stage">
+    <div class="cover-halo" aria-hidden="true"></div>
+    <article class="cover" id="cover-card" aria-label="Midnight blue invitation card">
+      <div class="cover-inside" aria-hidden="true">
+        <span class="inside-rule"></span>
+        <span class="inside-monogram">D <i>&amp;</i> R</span>
+        <span class="inside-caption">A celebration in January</span>
+      </div>
+      <div class="cover-flap" aria-hidden="true"></div>
+      <div class="cover-front">
+        <div class="gold-vein vein-one" aria-hidden="true"></div>
+        <div class="gold-vein vein-two" aria-hidden="true"></div>
+        <div class="gold-dust dust-one" aria-hidden="true"></div>
+        <div class="gold-dust dust-two" aria-hidden="true"></div>
+        <div class="cover-constellations" aria-label="Gemini and Scorpio inspired star motifs">
+          <svg class="constellation constellation-a" viewBox="0 0 100 82" role="img" aria-label="Gemini-inspired constellation motif">
+            <path d="M12 59 L27 24 L47 39 L66 13 L85 31 L73 61 L47 39"/><circle cx="12" cy="59" r="2.1"/><circle cx="27" cy="24" r="2.5"/><circle cx="47" cy="39" r="1.8"/><circle cx="66" cy="13" r="2.6"/><circle cx="85" cy="31" r="1.8"/><circle cx="73" cy="61" r="2.2"/>
+          </svg>
+          <svg class="constellation constellation-b" viewBox="0 0 100 82" role="img" aria-label="Scorpio-inspired constellation motif">
+            <path d="M14 22 L35 44 L51 18 L70 35 L87 61 L56 64 L35 44"/><circle cx="14" cy="22" r="2.3"/><circle cx="35" cy="44" r="1.8"/><circle cx="51" cy="18" r="2.4"/><circle cx="70" cy="35" r="1.8"/><circle cx="87" cy="61" r="2.4"/><circle cx="56" cy="64" r="1.8"/>
+          </svg>
+        </div>
+        <div class="cover-emblem" aria-label="A personal D and R emblem, two intersecting circles and a rising sun">
+          <svg viewBox="0 0 180 180" role="img" aria-label="Intertwined D and R inside a celestial emblem">
+            <circle class="emblem-ring outer" cx="90" cy="90" r="72"/>
+            <circle class="emblem-ring inner" cx="90" cy="90" r="64"/>
+            <circle class="emblem-orbit" cx="77" cy="88" r="35"/>
+            <circle class="emblem-orbit" cx="103" cy="88" r="35"/>
+            <path class="emblem-horizon" d="M51 116 Q90 105 129 116 M65 124 H115"/>
+            <path class="emblem-sun" d="M75 115 A15 15 0 0 1 105 115"/>
+            <text class="emblem-letter letter-d" x="72" y="99">D</text>
+            <text class="emblem-letter letter-r" x="108" y="99">R</text>
+            <circle class="emblem-star" cx="90" cy="25" r="2"/><path class="emblem-starline" d="M90 18 V12 M83 25 H77 M97 25 H103"/>
+          </svg>
+        </div>
+        <div class="cover-date"><span>JANUARY</span><strong>2027</strong></div>
+        <p class="cover-motto">Two paths. One horizon.</p>
+      </div>
+      <button class="wax-seal" id="wax-seal" type="button" aria-label="Open the sealed invitation">
+        <svg viewBox="0 0 100 100" aria-hidden="true">
+          <defs><linearGradient id="waxGradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b88b4e"/><stop offset=".42" stop-color="#7d5737"/><stop offset=".72" stop-color="#a87b48"/><stop offset="1" stop-color="#563b2c"/></linearGradient></defs>
+          <path d="M50 5 C61 7 66 4 74 14 S94 27 92 40 S98 58 86 69 S75 91 61 91 S42 100 31 89 S8 80 10 64 S1 43 11 31 S24 8 37 10Z" fill="url(#waxGradient)" stroke="#d7b77c" stroke-width="1.1"/>
+          <circle cx="50" cy="50" r="31" fill="none" stroke="#e5c98e" stroke-width="1" opacity=".9"/>
+          <circle cx="50" cy="50" r="27" fill="none" stroke="#4e382b" stroke-width=".8" opacity=".8"/>
+          <text x="50" y="57" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="26" font-style="italic" fill="#f2dfb1">D&amp;R</text>
+          <path d="M35 67 Q50 61 65 67" fill="none" stroke="#e5c98e" stroke-width="1"/>
+        </svg>
+      </button>
+    </article>
+    <a href="#open-invitation" id="begin" class="cover-cta">Open the invitation <span aria-hidden="true">↗</span></a>
+    <p class="cover-note">A little moment, made for you</p>
   </div>
 </div>
-
 <main id="cal" inert>
   <div class="box">
     <h1>Don &amp; Reshma</h1>
@@ -312,8 +471,31 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
   </div>
 </div>
 
-<button class="rec" id="rec" aria-label="Play music" aria-pressed="false"></button>
-<span class="rec-l" id="recl">Tap for music</span>
+<div class="player-shell" aria-label="Wedding music player">
+  <button class="rec" id="rec" aria-label="Play music" aria-pressed="false" title="Play or pause wedding music">
+    <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+      <defs><radialGradient id="labelGlow"><stop stop-color="#e6d5a3"/><stop offset=".55" stop-color="#bba4f4"/><stop offset="1" stop-color="#51436f"/></radialGradient></defs>
+      <circle cx="50" cy="57" r="36" fill="#090a11" stroke="#9d96ad" stroke-width="1.3"/>
+      <g class="rec-disc">
+        <circle cx="50" cy="57" r="31" fill="#171722" stroke="#77718d" stroke-width=".8"/>
+        <circle cx="50" cy="57" r="28" fill="none" stroke="#383644" stroke-width=".65"/><circle cx="50" cy="57" r="25" fill="none" stroke="#292735" stroke-width=".65"/><circle cx="50" cy="57" r="22" fill="none" stroke="#454050" stroke-width=".65"/><circle cx="50" cy="57" r="19" fill="none" stroke="#292735" stroke-width=".65"/><circle cx="50" cy="57" r="16" fill="none" stroke="#454050" stroke-width=".65"/><circle cx="50" cy="57" r="12" fill="url(#labelGlow)"/><circle cx="50" cy="57" r="3" fill="#f5e9bf"/>
+      </g>
+      <circle cx="78" cy="22" r="7" fill="#282733" stroke="#b4adbf" stroke-width="1.5"/><circle cx="78" cy="22" r="3" fill="#e5d7a9"/>
+      <g class="rec-arm" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M78 22 L83 30 L84 37" stroke="#e0dce7" stroke-width="4.5"/><path d="M83 30 L84 37" stroke="#817a8f" stroke-width="1.2"/><path d="M84 37 L80 42" stroke="#e7d8aa" stroke-width="2.5"/><circle cx="78" cy="22" r="2" fill="#fff5d6" stroke="none"/></g>
+      <path d="M12 30 A41 41 0 0 1 39 16" fill="none" stroke="#e7d8aa" stroke-width="1" opacity=".65"/>
+    </svg>
+  </button>
+  <div class="player-info">
+    <span class="player-kicker">WEDDING SOUNDTRACK · <span id="track-num">01</span></span>
+    <span class="player-title" id="track-title">Moonlit Prelude</span>
+    <span class="player-status" id="recl">Tap the record to listen</span>
+    <div class="player-controls" aria-label="Choose a music piece">
+      <button type="button" id="prev-track" aria-label="Previous music piece" title="Previous">‹</button>
+      <button type="button" id="toggle-track" aria-label="Play or pause music" title="Play or pause">▶</button>
+      <button type="button" id="next-track" aria-label="Next music piece" title="Next">›</button>
+    </div>
+  </div>
+</div>
 
 <script>
 var $=function(s){return document.querySelector(s)},$$=function(s){return document.querySelectorAll(s)};
@@ -383,14 +565,24 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeScene()
   for(var i=0;i<80;i++){var e=document.createElement('i'),z=r()*2+.6;
     e.style.cssText='left:'+r()*100+'%;top:'+r()*100+'%;width:'+z+'px;height:'+z+'px;opacity:'+(.3+r()*.6)+';animation-delay:-'+(r()*4)+'s';g.appendChild(e)}
   $$('.hero').forEach(function(h){h.insertAdjacentHTML('afterbegin','<p class="pre">Together with their families</p>')});
-  $('#begin').addEventListener('click',function(){
-    var c=$('#cal');
-    $('#intro').classList.add('out');
-    c.removeAttribute('inert');c.classList.add('show');
-    setTimeout(function(){c.classList.add('lit')},2000);
-    setTimeout(function(){$('#intro').style.display='none'},1700);
-    if(!$('#rec').classList.contains('on'))$('#rec').click();
-  });
+  function openInvitation(e){
+    if(e)e.preventDefault();
+    var intro=$('#intro'),card=$('#cover-card'),c=$('#cal');
+    if(card.classList.contains('opening'))return;
+    card.classList.add('opening');
+    $('#begin').setAttribute('aria-disabled','true');
+    $('#wax-seal').setAttribute('disabled','disabled');
+    /* Let the seal lift and the card unfold before the calendar arrives. */
+    setTimeout(function(){
+      intro.classList.add('opening-done');
+      intro.classList.add('out');
+      c.removeAttribute('inert');c.classList.add('show');
+      setTimeout(function(){c.classList.add('lit')},700);
+      setTimeout(function(){intro.style.display='none'},1050);
+    },1050);
+  }
+  $('#begin').addEventListener('click',openInvitation);
+  $('#wax-seal').addEventListener('click',openInvitation);
   window.addEventListener('load',function(){
     ['#s2','#s6'].forEach(function(sel,k){
       var l=$(sel+' .layer'),h=l.offsetHeight||2400,s=k+3;
@@ -399,15 +591,6 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeScene()
         m.style.cssText='--x:'+q()*96+'%;--z:'+(3+q()*(k?7:4))+'px;--d:'+(18+q()*20)+'s;--dl:-'+q()*30+'s;--dx:'+(q()*80-40)+'px;--h:'+h+'px';
         l.appendChild(m)}
     });
-  });
-})();
-
-// Stroked D and R: one path per contour so each can carry a travelling glow
-(function(){
-  var C=['M162 43Q121 43 84 31Q47 19 24 -5Q0 -29 0 -65Q0 -102 32 -132Q65 -162 125 -162Q188 -162 244 -134Q301 -105 364 -72Q417 -123 458 -190Q500 -258 538 -333Q577 -408 618 -482Q659 -557 710 -621Q719 -632 728 -644Q737 -655 747 -666Q693 -698 631 -716Q569 -733 503 -733Q421 -733 351 -712Q281 -691 230 -656Q178 -620 149 -576Q120 -531 120 -484Q120 -442 138 -414Q155 -387 182 -374Q209 -361 235 -361Q270 -361 295 -374Q320 -388 336 -408Q352 -428 360 -447Q368 -466 369 -478Q369 -485 378 -485Q392 -485 389 -468Q384 -428 359 -398Q334 -369 299 -352Q264 -336 227 -336Q183 -336 147 -352Q111 -369 90 -402Q68 -436 68 -485Q68 -550 103 -602Q138 -653 199 -689Q260 -725 339 -744Q418 -763 506 -763Q574 -763 643 -746Q712 -730 774 -697Q800 -726 828 -748Q855 -771 884 -783Q897 -788 905 -788Q911 -788 911 -785Q911 -780 888 -760Q875 -748 857 -724Q839 -699 820 -670Q880 -631 926 -576Q973 -520 1000 -450Q1027 -379 1027 -293Q1027 -209 998 -146Q969 -84 919 -43Q869 -2 804 18Q739 39 667 39Q582 39 510 16Q437 -7 375 -36Q326 3 274 23Q221 43 162 43Z','M752 -563Q731 -530 701 -480Q671 -429 634 -370Q597 -311 557 -252Q517 -193 476 -142Q436 -90 398 -55Q451 -29 515 -10Q579 9 660 9Q752 9 820 -30Q888 -68 926 -134Q964 -201 964 -285Q964 -394 918 -484Q872 -573 795 -633Q782 -612 771 -594Q760 -575 752 -563Z','M162 12Q213 15 262 -6Q310 -28 342 -53Q282 -82 232 -106Q181 -130 138 -130Q103 -130 84 -110Q65 -89 65 -64Q65 -32 90 -11Q116 10 162 12Z','M2002 42Q1974 42 1946 29Q1919 16 1895 -9Q1860 -45 1834 -96Q1809 -146 1791 -200Q1773 -253 1763 -298Q1753 -342 1749 -366Q1712 -295 1672 -226Q1633 -156 1572 -89Q1514 -26 1445 6Q1376 39 1302 39Q1279 39 1255 36Q1189 28 1158 -2Q1127 -32 1127 -66Q1127 -103 1160 -133Q1193 -163 1254 -163Q1274 -163 1297 -159Q1320 -155 1345 -146Q1356 -142 1356 -137Q1356 -133 1348 -133Q1343 -133 1340 -134Q1307 -146 1281 -146Q1239 -146 1217 -122Q1195 -97 1195 -68Q1195 -40 1219 -16Q1243 8 1293 8Q1356 8 1409 -22Q1462 -51 1508 -102Q1554 -154 1596 -220Q1638 -285 1678 -356Q1745 -475 1800 -572Q1854 -670 1915 -738Q1888 -741 1860 -742Q1832 -743 1803 -743Q1740 -743 1672 -736Q1605 -730 1542 -716Q1457 -698 1396 -662Q1335 -627 1300 -584Q1264 -540 1255 -496Q1252 -480 1252 -465Q1252 -414 1286 -386Q1320 -358 1364 -358Q1392 -358 1420 -370Q1449 -381 1472 -406Q1491 -426 1500 -444Q1509 -461 1510 -470Q1511 -484 1516 -484Q1519 -484 1522 -479Q1524 -474 1523 -469Q1519 -446 1509 -424Q1499 -402 1485 -387Q1457 -358 1421 -344Q1385 -330 1352 -330Q1313 -330 1278 -347Q1244 -364 1223 -396Q1202 -429 1202 -477Q1202 -533 1241 -592Q1280 -650 1358 -695Q1437 -740 1554 -757Q1613 -765 1668 -770Q1724 -774 1776 -774Q1818 -774 1858 -771Q1898 -768 1937 -763Q1963 -790 1972 -790Q1979 -790 1979 -779Q1979 -775 1978 -769Q1977 -763 1975 -757Q2002 -753 2028 -748Q2053 -744 2073 -738Q2152 -716 2188 -680Q2225 -645 2225 -604Q2225 -560 2186 -516Q2146 -472 2074 -438Q2003 -404 1907 -388Q1876 -383 1852 -381Q1829 -379 1812 -378Q1814 -368 1821 -336Q1828 -304 1841 -260Q1854 -217 1874 -169Q1895 -121 1924 -78Q1947 -44 1971 -22Q1995 0 2022 0Q2039 0 2058 -9Q2076 -18 2096 -38Q2120 -62 2140 -92Q2160 -122 2174 -150Q2188 -177 2195 -193Q2201 -193 2204 -192Q2207 -191 2207 -184Q2203 -174 2193 -152Q2183 -131 2170 -104Q2156 -78 2140 -52Q2124 -26 2108 -8Q2085 17 2056 30Q2028 42 2002 42Z','M1770 -405Q1799 -410 1832 -412Q1865 -414 1897 -418Q1949 -425 1995 -446Q2041 -466 2076 -495Q2112 -524 2132 -556Q2152 -589 2152 -619Q2152 -687 2061 -713Q2043 -718 2014 -723Q1986 -728 1963 -732Q1915 -650 1864 -571Q1814 -492 1770 -405Z'],ns='http://www.w3.org/2000/svg';
-  ['mk1','mk2'].forEach(function(id,k){
-    var s=document.getElementById(id);
-    C.forEach(function(d){var p=document.createElementNS(ns,'path');p.setAttribute('d',d);p.setAttribute('pathLength','1');p.setAttribute('class',k?'g':'b');s.appendChild(p)});
   });
 })();
 
@@ -422,32 +605,81 @@ function tick(){
 }
 tick();setInterval(tick,1000);
 
-// Placeholder music: a soft synthesised pad until a real song is added
-var ac,master,playing=false;
-function build(){
-  ac=new (window.AudioContext||window.webkitAudioContext)();
-  master=ac.createGain();master.gain.value=0;
-  var f=ac.createBiquadFilter();f.type='lowpass';f.frequency.value=900;
-  var lfo=ac.createOscillator(),lg=ac.createGain();lfo.frequency.value=.12;lg.gain.value=.02;lfo.connect(lg);lg.connect(master.gain);lfo.start();
-  [196,246.9,293.7,392,493.9,587.3].forEach(function(hz,i){
-    var o=ac.createOscillator(),g=ac.createGain();
-    o.type=i%2?'triangle':'sine';o.frequency.value=hz;o.detune.value=(i-3)*4;g.gain.value=.05;
-    o.connect(g);g.connect(f);o.start();
-  });
-  f.connect(master);master.connect(ac.destination);
+// Wedding soundtrack: three browser-generated instrumental moods.
+// Audio starts only after the visitor taps the record or play button (mobile-browser requirement).
+var ac=null,master=null,playing=false,musicTimer=null,nextPhraseAt=0;
+var musicTrack=0,bar=0;
+var trackTitles=['Moonlit Prelude','Golden Hour','Afterglow Waltz'];
+var progressions=[
+  [[261.63,329.63,392,493.88,392,329.63],[220,261.63,329.63,440,392,329.63],[174.61,220,261.63,349.23,329.63,261.63],[196,246.94,293.66,392,349.23,293.66]],
+  [[293.66,349.23,440,523.25,440,349.23],[246.94,293.66,369.99,493.88,440,369.99],[196,246.94,293.66,392,369.99,293.66],[220,277.18,329.63,440,392,329.63]],
+  [[220,261.63,329.63,392,329.63,261.63],[196,246.94,293.66,392,349.23,293.66],[164.81,196,246.94,329.63,293.66,246.94],[174.61,220,261.63,349.23,329.63,261.63]]
+];
+function updateTrackUI(){
+  $('#track-title').textContent=trackTitles[musicTrack];
+  $('#track-num').textContent=String(musicTrack+1).padStart(2,'0');
 }
-$('#rec').addEventListener('click',function(){
+function buildAudio(){
+  var AudioContextClass=window.AudioContext||window.webkitAudioContext;
+  if(!AudioContextClass)throw new Error('Web Audio is not supported');
+  ac=new AudioContextClass();
+  master=ac.createGain();master.gain.value=0;master.connect(ac.destination);
+  var filter=ac.createBiquadFilter();filter.type='lowpass';filter.frequency.value=2100;filter.Q.value=.55;filter.connect(master);
+  var pad=ac.createGain();pad.gain.value=.13;pad.connect(filter);
+  [130.81,196,261.63].forEach(function(hz,i){
+    var osc=ac.createOscillator(),gain=ac.createGain();
+    osc.type=i===0?'triangle':'sine';osc.frequency.value=hz;gain.gain.value=i===0?.045:.025;
+    osc.connect(gain);gain.connect(pad);osc.start();
+  });
+  function note(freq,when,duration,volume){
+    var osc=ac.createOscillator(),gain=ac.createGain(),tone=ac.createBiquadFilter();
+    osc.type='sine';osc.frequency.setValueAtTime(freq,when);tone.type='lowpass';tone.frequency.setValueAtTime(1700,when);
+    gain.gain.setValueAtTime(.0001,when);gain.gain.exponentialRampToValueAtTime(volume,when+.025);
+    gain.gain.exponentialRampToValueAtTime(Math.max(.0001,volume*.36),when+Math.min(.24,duration*.55));
+    gain.gain.exponentialRampToValueAtTime(.0001,when+duration);
+    osc.connect(tone);tone.connect(gain);gain.connect(filter);osc.start(when);osc.stop(when+duration+.04);
+  }
+  function phrase(){
+    if(!playing||!ac||ac.state!=='running')return;
+    var now=ac.currentTime+.08,notes=progressions[musicTrack][bar%4];
+    notes.forEach(function(freq,i){note(freq,now+i*.52,1.55,i===3?.065:.048)});
+    note(progressions[musicTrack][(bar+1)%4][0]/2,now+.05,2.5,.035);
+    bar++;nextPhraseAt=Date.now()+3900;
+  }
+  ac.__phrase=phrase;
+}
+function setPlayerState(on){
+  playing=on;$('#rec').classList.toggle('on',on);$('#rec').setAttribute('aria-pressed',String(on));
+  $('#rec').setAttribute('aria-label',on?'Pause instrumental music':'Play instrumental music');
+  $('#recl').textContent=on?'Now playing':'Tap to listen';$('#toggle-track').textContent=on?'Ⅱ':'▶';
+}
+async function toggleMusic(){
   try{
-    if(!ac)build();
-    playing=!playing;
-    if(playing)ac.resume();
-    master.gain.cancelScheduledValues(ac.currentTime);
-    master.gain.linearRampToValueAtTime(playing?.14:0,ac.currentTime+1.5);
-    this.classList.toggle('on',playing);this.setAttribute('aria-pressed',playing);
-    this.setAttribute('aria-label',playing?'Pause music':'Play music');
-    $('#recl').textContent=playing?'Playing':'Tap for music';
-  }catch(err){$('#recl').textContent='Audio unavailable'}
-});
+    if(!ac)buildAudio();
+    if(!playing){
+      await ac.resume();
+      if(ac.state!=='running')throw new Error('Audio context did not start');
+      playing=true;
+      master.gain.cancelScheduledValues(ac.currentTime);master.gain.setValueAtTime(master.gain.value,ac.currentTime);master.gain.linearRampToValueAtTime(.72,ac.currentTime+1.2);
+      ac.__phrase();
+      if(musicTimer)clearInterval(musicTimer);
+      musicTimer=setInterval(function(){if(playing&&ac&&ac.state==='running'&&Date.now()>=nextPhraseAt)ac.__phrase()},500);
+      setPlayerState(true);
+    }else{
+      master.gain.cancelScheduledValues(ac.currentTime);master.gain.setValueAtTime(master.gain.value,ac.currentTime);master.gain.linearRampToValueAtTime(0,ac.currentTime+.55);
+      if(musicTimer){clearInterval(musicTimer);musicTimer=null}setPlayerState(false);
+    }
+  }catch(err){playing=false;setPlayerState(false);$('#recl').textContent='Tap again to enable audio';}
+}
+function changeTrack(step){
+  musicTrack=(musicTrack+step+trackTitles.length)%trackTitles.length;bar=0;updateTrackUI();
+  if(playing&&ac&&ac.state==='running'){nextPhraseAt=0;ac.__phrase()}
+}
+updateTrackUI();
+$('#rec').addEventListener('click',toggleMusic);
+$('#toggle-track').addEventListener('click',toggleMusic);
+$('#prev-track').addEventListener('click',function(){changeTrack(-1)});
+$('#next-track').addEventListener('click',function(){changeTrack(1)});
 </script>
 </body>
 </html>
