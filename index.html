@@ -55,7 +55,7 @@ button{font:inherit;color:inherit;cursor:pointer}
 /* Calendar landing */
 #cal{position:fixed;inset:0;display:grid;place-items:center;padding:1.25rem;background:linear-gradient(170deg,var(--l1),var(--l2));isolation:isolate;overflow:hidden}
 /* The couple's motion-blur photo sits behind the calendar, not behind the date text directly. */
-#cal::before{content:"";position:absolute;z-index:-2;inset:-2%;background:url("IMG_1271.jpg") center 57%/cover no-repeat;filter:saturate(.72) contrast(1.02) blur(1.5px);transform:scale(1.025);opacity:.72;pointer-events:none}
+#cal::before{content:"";position:absolute;z-index:-2;inset:-2%;background:url("IMG_1271.jpg") center 57%/cover no-repeat;filter:saturate(.82) contrast(1.04) blur(1px);transform:scale(1.025);opacity:.88;pointer-events:none}
 #cal::after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(180deg,rgba(7,10,25,.76),rgba(13,13,35,.82) 52%,rgba(5,8,22,.88));pointer-events:none}
 .box{width:min(440px,100%);text-align:center}
 .box h1{font:italic 600 var(--calendar-title-size)/1 var(--serif);margin:0 0 .4rem}
@@ -188,20 +188,21 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 @keyframes tg{from{opacity:0}}
 
 /* =========================================================
-   COMPACT WEDDING SOUNDTRACK — smaller footprint on mobile
+   MINIATURE TURNTABLE — one-touch, visual-first music control
    ========================================================= */
-.player-shell{position:fixed;z-index:50;right:.8rem;bottom:calc(env(safe-area-inset-bottom,0px) + .7rem);display:flex;align-items:center;gap:.48rem;padding:.32rem .58rem .32rem .34rem;border:1px solid rgba(223,215,255,.24);border-radius:3rem;background:linear-gradient(135deg,rgba(224,231,244,.16),rgba(125,143,173,.09) 48%,rgba(15,24,44,.48));box-shadow:0 8px 24px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,255,255,.2);backdrop-filter:blur(22px) saturate(145%);-webkit-backdrop-filter:blur(22px) saturate(145%);max-width:calc(100vw - 1rem);isolation:isolate}
-.rec{position:relative;flex:0 0 auto;width:2.65rem;height:2.65rem;border:1px solid rgba(233,225,255,.42);padding:.08rem;border-radius:50%;background:radial-gradient(circle at 35% 25%,#484452,#171722 52%,#05060d 78%);box-shadow:inset 0 0 0 2px rgba(0,0,0,.8);display:grid;place-items:center;transition:transform .25s,border-color .25s,box-shadow .25s}
-.rec:hover{transform:translateY(-1px);border-color:#e9d8a5;box-shadow:0 0 12px rgba(191,166,255,.16)}
-.rec svg{width:100%;height:100%;overflow:visible}.rec-disc{transform-origin:50px 57px}.rec.on .rec-disc{animation:vinylSpin 3.8s linear infinite}
-.rec-arm{transform-origin:78px 22px;transform:rotate(0deg);transition:transform .7s cubic-bezier(.2,.8,.2,1)}.rec.on .rec-arm{transform:rotate(55deg)}
-.player-info{display:flex;flex-direction:column;gap:.08rem;min-width:0;max-width:9.4rem;color:#f7f2ff;text-align:left;line-height:1.15}
-.player-kicker{display:none}.player-title{font:italic 400 .76rem/1.1 var(--serif);white-space:nowrap;max-width:7.5rem;overflow:hidden;text-overflow:ellipsis}.player-status{display:none}
-.player-controls{display:flex;align-items:center;gap:.2rem;margin-top:.12rem}.player-controls button{width:1.35rem;height:1.35rem;border:1px solid rgba(229,218,255,.2);border-radius:50%;background:rgba(255,255,255,.045);color:#f8f3ff;display:grid;place-items:center;padding:0;transition:background .2s,border-color .2s}.player-controls button svg{width:11px;height:11px;display:block}.player-controls button.play-control{width:1.55rem;height:1.55rem;background:rgba(217,189,123,.14);border-color:rgba(217,189,123,.48)}.player-controls button.play-control svg{width:12px;height:12px}.player-controls button:hover{background:rgba(192,174,255,.18);border-color:rgba(229,218,255,.5)}
-.spotify-link{display:none}
+.player-shell{position:fixed;z-index:50;right:.9rem;bottom:calc(env(safe-area-inset-bottom,0px) + .85rem);display:flex;align-items:center;gap:.72rem;width:clamp(154px,42vw,190px);padding:.55rem .75rem .55rem .55rem;border:1px solid rgba(231,218,183,.34);border-radius:1.1rem;background:linear-gradient(145deg,rgba(236,239,244,.16),rgba(24,30,49,.74) 65%,rgba(9,14,29,.82));box-shadow:0 12px 32px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.2);backdrop-filter:blur(20px) saturate(135%);-webkit-backdrop-filter:blur(20px) saturate(135%);color:#f5efdf;cursor:pointer;text-align:left;transition:transform .3s,border-color .3s,box-shadow .3s}
+.player-shell:hover{transform:translateY(-2px);border-color:rgba(231,218,183,.65);box-shadow:0 15px 34px rgba(0,0,0,.4),0 0 18px rgba(217,189,123,.1)}
+.player-shell:focus-visible{outline:2px solid #e5cf98;outline-offset:4px}
+.rec{position:relative;flex:0 0 3.35rem;width:3.35rem;height:3.35rem;border:1px solid rgba(231,218,183,.55);padding:0;border-radius:1rem;background:linear-gradient(145deg,#e8e7e2,#b9bac1 52%,#777987);box-shadow:inset 0 1px 3px rgba(255,255,255,.8),0 4px 12px rgba(0,0,0,.28);display:grid;place-items:center;overflow:hidden}
+.rec svg{width:100%;height:100%;display:block}.rec-disc{transform-origin:50px 52px}.rec.on .rec-disc{animation:vinylSpin 3.8s linear infinite}
+.rec-arm{transform-origin:76px 25px;transform:rotate(0deg);transition:transform .8s cubic-bezier(.2,.8,.2,1)}.rec.on .rec-arm{transform:rotate(48deg)}
+.player-info{display:flex;flex:1;flex-direction:column;gap:.16rem;min-width:0;color:#f7f2e7;text-align:left;line-height:1.15;pointer-events:none}
+.player-kicker{font:500 .48rem/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#d9bd7b;opacity:.9}
+.player-title{font:italic 400 .88rem/1.15 var(--serif);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;color:#fff8e9}
+.player-status{display:block;font:400 .56rem/1.2 var(--sans);letter-spacing:.025em;color:rgba(242,236,222,.68)}
 @keyframes vinylSpin{to{transform:rotate(360deg)}}
-@media(max-width:520px){.player-shell{right:.45rem;bottom:calc(env(safe-area-inset-bottom,0px) + .5rem);gap:.38rem;padding:.28rem .45rem .28rem .28rem}.rec{width:2.3rem;height:2.3rem}.player-info{max-width:7.5rem}.player-title{font-size:.72rem}.player-controls button{width:1.25rem;height:1.25rem}.player-controls button.play-control{width:1.45rem;height:1.45rem}}
-@media(max-width:360px){.player-shell{gap:.28rem}.rec{width:2rem;height:2rem}.player-info{max-width:6.8rem}.player-title{font-size:.68rem}}
+@media(max-width:520px){.player-shell{right:.55rem;bottom:calc(env(safe-area-inset-bottom,0px) + .55rem);width:clamp(145px,43vw,170px);gap:.55rem;padding:.45rem .58rem .45rem .45rem;border-radius:.95rem}.rec{flex-basis:2.9rem;width:2.9rem;height:2.9rem;border-radius:.85rem}.player-title{font-size:.8rem}.player-kicker{font-size:.43rem}.player-status{font-size:.52rem}}
+@media(max-width:360px){.player-shell{width:145px;gap:.45rem}.rec{flex-basis:2.6rem;width:2.6rem;height:2.6rem}.player-title{font-size:.74rem}}
 
 @media (max-width:520px){dl{grid-template-columns:1fr;gap:.1rem}dd{margin-bottom:.9rem}.cd{gap:1rem}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}.ltr,.rv,#intro .fu,.mono text,#cal .box>*{opacity:1;transform:none}.nm{-webkit-mask-image:none;mask-image:none;opacity:1}.edge{opacity:.7}.pen{display:none}.mk .b{stroke-dashoffset:0}.mk.gl{display:none}}
@@ -343,13 +344,50 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 #intro.opening-done .cover-stage{opacity:0;transform:translateY(-8px);transition:opacity .35s,transform .35s}
 #cal{background:radial-gradient(ellipse 78% 65% at 50% 38%,#252443 0%,#17172f 44%,#0b1024 77%,#050914 100%);color:#f5f0e5;isolation:isolate;overflow:hidden}
 #cal::before{content:"";position:absolute;inset:-2%;z-index:-2;pointer-events:none;background:url("IMG_1271.jpg") center 57%/cover no-repeat;filter:saturate(.72) contrast(1.02) blur(1.5px);transform:scale(1.025);opacity:.72}
-#cal::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(7,10,25,.72),rgba(13,13,35,.78) 52%,rgba(5,8,22,.86)),radial-gradient(circle at 13% 20%,rgba(217,189,123,.16) 0 1px,transparent 2px),radial-gradient(circle at 82% 70%,rgba(217,189,123,.14) 0 1px,transparent 2px),radial-gradient(circle at 74% 17%,rgba(217,189,123,.1) 0 1px,transparent 2px);background-size:auto,173px 190px,227px 210px,191px 167px}
+#cal::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(7,10,25,.60),rgba(13,13,35,.68) 52%,rgba(5,8,22,.78)),radial-gradient(circle at 13% 20%,rgba(217,189,123,.16) 0 1px,transparent 2px),radial-gradient(circle at 82% 70%,rgba(217,189,123,.14) 0 1px,transparent 2px),radial-gradient(circle at 74% 17%,rgba(217,189,123,.1) 0 1px,transparent 2px);background-size:auto,173px 190px,227px 210px,191px 167px}
 #cal .box{position:relative;z-index:1}.box h1{font-family:var(--calendar-font);color:#f3ead6;text-shadow:0 0 24px rgba(216,190,126,.12)}#cal .sub,#cal .mon,#cal .wk,#cal .d{color:rgba(238,232,219,.7)}#cal .hot{box-shadow:0 0 0 1px rgba(222,197,137,.24),0 0 18px rgba(217,189,123,.1)}#cal .e{box-shadow:0 0 0 1px rgba(255,225,163,.65),0 0 18px rgba(217,189,123,.18)}#cal .w{box-shadow:0 0 0 1px rgba(217,189,123,.45),0 0 18px rgba(160,115,190,.22)}
 #s2 .hero h2{font-family:var(--engagement-font)}#s6 .hero h2{font-family:var(--wedding-font)}
 @media(max-width:520px){.cover-stage{padding:1.2rem .9rem calc(env(safe-area-inset-bottom,0px) + 1rem)}.cover{width:min(84vw,340px);height:min(118vw,500px);min-height:390px;max-height:61svh}.cover-emblem{width:47%;top:42%}.cover-constellations{top:29%;left:8%;right:8%}.cover-date{bottom:13%}.cover-motto{bottom:5.5%}.cover-cta{margin-top:1.2rem}}
 @media(max-height:650px){.cover{height:62svh;min-height:330px;max-height:440px}.cover-stage{padding-top:.75rem;padding-bottom:.75rem}.cover-cta{margin-top:.8rem}.cover-note{margin-top:.35rem}}
 @media(prefers-reduced-motion:reduce){.cover,.cover-stage{animation:none!important}.cover.opening .wax-seal{animation:sealLift .2s forwards}.cover.opening .cover-flap{transition-duration:.2s}}
 
+
+/* Interactive wedding-day timeline */
+.wedding-timeline{width:min(560px,calc(100% - 2.5rem));margin:2.2rem auto;padding:1.5rem 1.35rem 1.2rem;border:1px solid rgba(239,220,177,.24);border-radius:1.4rem;background:linear-gradient(145deg,rgba(18,20,55,.48),rgba(8,13,40,.56));backdrop-filter:blur(12px);box-shadow:0 14px 36px rgba(0,0,0,.14)}
+.timeline-heading{text-align:center;margin-bottom:1.3rem}.timeline-kicker{font:500 .62rem var(--sans);letter-spacing:.2em;color:#e4c98f}.timeline-heading h3{font:400 2.25rem/1.05 var(--script);margin:.25rem 0;color:#fff4dc}.timeline-heading p{font-size:.78rem;opacity:.72;margin:.3rem 0}
+.timeline-list{position:relative;display:grid;gap:.45rem}.timeline-list::before{content:"";position:absolute;left:5.45rem;top:1.1rem;bottom:1.1rem;width:1px;background:linear-gradient(180deg,rgba(231,204,145,.05),rgba(231,204,145,.65),rgba(231,204,145,.08));transform-origin:top;animation:timelineDraw 1.8s .3s both}
+@keyframes timelineDraw{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.timeline-stop{position:relative;display:grid;grid-template-columns:4.55rem 1.8rem minmax(0,1fr) 1rem;align-items:start;gap:.55rem;width:100%;padding:.85rem .15rem;border:0;border-radius:.8rem;background:transparent;color:inherit;text-align:left;cursor:pointer;transition:background .25s,transform .25s}
+.timeline-stop:hover,.timeline-stop.is-open{background:rgba(255,255,255,.055)}.timeline-stop:focus-visible{outline:1px solid #e4c98f;outline-offset:2px}
+.timeline-time{padding-top:.12rem;text-align:right;font:500 .58rem var(--sans);letter-spacing:.08em;color:#e7d3a7}.timeline-dot{position:relative;z-index:1;display:grid;place-items:center;width:1.45rem;height:1.45rem;border:1px solid rgba(233,211,163,.75);border-radius:50%;background:#191a39;color:#f2dca9;font-size:.75rem;box-shadow:0 0 0 4px rgba(13,16,43,.5),0 0 14px rgba(217,189,123,.16);transition:box-shadow .3s,transform .3s}.timeline-stop.is-open .timeline-dot{transform:scale(1.12);box-shadow:0 0 0 5px rgba(13,16,43,.5),0 0 18px rgba(217,189,123,.42)}
+.timeline-copy{display:flex;flex-direction:column;gap:.18rem;min-width:0}.timeline-copy strong{font:500 .88rem var(--sans);color:#fff5e5}.timeline-copy small{font:400 .68rem var(--sans);color:rgba(245,238,224,.7)}.timeline-copy em{display:none;font:italic 400 .8rem var(--serif);color:#e4d2aa;margin-top:.2rem}.timeline-stop.is-open .timeline-copy em{display:block;animation:timelineReveal .35s ease both}.timeline-chevron{color:#ddc48e;opacity:.75;transition:transform .25s}.timeline-stop.is-open .timeline-chevron{transform:rotate(180deg)}
+@keyframes timelineReveal{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.timeline-note{text-align:center;font:italic .72rem var(--serif);color:rgba(244,234,211,.62);margin:1rem 0 .1rem}
+@media(max-width:520px){.wedding-timeline{padding:1.2rem .85rem}.timeline-list::before{left:4.95rem}.timeline-stop{grid-template-columns:4.05rem 1.65rem minmax(0,1fr) .8rem;gap:.42rem}.timeline-time{font-size:.53rem}.timeline-copy strong{font-size:.8rem}}
+
+
+
+/* Engagement timeline — same visual language as the wedding schedule */
+.engagement-timeline{width:min(560px,calc(100% - 2.5rem));margin:1.6rem auto 2.2rem;padding:1.35rem 1rem 1rem;border:1px solid rgba(31,42,68,.14);border-radius:1.35rem;background:rgba(255,255,255,.38);backdrop-filter:blur(10px)}
+#s2 .timeline-heading h3{color:#27334d}
+#s2 .timeline-heading p{color:#34415c}
+#s2 .timeline-kicker{color:#8d6d36}
+.engagement-list{position:relative;display:grid;gap:.65rem;padding:.25rem 0}
+.engagement-list::before{content:"";position:absolute;top:1.5rem;bottom:1.5rem;left:50%;width:1px;transform:translateX(-50%);background:linear-gradient(180deg,transparent,rgba(151,117,65,.72) 12%,rgba(151,117,65,.72) 88%,transparent)}
+.engage-stop{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 2rem minmax(0,1fr);grid-template-rows:auto auto;align-items:center;column-gap:.55rem;min-height:6.1rem;opacity:0;transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.engage-stop.left{transform:translateX(-34px)}.engage-stop.right{transform:translateX(34px)}
+.engage-stop.in{opacity:1;transform:translateX(0)}
+.engage-stop time{grid-column:1/-1;text-align:center;padding:.3rem 0 .55rem;font:500 .62rem var(--sans);letter-spacing:.14em;color:#8d6d36}
+.engage-spine{grid-column:2;grid-row:2;justify-self:center;align-self:stretch;display:flex;justify-content:center;position:relative;z-index:1}
+.engage-spine i{width:.65rem;height:.65rem;margin-top:.65rem;border-radius:50%;background:#d9bd7b;border:2px solid #fff8e9;box-shadow:0 0 0 3px rgba(151,117,65,.17),0 0 14px rgba(151,117,65,.28)}
+.engage-card{grid-row:2;display:flex;flex-direction:column;gap:.2rem;width:100%;padding:.7rem .75rem;border:1px solid rgba(31,42,68,.12);border-radius:.85rem;background:rgba(255,255,255,.53);color:#27334d;text-align:left;cursor:pointer;transition:background .25s,box-shadow .25s}
+.engage-stop.left .engage-card{grid-column:1;text-align:right}
+.engage-stop.right .engage-card{grid-column:3;text-align:left}
+.engage-card strong{font:500 .83rem var(--sans)}.engage-card small{font:400 .66rem var(--sans);opacity:.75}.engage-card em{display:none;font:italic .8rem var(--serif);margin-top:.18rem;color:#715b3b}
+.engage-card[aria-expanded="true"]{background:rgba(255,255,255,.88);box-shadow:0 6px 18px rgba(31,42,68,.08)}
+.engage-card[aria-expanded="true"] em{display:block;animation:timelineReveal .35s ease both}
+@media(max-width:520px){.engagement-timeline{padding:1.1rem .65rem}.engage-stop{grid-template-columns:minmax(0,1fr) 1.45rem minmax(0,1fr);column-gap:.35rem}.engage-card{padding:.62rem .5rem}.engage-card strong{font-size:.75rem}.engage-card small{font-size:.61rem}.engage-stop time{font-size:.56rem}}
+@media(prefers-reduced-motion:reduce){.engage-stop,.engage-stop.left,.engage-stop.right{opacity:1;transform:none;transition:none}}
 
 /* =========================================================
    FINAL CONTRAST TUNING — calendar dates and wedding actions
@@ -360,6 +398,55 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 /* Clear, accessible action links on the dark wedding scene. */
 #s6 .btns a{color:#fff!important;border-color:rgba(255,255,255,.82);background:rgba(8,12,35,.32);text-shadow:0 1px 5px rgba(0,0,0,.6);box-shadow:0 0 0 1px rgba(255,255,255,.04),0 4px 16px rgba(0,0,0,.14)}
 #s6 .btns a:hover,#s6 .btns a:focus-visible{color:#10133a!important;background:#fff;border-color:#fff;text-shadow:none}
+
+/* TIMELINES — open on the page background, spacious and cinematic */
+.engagement-timeline,.wedding-timeline{
+  width:min(620px,calc(100% - 1.4rem)); margin:2.2rem auto 2.8rem;
+  padding:1.25rem .15rem 1.2rem; border:0!important; border-radius:0!important;
+  background:transparent!important; box-shadow:none!important; backdrop-filter:none!important;
+}
+.timeline-heading{text-align:center;margin:0 auto 1.6rem}
+.timeline-heading h3{font:italic 500 clamp(2rem,7vw,2.65rem) var(--script);margin:.3rem 0;color:inherit}
+.timeline-heading p{font:400 .95rem var(--sans);opacity:.72;margin:.3rem 0}
+.timeline-kicker{font:500 .68rem var(--sans);letter-spacing:.22em;text-transform:uppercase}
+.engagement-list{gap:1.15rem;padding:.35rem 0 .7rem}
+.engagement-list::before{top:2rem;bottom:2rem}
+.engage-stop{min-height:7.5rem;column-gap:.7rem;transition:opacity 1.15s ease,transform 1.35s cubic-bezier(.16,.72,.18,1)}
+.engage-stop.left{transform:translateX(-52px)}
+.engage-stop.right{transform:translateX(52px)}
+.engage-stop.in{opacity:1;transform:translateX(0)}
+.engage-stop time{font-size:.76rem;letter-spacing:.18em;padding:.45rem 0 .7rem}
+.engage-spine i{width:.82rem;height:.82rem;margin-top:.85rem}
+.engage-card{min-height:4.7rem;padding:.9rem .85rem;border-radius:1rem}
+.engage-card strong{font-size:1.02rem;line-height:1.25}
+.engage-card small{font-size:.8rem;line-height:1.4}
+.engage-card em{font-size:.96rem;line-height:1.35}
+.engagement-list .engage-stop:nth-child(2){transition-delay:.08s}
+.engagement-list .engage-stop:nth-child(3){transition-delay:.16s}
+/* Wedding timeline inherits the same centered-time / alternating-card structure,
+   with warm ivory and champagne details against the midnight scene. */
+#s6 .wedding-timeline{color:#f7eddb}
+#s6 .timeline-heading h3{color:#f1dfbb}
+#s6 .timeline-heading p{color:rgba(247,237,219,.75)}
+#s6 .timeline-kicker{color:#d9bd7b}
+#s6 .engagement-list::before{background:linear-gradient(180deg,transparent,rgba(217,189,123,.8) 12%,rgba(217,189,123,.8) 88%,transparent)}
+#s6 .engage-spine i{background:#e4c98f;border-color:#fff4d9;box-shadow:0 0 0 4px rgba(217,189,123,.16),0 0 20px rgba(217,189,123,.38)}
+#s6 .engage-card{background:rgba(255,255,255,.075);border:1px solid rgba(231,204,145,.2);color:#fff4e2;backdrop-filter:blur(8px)}
+#s6 .engage-card[aria-expanded="true"]{background:rgba(255,255,255,.13);box-shadow:0 10px 28px rgba(0,0,0,.13)}
+#s6 .engage-card small{color:rgba(245,238,224,.78)}
+#s6 .engage-card em{color:#e8d4a8}
+#s6 .timeline-note{font-size:.86rem;color:rgba(244,234,211,.7)}
+@media(max-width:520px){
+ .engagement-timeline,.wedding-timeline{width:calc(100% - 1.2rem);padding:1.2rem 0}
+ .engage-stop{grid-template-columns:minmax(0,1fr) 1.35rem minmax(0,1fr);column-gap:.3rem;min-height:7.2rem}
+ .engage-card{padding:.82rem .55rem;min-height:4.6rem}
+ .engage-card strong{font-size:.91rem}
+ .engage-card small{font-size:.72rem}
+ .engage-card em{font-size:.87rem}
+ .engage-stop time{font-size:.66rem}
+}
+@media(prefers-reduced-motion:reduce){.engage-stop,.engage-stop.left,.engage-stop.right{opacity:1;transform:none;transition:none}}
+
 </style>
 </head>
 <body>
@@ -477,6 +564,24 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
         </div>
       </div></section>
       <section class="rv"><div class="cd" data-t="2027-01-02T11:00:00+05:30"></div></section>
+      <section class="rv engagement-timeline" aria-label="Engagement day timeline">
+        <div class="timeline-heading"><span class="timeline-kicker">THE ENGAGEMENT</span><h3>A day to remember</h3><p>The moments around our celebration</p></div>
+        <div class="engagement-list">
+          <article class="engage-stop left">
+            <time>11:00 AM</time><span class="engage-spine" aria-hidden="true"><i></i></span>
+            <button class="engage-card" type="button" aria-expanded="false"><strong>The engagement</strong><small>St. Joseph’s Syro Malabar Church</small><em>The celebration begins.</em></button>
+          </article>
+          <article class="engage-stop right">
+            <time>AFTER THE CEREMONY</time><span class="engage-spine" aria-hidden="true"><i></i></span>
+            <button class="engage-card" type="button" aria-expanded="false"><strong>Greetings &amp; photographs</strong><small>A little time with family and friends</small><em>More details to follow.</em></button>
+          </article>
+          <article class="engage-stop left">
+            <time>TO BE CONFIRMED</time><span class="engage-spine" aria-hidden="true"><i></i></span>
+            <button class="engage-card" type="button" aria-expanded="false"><strong>Celebrate together</strong><small>The rest of the day</small><em>We’ll share the schedule as plans are finalised.</em></button>
+          </article>
+        </div>
+        <p class="timeline-note">Further timings will be added once confirmed.</p>
+      </section>
       <button class="xl to6 rv" data-go="s6"><span>Then, the wedding</span><small>Wednesday, 6 January 2027 · 3:30 pm · into the night</small></button>
       <div class="foot rv"><p>With love, Don &amp; Reshma</p></div>
     </div>
@@ -507,13 +612,26 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
           <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Don%20%26%20Reshma%20Wedding&amp;dates=20270106T100000Z/20270106T163000Z&amp;location=St.%20Mary%27s%20Syro%20Malabar%20Church%2C%20Vellaramkunnu" target="_blank" rel="noopener">Add to calendar</a>
         </div>
       </div></section>
-      <section class="rv"><div class="cd" data-t="2027-01-06T15:30:00+05:30"></div></section>
-      <section class="story-photo rv" aria-label="A photograph of Don and Reshma together">
-        <figure>
-          <img src="IMG_1271.jpg" alt="Don and Reshma running hand in hand along a historic stone street, captured with cinematic motion blur" loading="lazy">
-          <figcaption>Our next chapter <span aria-hidden="true">✦</span></figcaption>
-        </figure>
+      <section class="rv wedding-timeline" aria-label="Wedding day timeline">
+        <div class="timeline-heading"><span class="timeline-kicker">THE CELEBRATION</span><h3>Along the day</h3><p>A few moments we’re looking forward to</p></div>
+        <div class="engagement-list wedding-list">
+          <article class="engage-stop left">
+            <time>3:30 PM</time><span class="engage-spine" aria-hidden="true"><i></i></span>
+            <button class="engage-card" type="button" aria-expanded="true"><strong>The ceremony</strong><small>St. Mary’s Syro Malabar Church</small><em>The day begins with the vows.</em></button>
+          </article>
+          <article class="engage-stop right">
+            <time>AFTER THE CEREMONY</time><span class="engage-spine" aria-hidden="true"><i></i></span>
+            <button class="engage-card" type="button" aria-expanded="false"><strong>Photographs &amp; greetings</strong><small>A moment to celebrate together</small><em>More details will be shared soon.</em></button>
+          </article>
+          <article class="engage-stop left">
+            <time>EVENING</time><span class="engage-spine" aria-hidden="true"><i></i></span>
+            <button class="engage-card" type="button" aria-expanded="false"><strong>The reception</strong><small>As the evening begins</small><em>Venue and exact timing to be announced.</em></button>
+          </article>
+        </div>
+        <p class="timeline-note">The schedule will be updated as details are confirmed.</p>
       </section>
+      <section class="rv"><div class="cd" data-t="2027-01-06T15:30:00+05:30"></div></section>
+
       <button class="xl to2 rv" data-go="s2"><span>Before this, the engagement</span><small>Saturday, 2 January 2027 · 11:00 am · in the morning light</small></button>
       <div class="foot">
         <svg class="con" id="con" viewBox="0 0 520 80" role="img" aria-label="A line of stars joining two larger stars">
@@ -527,30 +645,27 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
   </div>
 </div>
 
-<div class="player-shell" aria-label="Wedding music player">
-  <button class="rec" id="rec" aria-label="Play music" aria-pressed="false" title="Play or pause wedding music">
-    <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
-      <defs><radialGradient id="labelGlow"><stop stop-color="#e6d5a3"/><stop offset=".55" stop-color="#bba4f4"/><stop offset="1" stop-color="#51436f"/></radialGradient></defs>
-      <circle cx="50" cy="57" r="36" fill="#090a11" stroke="#9d96ad" stroke-width="1.3"/>
+<button class="player-shell" id="rec" type="button" aria-label="Unmute wedding music" aria-pressed="false" title="Tap to mute or unmute the wedding soundtrack">
+  <span class="rec" aria-hidden="true">
+    <svg viewBox="0 0 100 100" focusable="false">
+      <defs>
+        <linearGradient id="deck" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset=".55" stop-color="#d9d9dc"/><stop offset="1" stop-color="#a7a8b0"/></linearGradient>
+        <radialGradient id="labelGlow"><stop stop-color="#f2d6a0"/><stop offset=".58" stop-color="#bd91a2"/><stop offset="1" stop-color="#725d82"/></radialGradient>
+        <linearGradient id="arm" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#9c9ba5"/></linearGradient>
+      </defs>
+      <rect x="3" y="3" width="94" height="94" rx="16" fill="url(#deck)"/>
+      <path d="M9 16H91M9 84H91" stroke="#fff" opacity=".32"/>
+      <circle cx="48" cy="52" r="34" fill="#17171d" stroke="#5d5a60" stroke-width="1.2"/>
       <g class="rec-disc">
-        <circle cx="50" cy="57" r="31" fill="#171722" stroke="#77718d" stroke-width=".8"/>
-        <circle cx="50" cy="57" r="28" fill="none" stroke="#383644" stroke-width=".65"/><circle cx="50" cy="57" r="25" fill="none" stroke="#292735" stroke-width=".65"/><circle cx="50" cy="57" r="22" fill="none" stroke="#454050" stroke-width=".65"/><circle cx="50" cy="57" r="19" fill="none" stroke="#292735" stroke-width=".65"/><circle cx="50" cy="57" r="16" fill="none" stroke="#454050" stroke-width=".65"/><circle cx="50" cy="57" r="12" fill="url(#labelGlow)"/><circle cx="50" cy="57" r="3" fill="#f5e9bf"/>
+        <circle cx="48" cy="52" r="31" fill="#17171d" stroke="#3c3941" stroke-width=".8"/>
+        <circle cx="48" cy="52" r="27" fill="none" stroke="#514b52" stroke-width=".7"/><circle cx="48" cy="52" r="23" fill="none" stroke="#34313a" stroke-width=".8"/><circle cx="48" cy="52" r="19" fill="none" stroke="#514b52" stroke-width=".7"/><circle cx="48" cy="52" r="15" fill="none" stroke="#34313a" stroke-width=".8"/><circle cx="48" cy="52" r="11" fill="url(#labelGlow)"/><circle cx="48" cy="52" r="2.4" fill="#f7e9c6"/>
       </g>
-      <circle cx="78" cy="22" r="7" fill="#282733" stroke="#b4adbf" stroke-width="1.5"/><circle cx="78" cy="22" r="3" fill="#e5d7a9"/>
-      <g class="rec-arm" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M78 22 L83 30 L84 37" stroke="#e0dce7" stroke-width="4.5"/><path d="M83 30 L84 37" stroke="#817a8f" stroke-width="1.2"/><path d="M84 37 L80 42" stroke="#e7d8aa" stroke-width="2.5"/><circle cx="78" cy="22" r="2" fill="#fff5d6" stroke="none"/></g>
-      <path d="M12 30 A41 41 0 0 1 39 16" fill="none" stroke="#e7d8aa" stroke-width="1" opacity=".65"/>
+      <g class="rec-arm" stroke="url(#arm)" stroke-linecap="round" stroke-linejoin="round" fill="none"><circle cx="77" cy="23" r="7" fill="#d6d5d8" stroke="#85838d"/><path d="M77 23L69 31L65 38L60 43" stroke-width="3.6"/><path d="M60 43L56 47" stroke="#e5d7b4" stroke-width="2.2"/><circle cx="77" cy="23" r="2" fill="#fff" stroke="none"/></g>
+      <circle cx="17" cy="78" r="3" fill="#9b9aa1"/><circle cx="83" cy="80" r="1.8" fill="#8b8992"/><circle cx="89" cy="80" r="1.8" fill="#8b8992"/>
     </svg>
-  </button>
-  <div class="player-info">
-    <span class="player-title" id="track-title">Moonlit Prelude</span>
-    <span class="player-status" id="recl">Tap the record to listen</span>
-    <div class="player-controls" aria-label="Choose a music piece">
-      <button type="button" id="prev-track" aria-label="Previous music piece" title="Previous"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3v10M12 4 5.5 8 12 12z"/></svg></button>
-      <button type="button" id="toggle-track" class="play-control" aria-label="Play or pause music" title="Play or pause"><svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><path d="M5 3.2a.8.8 0 0 1 1.2-.69l6.1 4.3a1.45 1.45 0 0 1 0 2.38l-6.1 4.3A.8.8 0 0 1 5 12.8z"/></svg></button>
-      <button type="button" id="next-track" aria-label="Next music piece" title="Next"><svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v10M4 4l6.5 4L4 12z"/></svg></button>
-    </div>
-  </div>
-</div>
+  </span>
+  <span class="player-info"><span class="player-title" id="track-title">Moonlit Prelude</span><span class="player-status" id="recl">Tap to unmute</span></span>
+</button>
 
 <script>
 var $=function(s){return document.querySelector(s)},$$=function(s){return document.querySelectorAll(s)};
@@ -591,7 +706,7 @@ function openScene(id,from){
   origin(from,s);s.style.zIndex=++zi;s.scrollTop=0;s.classList.add('open');s.setAttribute('aria-hidden','false');
   if(!seen[id]){seen[id]=1;
     var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{root:s,threshold:.2});
-    s.querySelectorAll('.rv').forEach(function(n){io.observe(n)});
+    s.querySelectorAll('.rv,.engage-stop').forEach(function(n){io.observe(n)});
     s.addEventListener('scroll',function(){
       var m=s.scrollHeight-s.clientHeight,p=m?s.scrollTop/m:0;
       s.style.setProperty('--sy',s.scrollTop);s.style.setProperty('--p',p);
@@ -672,7 +787,6 @@ var progressions=[
 ];
 function updateTrackUI(){
   $('#track-title').textContent=trackTitles[musicTrack];
-  $('#track-num').textContent=String(musicTrack+1).padStart(2,'0');
 }
 function buildAudio(){
   var AudioContextClass=window.AudioContext||window.webkitAudioContext;
@@ -706,7 +820,7 @@ function buildAudio(){
 function setPlayerState(on){
   playing=on;$('#rec').classList.toggle('on',on);$('#rec').setAttribute('aria-pressed',String(on));
   $('#rec').setAttribute('aria-label',on?'Pause instrumental music':'Play instrumental music');
-  $('#recl').textContent=on?'Now playing':'Tap to listen';$('#toggle-track').innerHTML=on?'<svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><path d="M4 3h3v10H4zM9 3h3v10H9z"/></svg>':'<svg viewBox="0 0 16 16" aria-hidden="true" fill="currentColor"><path d="M5 3.2a.8.8 0 0 1 1.2-.69l6.1 4.3a1.45 1.45 0 0 1 0 2.38l-6.1 4.3A.8.8 0 0 1 5 12.8z"/></svg>';$('#toggle-track').setAttribute('aria-label',on?'Pause music':'Play music');
+  $('#recl').textContent=on?'Sound on':'Tap to unmute';$('#rec').setAttribute('aria-label',on?'Mute wedding music':'Unmute wedding music');
 }
 async function toggleMusic(){
   try{
@@ -732,9 +846,8 @@ function changeTrack(step){
 }
 updateTrackUI();
 $('#rec').addEventListener('click',toggleMusic);
-$('#toggle-track').addEventListener('click',toggleMusic);
-$('#prev-track').addEventListener('click',function(){changeTrack(-1)});
-$('#next-track').addEventListener('click',function(){changeTrack(1)});
+$$('.timeline-stop').forEach(function(item){item.addEventListener('click',function(){var wasOpen=this.classList.contains('is-open');$$('.timeline-stop').forEach(function(other){other.classList.remove('is-open');other.setAttribute('aria-expanded','false')});if(!wasOpen){this.classList.add('is-open');this.setAttribute('aria-expanded','true')}})});
+$$('.engage-card').forEach(function(item){item.addEventListener('click',function(){var wasOpen=this.getAttribute('aria-expanded')==='true';$$('.engage-card').forEach(function(other){other.setAttribute('aria-expanded','false')});this.setAttribute('aria-expanded',String(!wasOpen))})});
 </script>
 </body>
 </html>
