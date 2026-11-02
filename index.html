@@ -667,7 +667,9 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
   </div>
 </div>
 
-<button class="player-shell" id="rec" type="button" aria-label="Unmute wedding music" aria-pressed="false" title="Tap to mute or unmute the wedding soundtrack">
+<button class="player-shell" id="rec" type="button"
+  aria-label="Play Golden" aria-pressed="false" title="Play Golden">
+
   <span class="rec" aria-hidden="true">
     <svg viewBox="0 0 100 100" focusable="false">
       <defs>
@@ -686,8 +688,17 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
       <circle cx="17" cy="78" r="3" fill="#9b9aa1"/><circle cx="83" cy="80" r="1.8" fill="#8b8992"/><circle cx="89" cy="80" r="1.8" fill="#8b8992"/>
     </svg>
   </span>
-  <span class="player-info"><span class="player-title" id="track-title">Moonlit Prelude</span><span class="player-status" id="recl">Tap to unmute</span></span>
+  <span class="player-info">
+    <span class="player-title" id="track-title">Golden</span>
+    <span class="player-status" id="recl">Tap to play</span>
+    <span class="player-progress">
+      <span id="music-progress"></span>
+    </span>
+  </span>
 </button>
+
+<audio id="wedding-audio" src="./golden.mp3"
+  preload="metadata" loop playsinline></audio>
 
 <script>
 var $=function(s){return document.querySelector(s)},$$=function(s){return document.querySelectorAll(s)};
@@ -804,90 +815,53 @@ function tick(){
 }
 tick();setInterval(tick,1000);
 
-// Wedding soundtrack: three browser-generated instrumental moods.
-// Audio starts only after the visitor taps the record or play button (mobile-browser requirement).
-var ac=null,master=null,playing=false,musicTimer=null,nextPhraseAt=0;
-var musicTrack=0,bar=0;
-var trackTitles=['Moonlit Prelude','Golden Hour','Afterglow Waltz'];
-var progressions=[
-  [[261.63,329.63,392,493.88,392,329.63],[220,261.63,329.63,440,392,329.63],[174.61,220,261.63,349.23,329.63,261.63],[196,246.94,293.66,392,349.23,293.66]],
-  [[293.66,349.23,440,523.25,440,349.23],[246.94,293.66,369.99,493.88,440,369.99],[196,246.94,293.66,392,369.99,293.66],[220,277.18,329.63,440,392,329.63]],
-  [[220,261.63,329.63,392,329.63,261.63],[196,246.94,293.66,392,349.23,293.66],[164.81,196,246.94,329.63,293.66,246.94],[174.61,220,261.63,349.23,329.63,261.63]]
-];
-function updateTrackUI(){
-  $('#track-title').textContent=trackTitles[musicTrack];
-}
-function buildAudio(){
-  var AudioContextClass=window.AudioContext||window.webkitAudioContext;
-  if(!AudioContextClass)throw new Error('Web Audio is not supported');
-  ac=new AudioContextClass();
-  master=ac.createGain();master.gain.value=0;master.connect(ac.destination);
-  var filter=ac.createBiquadFilter();filter.type='lowpass';filter.frequency.value=2100;filter.Q.value=.55;filter.connect(master);
-  var pad=ac.createGain();pad.gain.value=.13;pad.connect(filter);
-  [130.81,196,261.63].forEach(function(hz,i){
-    var osc=ac.createOscillator(),gain=ac.createGain();
-    osc.type=i===0?'triangle':'sine';osc.frequency.value=hz;gain.gain.value=i===0?.045:.025;
-    osc.connect(gain);gain.connect(pad);osc.start();
+// Golden soundtrack
+(function(){
+  var audio = $('#wedding-audio');
+  var player = $('#rec');
+  var status = $('#recl');
+  var progress = $('#music-progress');
+
+  function updateProgress(){
+    if(!audio.duration || !isFinite(audio.duration)) return;
+
+    var percent = (audio.currentTime / audio.duration) * 100;
+    progress.style.width = percent + '%';
+  }
+
+  player.addEventListener('click', function(){
+    if(audio.paused){
+      // Calling play directly inside the click supports iPhone Safari.
+      audio.play().catch(function(){
+        status.textContent = 'Tap to play again';
+      });
+    } else {
+      audio.pause();
+    }
   });
-  function note(freq,when,duration,volume){
-    var osc=ac.createOscillator(),gain=ac.createGain(),tone=ac.createBiquadFilter();
-    osc.type='sine';osc.frequency.setValueAtTime(freq,when);tone.type='lowpass';tone.frequency.setValueAtTime(1700,when);
-    gain.gain.setValueAtTime(.0001,when);gain.gain.exponentialRampToValueAtTime(volume,when+.025);
-    gain.gain.exponentialRampToValueAtTime(Math.max(.0001,volume*.36),when+Math.min(.24,duration*.55));
-    gain.gain.exponentialRampToValueAtTime(.0001,when+duration);
-    osc.connect(tone);tone.connect(gain);gain.connect(filter);osc.start(when);osc.stop(when+duration+.04);
-  }
-  function phrase(){
-    if(!playing||!ac||ac.state!=='running')return;
-    var now=ac.currentTime+.08,notes=progressions[musicTrack][bar%4];
-    notes.forEach(function(freq,i){note(freq,now+i*.52,1.55,i===3?.065:.048)});
-    note(progressions[musicTrack][(bar+1)%4][0]/2,now+.05,2.5,.035);
-    bar++;nextPhraseAt=Date.now()+3900;
-  }
-  ac.__phrase=phrase;
-}
-function setPlayerState(on){
-  playing=on;$('#rec').classList.toggle('on',on);$('#rec').setAttribute('aria-pressed',String(on));
-  $('#rec').setAttribute('aria-label',on?'Pause instrumental music':'Play instrumental music');
-  $('#recl').textContent=on?'Sound on':'Tap to unmute';$('#rec').setAttribute('aria-label',on?'Mute wedding music':'Unmute wedding music');
-}
-async function toggleMusic(){
-  try{
-    if(!ac)buildAudio();
-    if(!playing){
-      await ac.resume();
-      if(ac.state!=='running')throw new Error('Audio context did not start');
-      playing=true;
-      master.gain.cancelScheduledValues(ac.currentTime);master.gain.setValueAtTime(master.gain.value,ac.currentTime);master.gain.linearRampToValueAtTime(.72,ac.currentTime+1.2);
-      ac.__phrase();
-      if(musicTimer)clearInterval(musicTimer);
-      musicTimer=setInterval(function(){if(playing&&ac&&ac.state==='running'&&Date.now()>=nextPhraseAt)ac.__phrase()},500);
-      setPlayerState(true);
-    }else{
-      master.gain.cancelScheduledValues(ac.currentTime);master.gain.setValueAtTime(master.gain.value,ac.currentTime);master.gain.linearRampToValueAtTime(0,ac.currentTime+.55);
-      if(musicTimer){clearInterval(musicTimer);musicTimer=null}setPlayerState(false);
-    }
-  }catch(err){playing=false;setPlayerState(false);$('#recl').textContent='Tap record to try again';}
-}
-function changeTrack(step){
-  musicTrack=(musicTrack+step+trackTitles.length)%trackTitles.length;bar=0;updateTrackUI();
-  if(playing&&ac&&ac.state==='running'){nextPhraseAt=0;ac.__phrase()}
-}
-updateTrackUI();
-// iOS Safari can leave Web Audio suspended until a direct touch gesture.
-// Prime/resume the context on pointerdown, then the click handler fades music in.
-function primeMobileAudio(){
-  try{
-    if(!ac)buildAudio();
-    if(ac && ac.state!=='running'){
-      var resumeResult=ac.resume();
-      if(resumeResult && typeof resumeResult.catch==='function')resumeResult.catch(function(){});
-    }
-  }catch(err){/* The click handler below will expose a retry state if audio is unavailable. */}
-}
-$('#rec').addEventListener('pointerdown',primeMobileAudio,{passive:true});
-$('#rec').addEventListener('touchstart',primeMobileAudio,{passive:true});
-$('#rec').addEventListener('click',toggleMusic);
+
+  audio.addEventListener('play', function(){
+    player.classList.add('on');
+    player.setAttribute('aria-pressed', 'true');
+    player.setAttribute('aria-label', 'Pause Golden');
+    status.textContent = 'Now playing';
+  });
+
+  audio.addEventListener('pause', function(){
+    player.classList.remove('on');
+    player.setAttribute('aria-pressed', 'false');
+    player.setAttribute('aria-label', 'Play Golden');
+    status.textContent = 'Tap to play';
+  });
+
+  audio.addEventListener('timeupdate', updateProgress);
+  audio.addEventListener('loadedmetadata', updateProgress);
+
+  audio.addEventListener('ended', function(){
+    progress.style.width = '0%';
+  });
+})();
+
 $$('.timeline-stop').forEach(function(item){item.addEventListener('click',function(){var wasOpen=this.classList.contains('is-open');$$('.timeline-stop').forEach(function(other){other.classList.remove('is-open');other.setAttribute('aria-expanded','false')});if(!wasOpen){this.classList.add('is-open');this.setAttribute('aria-expanded','true')}})});
 $$('.engage-card').forEach(function(item){item.addEventListener('click',function(){var wasOpen=this.getAttribute('aria-expanded')==='true';$$('.engage-card').forEach(function(other){other.setAttribute('aria-expanded','false')});this.setAttribute('aria-expanded',String(!wasOpen))})});
 </script>
