@@ -31,10 +31,10 @@
  --cover-paper:#12223a;
 
  /* Page typography — change each page independently */
- --calendar-font:"Cormorant Garamond", Georgia, serif;
+ --calendar-font:"Mr De Haviland", cursive;
  --engagement-font:"Mr De Haviland", cursive;
  --wedding-font:"Mr De Haviland", cursive;
- --calendar-title-size:clamp(2.6rem,11vw,4.2rem);
+ --calendar-title-size:clamp(2.8rem,11vw,3.7rem);
  --engagement-title-size:clamp(4.2rem,18vw,9rem);
  --wedding-title-size:clamp(4.2rem,18vw,9rem);
  --body-copy-size:1.05rem;
@@ -166,9 +166,9 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 .to2{background:linear-gradient(120deg,#8FCBFF,#FFE7A8);color:#1F2A44}
 
 /* Shared display typography — page-specific fonts are set in the customisation variables. */
-.box h1{font:400 clamp(3.8rem,16vw,5.6rem)/1 var(--script)}
-.hero h2{font:400 clamp(4.6rem,21vw,11rem)/.95 var(--script);letter-spacing:0}
-.hero h2 i{font-size:.3em}
+.box h1{font:400 clamp(3.05rem,12vw,4.15rem)/.92 var(--calendar-font);letter-spacing:.01em;margin:0 0 .08rem}
+.hero h2{font:400 clamp(3.45rem,14vw,5.1rem)/.9 var(--calendar-font);letter-spacing:0;margin:.1rem 0}
+.hero h2 i{font-size:.28em;margin:.12em 0}
 .card h3{font:400 2.8rem/1.05 var(--script)}
 .xl span{font:400 2.4rem/1.1 var(--script)}
 .foot p{font:400 2.6rem/1.1 var(--script)}
@@ -345,7 +345,15 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 #cal{background:radial-gradient(ellipse 78% 65% at 50% 38%,#252443 0%,#17172f 44%,#0b1024 77%,#050914 100%);color:#f5f0e5;isolation:isolate;overflow:hidden}
 #cal::before{content:"";position:absolute;inset:-2%;z-index:-2;pointer-events:none;background:url("IMG_1271.jpg") center 57%/cover no-repeat;filter:saturate(.72) contrast(1.02) blur(1.5px);transform:scale(1.025);opacity:.72}
 #cal::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(7,10,25,.60),rgba(13,13,35,.68) 52%,rgba(5,8,22,.78)),radial-gradient(circle at 13% 20%,rgba(217,189,123,.16) 0 1px,transparent 2px),radial-gradient(circle at 82% 70%,rgba(217,189,123,.14) 0 1px,transparent 2px),radial-gradient(circle at 74% 17%,rgba(217,189,123,.1) 0 1px,transparent 2px);background-size:auto,173px 190px,227px 210px,191px 167px}
-#cal .box{position:relative;z-index:1}.box h1{font-family:var(--calendar-font);color:#f3ead6;text-shadow:0 0 24px rgba(216,190,126,.12)}#cal .sub,#cal .mon,#cal .wk,#cal .d{color:rgba(238,232,219,.7)}#cal .hot{box-shadow:0 0 0 1px rgba(222,197,137,.24),0 0 18px rgba(217,189,123,.1)}#cal .e{box-shadow:0 0 0 1px rgba(255,225,163,.65),0 0 18px rgba(217,189,123,.18)}#cal .w{box-shadow:0 0 0 1px rgba(217,189,123,.45),0 0 18px rgba(160,115,190,.22)}
+#cal .box{position:relative;z-index:1}
+/* Calendar heading: only two typefaces in this cluster — calligraphy for the names,
+   Cormorant Garamond for both supporting lines. */
+#cal .calendar-invite{font:500 clamp(.92rem,3.8vw,1.08rem)/1.25 var(--serif);letter-spacing:.015em;color:rgba(238,226,199,.88);margin:0 0 .72rem;text-transform:none}
+#cal .box h1{font:400 clamp(2.55rem,10vw,3.35rem)/.98 var(--calendar-font);letter-spacing:0;color:#f3ead6;text-shadow:0 0 24px rgba(216,190,126,.12);margin:0 0 .5rem;white-space:nowrap}
+#cal .sub{font:italic 500 clamp(1.02rem,4vw,1.18rem)/1.25 var(--serif);letter-spacing:.015em;margin:0 0 1.65rem;color:rgba(238,232,219,.78)}
+#cal .mon,#cal .wk,#cal .d{color:rgba(238,232,219,.7)}
+#cal .hot{box-shadow:0 0 0 1px rgba(222,197,137,.24),0 0 18px rgba(217,189,123,.1)}#cal .e{box-shadow:0 0 0 1px rgba(255,225,163,.65),0 0 18px rgba(217,189,123,.18)}#cal .w{box-shadow:0 0 0 1px rgba(217,189,123,.45),0 0 18px rgba(160,115,190,.22)}
+@media(max-width:380px){#cal .calendar-invite{font-size:.9rem;margin-bottom:.58rem}#cal .box h1{font-size:clamp(2.35rem,9.5vw,2.8rem)}#cal .sub{font-size:1rem;margin-bottom:1.45rem}}
 #s2 .hero h2{font-family:var(--engagement-font)}#s6 .hero h2{font-family:var(--wedding-font)}
 @media(max-width:520px){.cover-stage{padding:1.2rem .9rem calc(env(safe-area-inset-bottom,0px) + 1rem)}.cover{width:min(84vw,340px);height:min(118vw,500px);min-height:390px;max-height:61svh}.cover-emblem{width:47%;top:42%}.cover-constellations{top:29%;left:8%;right:8%}.cover-date{bottom:13%}.cover-motto{bottom:5.5%}.cover-cta{margin-top:1.2rem}}
 @media(max-height:650px){.cover{height:62svh;min-height:330px;max-height:440px}.cover-stage{padding-top:.75rem;padding-bottom:.75rem}.cover-cta{margin-top:.8rem}.cover-note{margin-top:.35rem}}
@@ -447,6 +455,19 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 }
 @media(prefers-reduced-motion:reduce){.engage-stop,.engage-stop.left,.engage-stop.right{opacity:1;transform:none;transition:none}}
 
+
+/* Calendar invitation hierarchy and shared handwritten names */
+.calendar-invite{font:400 clamp(.78rem,3.2vw,.98rem)/1.35 var(--sans);letter-spacing:.08em;color:rgba(238,226,199,.82);margin:0 0 .15rem;text-transform:none}
+#cal .box h1{font-size:var(--calendar-title-size);line-height:.9;margin:.02rem 0 .2rem;white-space:nowrap}
+#cal .sub{font:italic 400 1.12rem var(--serif);letter-spacing:.015em;margin:.05rem 0 1.8rem;color:rgba(238,232,219,.76)}
+#s2 .hero h2,#s6 .hero h2{font-family:var(--calendar-font);font-size:clamp(3.5rem,15vw,5.4rem);line-height:.86}
+#s2 .hero h2 i,#s6 .hero h2 i{font-size:.27em}
+#cal .box h1{view-transition-name:couple-names}
+.scene .hero h2{view-transition-name:couple-names}
+::view-transition-old(couple-names),::view-transition-new(couple-names){animation-duration:1.15s;animation-timing-function:cubic-bezier(.2,.72,.18,1)}
+.cover-cta span{display:none}
+.player-shell{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+
 </style>
 </head>
 <body>
@@ -519,14 +540,15 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
         </svg>
       </button>
     </article>
-    <a href="#open-invitation" id="begin" class="cover-cta">Open the invitation <span aria-hidden="true">↗</span></a>
-    <p class="cover-note">A little moment, made for you</p>
+    <a href="#open-invitation" id="begin" class="cover-cta">Open the invitation</a>
+    
   </div>
 </div>
 <main id="cal" inert>
   <div class="box">
+    <p class="calendar-invite">With joy, we invite you to celebrate</p>
     <h1>Don &amp; Reshma</h1>
-    <p class="sub">Two days to celebrate with us.</p>
+    <p class="sub">Two days. One story.</p>
     <p class="mon">January 2027</p>
     <div class="wk" aria-hidden="true"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
     <div class="grid" id="grid"></div>
@@ -702,19 +724,26 @@ $$('[data-split]').forEach(function(el){
 var zi=20,cur=null,seen={};
 function origin(el,s){var r=el.getBoundingClientRect();s.style.setProperty('--x',(r.left+r.width/2)+'px');s.style.setProperty('--y',(r.top+r.height/2)+'px')}
 function openScene(id,from){
-  var s=document.getElementById(id);
-  origin(from,s);s.style.zIndex=++zi;s.scrollTop=0;s.classList.add('open');s.setAttribute('aria-hidden','false');
-  if(!seen[id]){seen[id]=1;
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{root:s,threshold:.2});
-    s.querySelectorAll('.rv,.engage-stop').forEach(function(n){io.observe(n)});
-    s.addEventListener('scroll',function(){
-      var m=s.scrollHeight-s.clientHeight,p=m?s.scrollTop/m:0;
-      s.style.setProperty('--sy',s.scrollTop);s.style.setProperty('--p',p);
-      if(id==='s6'&&p>.8){$('#con').classList.add('in');$('#shoot').classList.add('go')}
-    },{passive:true});
+  var s=document.getElementById(id),old=cur;
+  function reveal(){
+    origin(from,s);s.style.zIndex=++zi;s.scrollTop=0;s.classList.add('open');s.setAttribute('aria-hidden','false');
+    if(!seen[id]){seen[id]=1;
+      var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in')})},{root:s,threshold:.16});
+      s.querySelectorAll('.rv,.engage-stop').forEach(function(n){io.observe(n)});
+      s.addEventListener('scroll',function(){
+        var m=s.scrollHeight-s.clientHeight,p=m?s.scrollTop/m:0;
+        s.style.setProperty('--sy',s.scrollTop);s.style.setProperty('--p',p);
+        if(id==='s6'&&p>.8){$('#con').classList.add('in');$('#shoot').classList.add('go')}
+      },{passive:true});
+    }
+    cur=id;
+    if(old&&old!==id)setTimeout(function(){var o=document.getElementById(old);o.classList.remove('open');o.setAttribute('aria-hidden','true')},1200);
   }
-  var old=cur;cur=id;
-  if(old&&old!==id)setTimeout(function(){var o=document.getElementById(old);o.classList.remove('open');o.setAttribute('aria-hidden','true')},1200);
+  // Supported browsers morph the names between calendar and event page in place.
+  // Older mobile browsers keep the existing circular scene reveal.
+  if(document.startViewTransition && !old){
+    document.startViewTransition(reveal);
+  }else reveal();
 }
 function closeScene(){
   if(!cur)return;var s=document.getElementById(cur),c=$('[data-open="'+cur+'"]');
@@ -838,13 +867,26 @@ async function toggleMusic(){
       master.gain.cancelScheduledValues(ac.currentTime);master.gain.setValueAtTime(master.gain.value,ac.currentTime);master.gain.linearRampToValueAtTime(0,ac.currentTime+.55);
       if(musicTimer){clearInterval(musicTimer);musicTimer=null}setPlayerState(false);
     }
-  }catch(err){playing=false;setPlayerState(false);$('#recl').textContent='Tap again to enable audio';}
+  }catch(err){playing=false;setPlayerState(false);$('#recl').textContent='Tap record to try again';}
 }
 function changeTrack(step){
   musicTrack=(musicTrack+step+trackTitles.length)%trackTitles.length;bar=0;updateTrackUI();
   if(playing&&ac&&ac.state==='running'){nextPhraseAt=0;ac.__phrase()}
 }
 updateTrackUI();
+// iOS Safari can leave Web Audio suspended until a direct touch gesture.
+// Prime/resume the context on pointerdown, then the click handler fades music in.
+function primeMobileAudio(){
+  try{
+    if(!ac)buildAudio();
+    if(ac && ac.state!=='running'){
+      var resumeResult=ac.resume();
+      if(resumeResult && typeof resumeResult.catch==='function')resumeResult.catch(function(){});
+    }
+  }catch(err){/* The click handler below will expose a retry state if audio is unavailable. */}
+}
+$('#rec').addEventListener('pointerdown',primeMobileAudio,{passive:true});
+$('#rec').addEventListener('touchstart',primeMobileAudio,{passive:true});
 $('#rec').addEventListener('click',toggleMusic);
 $$('.timeline-stop').forEach(function(item){item.addEventListener('click',function(){var wasOpen=this.classList.contains('is-open');$$('.timeline-stop').forEach(function(other){other.classList.remove('is-open');other.setAttribute('aria-expanded','false')});if(!wasOpen){this.classList.add('is-open');this.setAttribute('aria-expanded','true')}})});
 $$('.engage-card').forEach(function(item){item.addEventListener('click',function(){var wasOpen=this.getAttribute('aria-expanded')==='true';$$('.engage-card').forEach(function(other){other.setAttribute('aria-expanded','false')});this.setAttribute('aria-expanded',String(!wasOpen))})});
