@@ -116,7 +116,7 @@ dt{font-weight:500;opacity:.75}dd{margin:0}
 .story-photo figcaption{position:absolute;z-index:1;left:1.2rem;right:1.2rem;bottom:1rem;color:#f2dfad;font:italic 500 1.45rem/1.2 var(--serif);letter-spacing:.015em;text-shadow:0 2px 8px rgba(0,0,0,.55)}
 .story-photo figcaption span{font:400 .8rem var(--sans);margin-left:.35rem;color:#d9bd7b}
 
-/* Engagement: morning */
+/* Betrothal: morning */
 #s2{color:#1F2A44}
 #s2 .sky{background:linear-gradient(180deg,#8CCBFF 0%,#BFE3FF 35%,#EAF5FF 65%,#FFF1CF 100%)}
 #s2 .card{background:rgba(255,255,255,.6);backdrop-filter:blur(10px)}
@@ -194,12 +194,14 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 .player-shell:hover{transform:translateY(-2px);border-color:rgba(231,218,183,.65);box-shadow:0 15px 34px rgba(0,0,0,.4),0 0 18px rgba(217,189,123,.1)}
 .player-shell:focus-visible{outline:2px solid #e5cf98;outline-offset:4px}
 .rec{position:relative;flex:0 0 3.35rem;width:3.35rem;height:3.35rem;border:1px solid rgba(231,218,183,.55);padding:0;border-radius:1rem;background:linear-gradient(145deg,#e8e7e2,#b9bac1 52%,#777987);box-shadow:inset 0 1px 3px rgba(255,255,255,.8),0 4px 12px rgba(0,0,0,.28);display:grid;place-items:center;overflow:hidden}
-.rec svg{width:100%;height:100%;display:block}.rec-disc{transform-origin:50px 52px}.rec.on .rec-disc{animation:vinylSpin 3.8s linear infinite}
-.rec-arm{transform-origin:76px 25px;transform:rotate(0deg);transition:transform .8s cubic-bezier(.2,.8,.2,1)}.rec.on .rec-arm{transform:rotate(48deg)}
+.rec svg{width:100%;height:100%;display:block}.rec-disc{transform-origin:50px 52px}.player-shell.on .rec-disc{animation:vinylSpin 3.8s linear infinite}
+.rec-arm{transform-origin:76px 25px;transform:rotate(0deg);transition:transform .8s cubic-bezier(.2,.8,.2,1)}.player-shell.on .rec-arm{transform:rotate(48deg)}
 .player-info{display:flex;flex:1;flex-direction:column;gap:.16rem;min-width:0;color:#f7f2e7;text-align:left;line-height:1.15;pointer-events:none}
 .player-kicker{font:500 .48rem/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:#d9bd7b;opacity:.9}
 .player-title{font:italic 400 .88rem/1.15 var(--serif);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;color:#fff8e9}
 .player-status{display:block;font:400 .56rem/1.2 var(--sans);letter-spacing:.025em;color:rgba(242,236,222,.68)}
+.player-progress{display:block;width:100%;height:2px;margin-top:.32rem;background:rgba(217,189,123,.22);border-radius:99px;overflow:hidden}
+#music-progress{display:block;width:0;height:100%;background:var(--player-accent);border-radius:inherit;transition:width .2s linear}
 @keyframes vinylSpin{to{transform:rotate(360deg)}}
 @media(max-width:520px){.player-shell{right:.55rem;bottom:calc(env(safe-area-inset-bottom,0px) + .55rem);width:clamp(145px,43vw,170px);gap:.55rem;padding:.45rem .58rem .45rem .45rem;border-radius:.95rem}.rec{flex-basis:2.9rem;width:2.9rem;height:2.9rem;border-radius:.85rem}.player-title{font-size:.8rem}.player-kicker{font-size:.43rem}.player-status{font-size:.52rem}}
 @media(max-width:360px){.player-shell{width:145px;gap:.45rem}.rec{flex-basis:2.6rem;width:2.6rem;height:2.6rem}.player-title{font-size:.74rem}}
@@ -375,7 +377,7 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 
 
 
-/* Engagement timeline — same visual language as the wedding schedule */
+/* Betrothal timeline — same visual language as the wedding schedule */
 .engagement-timeline{width:min(560px,calc(100% - 2.5rem));margin:1.6rem auto 2.2rem;padding:1.35rem 1rem 1rem;border:1px solid rgba(31,42,68,.14);border-radius:1.35rem;background:rgba(255,255,255,.38);backdrop-filter:blur(10px)}
 #s2 .timeline-heading h3{color:#27334d}
 #s2 .timeline-heading p{color:#34415c}
@@ -468,6 +470,71 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 .cover-cta span{display:none}
 .player-shell{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 
+
+/* THREE-DATE CELEBRATION — January 5: the night before */
+#cal .p{background:linear-gradient(145deg,#f6d6a8 0%,#d89b9b 43%,#755eaa 100%);color:#281b43;animation:pp 2.8s 1.8s ease-out infinite}
+#cal .p b{color:#31233b!important;text-shadow:0 1px 2px rgba(255,255,255,.34)}
+#cal .p::after{content:"✦";position:absolute;right:-.45rem;top:-.5rem;font-size:.75rem;color:#ffdfa3;text-shadow:0 0 12px #fff0bf;animation:partySpark 3s ease-in-out infinite}
+@keyframes pp{0%{box-shadow:0 0 0 0 rgba(237,182,148,.7),0 0 12px rgba(242,200,157,.4)}100%{box-shadow:0 0 0 .8rem rgba(237,182,148,0),0 0 23px rgba(242,200,157,.1)}}
+@keyframes partySpark{50%{transform:translateY(-5px) rotate(40deg);opacity:.5}}
+#cal:not(.lit) .p{animation:none;background:transparent;color:var(--mute);box-shadow:none}
+#cal.lit .p{animation:bloom 1s .35s cubic-bezier(.2,.8,.2,1) backwards,pp 2.8s 1.4s ease-out infinite}
+/* A velvet night sky, gold-tinted aurora, and out-of-focus lanterns. */
+#s5{color:#fff5e8}
+#s5 .sky{background:radial-gradient(ellipse 95% 40% at 48% 52%,rgba(179,93,119,.30),transparent 70%),linear-gradient(180deg,#17132f 0%,#382047 31%,#6b3a59 58%,#332a56 79%,#11152d 100%);isolation:isolate}
+#s5 .sky::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 18% 21%,rgba(250,200,156,.17),transparent 21%),radial-gradient(circle at 83% 38%,rgba(204,164,245,.17),transparent 25%);mix-blend-mode:screen;z-index:0}
+#s5 .sky::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;background-image:radial-gradient(#fff4d5 .8px,transparent 1px);background-size:41px 43px;mask-image:linear-gradient(#000,transparent 85%)}
+#s5 .layer{z-index:1}
+#s5 .c{position:relative;z-index:2}
+.party-moon{position:absolute;top:8vh;right:11vw;width:clamp(9rem,26vw,16rem);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff3d5 0%,#e8bfa9 48%,#b77c9e 75%,rgba(183,124,158,0) 77%);box-shadow:0 0 65px 24px rgba(248,176,147,.2),0 0 155px 60px rgba(184,123,195,.12);opacity:.85;transform:translateY(calc(var(--sy)*-.12px))}
+.party-lantern{position:absolute;left:var(--left);top:var(--top);width:var(--size);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff4cb,#efb36f 37%,rgba(231,121,128,.65) 66%,transparent 74%);filter:blur(var(--blur));opacity:var(--alpha);box-shadow:0 0 34px 10px rgba(255,191,123,.22);animation:lanternDrift var(--speed) ease-in-out infinite alternate}
+@keyframes lanternDrift{to{transform:translate(13px,-22px) scale(1.08)}}
+#s5 .card{background:linear-gradient(145deg,rgba(255,248,245,.17),rgba(176,150,194,.095));border:1px solid rgba(255,237,211,.22);-webkit-backdrop-filter:blur(22px) saturate(145%);backdrop-filter:blur(22px) saturate(145%);box-shadow:0 16px 52px rgba(11,8,32,.19),inset 0 1px 0 rgba(255,255,255,.16)}
+#s5 .bar button{background:rgba(68,39,75,.43);color:#fff4dc}
+#s5 .timeline-heading h3{color:#ffebcc}
+#s5 .timeline-heading p{color:rgba(255,245,230,.82)}
+#s5 .timeline-kicker{color:#f8ca97}
+#s5 .engagement-list::before{background:linear-gradient(180deg,transparent,rgba(246,194,137,.8) 12%,rgba(246,194,137,.8) 88%,transparent)}
+#s5 .engage-spine i{background:#f4c68f;border-color:#fff5de;box-shadow:0 0 0 4px rgba(244,191,139,.16),0 0 20px rgba(244,191,139,.42)}
+#s5 .engage-card{color:#fff4e3;background:rgba(255,248,242,.085);border:1px solid rgba(255,233,207,.22);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+#s5 .engage-card[aria-expanded="true"]{background:rgba(255,245,232,.15);box-shadow:0 14px 34px rgba(19,8,34,.21)}
+#s5 .engage-stop time{color:#f5c897}
+#s5 .engage-card small{color:rgba(255,242,223,.75)}
+#s5 .engage-card em{color:#f7d7b0}
+#s5 .timeline-note{color:rgba(255,239,221,.74)}
+.to5{background:linear-gradient(118deg,#a26480,#6e4e8b 55%,#342e65);color:#fff8ea}
+/* Lightweight iOS-inspired translucent glass buttons across all event pages. */
+.scene .btns{gap:.75rem;margin-top:1.85rem}
+.scene .btns a.glass-action{
+ --float-x:0px;--float-y:0px;position:relative;isolation:isolate;overflow:hidden;
+ display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+ min-height:3rem;padding:.72rem 1.15rem;border-radius:1rem;
+ color:inherit!important;font:500 .78rem/1.3 var(--sans);letter-spacing:.005em;text-decoration:none;text-shadow:none!important;
+ border:1px solid rgba(255,255,255,.39)!important;
+ background:linear-gradient(155deg,rgba(255,255,255,.29),rgba(255,255,255,.11) 45%,rgba(255,255,255,.065))!important;
+ box-shadow:0 10px 28px rgba(13,11,37,.14),inset 0 1px 0 rgba(255,255,255,.37),inset 0 -1px 0 rgba(255,255,255,.08)!important;
+ -webkit-backdrop-filter:blur(22px) saturate(175%);backdrop-filter:blur(22px) saturate(175%);
+ transform:translate3d(var(--float-x),var(--float-y),0);
+ transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .25s,border-color .25s,background .25s;
+ touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+}
+.scene .btns a.glass-action::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(160px circle at var(--glow-x,50%) var(--glow-y,50%),rgba(255,255,255,.45),transparent 73%);opacity:.65}
+.scene .btns a.glass-action:hover,.scene .btns a.glass-action:focus-visible{color:inherit!important;border-color:rgba(255,255,255,.7)!important;background:linear-gradient(155deg,rgba(255,255,255,.36),rgba(255,255,255,.12))!important;box-shadow:0 17px 36px rgba(12,9,32,.22),inset 0 1px 0 rgba(255,255,255,.55)!important}
+#s2 .btns a.glass-action{color:#24314a!important;border-color:rgba(255,255,255,.7)!important;background:linear-gradient(145deg,rgba(255,255,255,.6),rgba(255,255,255,.27))!important}
+#s2 .btns a.glass-action:hover{color:#24314a!important}
+.glass-icon{width:1rem;height:1rem;flex:0 0 1rem;stroke:currentColor;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+/* Hover-only lift on timeline, navigation and date controls; touch gets a press response. */
+@media(hover:hover) and (pointer:fine){
+ .scene .engage-card,.scene .bar button,.scene .xl,.player-shell{transition:transform .32s cubic-bezier(.2,.8,.2,1),box-shadow .32s,background .25s}
+ .scene .engage-card:hover{transform:translateY(-5px);box-shadow:0 14px 32px rgba(15,12,39,.16)}
+ .scene .bar button:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(18,15,45,.15)}
+ .scene .xl:hover{transform:translateY(-7px);box-shadow:0 18px 35px rgba(10,8,26,.16)}
+ .player-shell:hover{transform:translateY(-4px)}
+}
+@media(hover:none){.scene .btns a.glass-action:active,.scene .engage-card:active,.scene .bar button:active,.scene .xl:active{transform:scale(.97)}}
+@media(max-width:390px){.scene .btns{gap:.5rem}.scene .btns a.glass-action{padding:.7rem .8rem;font-size:.73rem}}
+@media(prefers-reduced-motion:reduce){#s5 .party-lantern,#cal .p::after{animation:none!important}.scene .btns a.glass-action{transform:none!important;transition:none!important}}
+
 </style>
 </head>
 <body>
@@ -548,7 +615,7 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
   <div class="box">
     <p class="calendar-invite">With joy, we invite you to celebrate</p>
     <h1>Don &amp; Reshma</h1>
-    <p class="sub">Two days. One story.</p>
+    <p class="sub">Three days. One story.</p>
     <p class="mon">January 2027</p>
     <div class="wk" aria-hidden="true"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
     <div class="grid" id="grid"></div>
@@ -556,9 +623,9 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
   </div>
 </main>
 
-<!-- Engagement -->
+<!-- Betrothal -->
 <div class="scene" id="s2" aria-hidden="true">
-  <div class="bar"><button data-back>Calendar</button><button data-go="s6">6 Jan, wedding</button></div>
+  <div class="bar"><button data-back>Calendar</button><button data-go="s5">5 Jan, celebration</button></div>
   <div class="rail" aria-hidden="true"><i></i></div>
   <div class="sky">
     <div class="layer">
@@ -571,27 +638,27 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
     <div class="c">
       <header class="hero">
         <h2 data-split="Don|Reshma"></h2>
-        <p class="lede">are engaged, and we’d love you there.</p>
+        <p class="lede">are celebrating our betrothal, and we’d love you there.</p>
         <p>Saturday, 2 January 2027 · 11:00 am</p>
       </header>
       <section class="rv"><div class="card">
-        <h3>The engagement</h3>
+        <h3>The betrothal</h3>
         <dl>
           <dt>When</dt><dd>Saturday, 2 January 2027, from 11:00 am</dd>
           <dt>Where</dt><dd>St. Joseph’s Syro Malabar Church, Kunnumbhagam<br><span style="opacity:.75">HQ5H+8VR, NH 183, Kanjirappally, Keralam 686507</span></dd>
         </dl>
         <div class="btns">
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=HQ5H%2B8VR%20Kanjirappally%20Keralam" target="_blank" rel="noopener">Open in maps</a>
-          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Don%20%26%20Reshma%20Engagement&amp;dates=20270102T053000Z/20270102T083000Z&amp;location=St.%20Joseph%27s%20Syro%20Malabar%20Church%2C%20Kunnumbhagam" target="_blank" rel="noopener">Add to calendar</a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=HQ5H%2B8VR%20Kanjirappally%20Keralam" target="_blank" rel="noopener" class="glass-action"><svg class="glass-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>View in maps</span></a>
+          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Don%20%26%20Reshma%20Betrothal&amp;dates=20270102T053000Z/20270102T083000Z&amp;location=St.%20Joseph%27s%20Syro%20Malabar%20Church%2C%20Kunnumbhagam" target="_blank" rel="noopener" class="glass-action"><svg class="glass-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M12 13v5M9.5 15.5h5"/></svg><span>Add to calendar</span></a>
         </div>
       </div></section>
       <section class="rv"><div class="cd" data-t="2027-01-02T11:00:00+05:30"></div></section>
-      <section class="rv engagement-timeline" aria-label="Engagement day timeline">
-        <div class="timeline-heading"><span class="timeline-kicker">THE ENGAGEMENT</span><h3>A day to remember</h3><p>The moments around our celebration</p></div>
+      <section class="rv engagement-timeline" aria-label="Betrothal day timeline">
+        <div class="timeline-heading"><span class="timeline-kicker">THE BETROTHAL</span><h3>A day to remember</h3><p>The moments around our celebration</p></div>
         <div class="engagement-list">
           <article class="engage-stop left">
             <time>11:00 AM</time><span class="engage-spine" aria-hidden="true"><i></i></span>
-            <button class="engage-card" type="button" aria-expanded="false"><strong>The engagement</strong><small>St. Joseph’s Syro Malabar Church</small><em>The celebration begins.</em></button>
+            <button class="engage-card" type="button" aria-expanded="false"><strong>The betrothal</strong><small>St. Joseph’s Syro Malabar Church</small><em>The celebration begins.</em></button>
           </article>
           <article class="engage-stop right">
             <time>AFTER THE CEREMONY</time><span class="engage-spine" aria-hidden="true"><i></i></span>
@@ -604,15 +671,68 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
         </div>
         <p class="timeline-note">Further timings will be added once confirmed.</p>
       </section>
-      <button class="xl to6 rv" data-go="s6"><span>Then, the wedding</span><small>Wednesday, 6 January 2027 · 3:30 pm · into the night</small></button>
+      <button class="xl to5 rv" data-go="s5"><span>Next, a night to celebrate</span><small>Tuesday, 5 January 2027 · Madhuramveppu &amp; Bachelor’s Party · 7:00 pm</small></button>
       <div class="foot rv"><p>With love, Don &amp; Reshma</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- Madhuramveppu & Bachelor's Party — January 5 -->
+<div class="scene" id="s5" aria-hidden="true">
+  <div class="bar"><button data-back>Calendar</button><button data-go="s6">6 Jan, wedding</button></div>
+  <div class="rail" aria-hidden="true"><i></i></div>
+  <div class="sky">
+    <div class="layer" aria-hidden="true">
+      <div class="party-moon"></div>
+      <i class="party-lantern" style="--left:8%;--top:18vh;--size:75px;--blur:4px;--alpha:.45;--speed:8s"></i>
+      <i class="party-lantern" style="--left:81%;--top:52vh;--size:110px;--blur:13px;--alpha:.4;--speed:11s"></i>
+      <i class="party-lantern" style="--left:18%;--top:92vh;--size:33px;--blur:2px;--alpha:.75;--speed:7s"></i>
+      <i class="party-lantern" style="--left:73%;--top:156vh;--size:85px;--blur:12px;--alpha:.34;--speed:13s"></i>
+      <i class="party-lantern" style="--left:11%;--top:213vh;--size:51px;--blur:6px;--alpha:.45;--speed:9s"></i>
+      <i class="party-lantern" style="--left:88%;--top:288vh;--size:65px;--blur:7px;--alpha:.38;--speed:10s"></i>
+    </div>
+    <div class="c">
+      <header class="hero">
+        <h2 data-split="Don|Reshma"></h2>
+        <p class="lede">one more night before forever.</p>
+        <p>Tuesday, 5 January 2027 · 7:00 pm</p>
+      </header>
+      <section class="rv"><div class="card">
+        <h3>The celebration</h3>
+        <dl>
+          <dt>When</dt><dd>Tuesday, 5 January 2027, from 7:00 pm</dd>
+          <dt>Where</dt><dd>Springdale Heritage Resort<br><span style="opacity:.78">Periyar, Kerala</span></dd>
+          <dt>Evening</dt><dd>Madhuramveppu at 7:00 pm, followed by the Bachelor’s Party.</dd>
+        </dl>
+        <div class="btns">
+          <a href="https://maps.app.goo.gl/QeV1Snhv4C9R3AJ79" target="_blank" rel="noopener noreferrer" class="glass-action"><svg class="glass-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>View in maps</span></a>
+          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Don+%26+Reshma+%E2%80%94+Madhuramveppu+%26+Bachelor%27s+Party&amp;dates=20270105T133000Z%2F20270105T173000Z&amp;details=Madhuramveppu+at+7%3A00+PM%2C+followed+by+the+Bachelor%27s+Party.&amp;location=Springdale+Heritage+Resort%2C+Periyar%2C+Kerala" target="_blank" rel="noopener noreferrer" class="glass-action"><svg class="glass-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M12 13v5M9.5 15.5h5"/></svg><span>Add to calendar</span></a>
+        </div>
+      </div></section>
+      <section class="rv"><div class="cd" data-t="2027-01-05T19:00:00+05:30"></div></section>
+      <section class="rv engagement-timeline" aria-label="Madhuramveppu and Bachelor's Party timeline">
+        <div class="timeline-heading"><span class="timeline-kicker">THE NIGHT BEFORE</span><h3>Sweet beginnings, golden memories</h3><p>Two celebrations. One unforgettable evening.</p></div>
+        <div class="engagement-list">
+          <article class="engage-stop left">
+            <time>7:00 PM</time><span class="engage-spine" aria-hidden="true"><i></i></span>
+            <button class="engage-card" type="button" aria-expanded="false"><strong>Madhuramveppu</strong><small>Springdale Heritage Resort</small><em>We begin the evening with a cherished tradition.</em></button>
+          </article>
+          <article class="engage-stop right">
+            <time>TO FOLLOW</time><span class="engage-spine" aria-hidden="true"><i></i></span>
+            <button class="engage-card" type="button" aria-expanded="false"><strong>Bachelor’s Party</strong><small>Same venue · Springdale Heritage Resort</small><em>Then the celebration continues into the night.</em></button>
+          </article>
+        </div>
+        <p class="timeline-note">The Bachelor’s Party follows Madhuramveppu; its start time is not separately scheduled.</p>
+      </section>
+      <button class="xl to6 rv" data-go="s6"><span>Tomorrow, the wedding</span><small>Wednesday, 6 January 2027 · 3:30 pm · under the evening sky</small></button>
+      <div class="foot rv"><p>Before forever, one golden night.</p></div>
     </div>
   </div>
 </div>
 
 <!-- Wedding -->
 <div class="scene" id="s6" aria-hidden="true">
-  <div class="bar"><button data-back>Calendar</button><button data-go="s2">2 Jan, engagement</button></div>
+  <div class="bar"><button data-back>Calendar</button><button data-go="s5">5 Jan, celebration</button></div>
   <div class="rail" aria-hidden="true"><i></i></div>
   <div class="sky">
     <div class="layer"><div class="sun6"></div><div class="stars" id="stars"></div><div class="shoot" id="shoot"></div></div>
@@ -627,11 +747,11 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
         <dl>
           <dt>When</dt><dd>Wednesday, 6 January 2027, ceremony at 3:30 pm</dd>
           <dt>Where</dt><dd>St. Mary’s Syro Malabar Church<br><span style="opacity:.75">J4P4+CVM, Anakzy, Vellaramkunnu, Keralam 685535</span></dd>
-          <dt>Evening</dt><dd>The reception follows after dark. Venue to be announced.</dd>
+          <dt>Evening</dt><dd>Reception to follow at St. Mary’s Parish and Event Hall.</dd>
         </dl>
         <div class="btns">
-          <a href="https://www.google.com/maps/search/?api=1&amp;query=J4P4%2BCVM%20Vellaramkunnu%20Keralam" target="_blank" rel="noopener">Open in maps</a>
-          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Don%20%26%20Reshma%20Wedding&amp;dates=20270106T100000Z/20270106T163000Z&amp;location=St.%20Mary%27s%20Syro%20Malabar%20Church%2C%20Vellaramkunnu" target="_blank" rel="noopener">Add to calendar</a>
+          <a href="https://www.google.com/maps/search/?api=1&amp;query=J4P4%2BCVM%20Vellaramkunnu%20Keralam" target="_blank" rel="noopener" class="glass-action"><svg class="glass-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>View in maps</span></a>
+          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Don%20%26%20Reshma%20Wedding&amp;dates=20270106T100000Z/20270106T163000Z&amp;location=St.%20Mary%27s%20Syro%20Malabar%20Church%2C%20Vellaramkunnu" target="_blank" rel="noopener" class="glass-action"><svg class="glass-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M12 13v5M9.5 15.5h5"/></svg><span>Add to calendar</span></a>
         </div>
       </div></section>
       <section class="rv wedding-timeline" aria-label="Wedding day timeline">
@@ -647,14 +767,14 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
           </article>
           <article class="engage-stop left">
             <time>EVENING</time><span class="engage-spine" aria-hidden="true"><i></i></span>
-            <button class="engage-card" type="button" aria-expanded="false"><strong>The reception</strong><small>As the evening begins</small><em>Venue and exact timing to be announced.</em></button>
+            <button class="engage-card" type="button" aria-expanded="false"><strong>The reception</strong><small>As the evening begins</small><em>St. Mary’s Parish and Event Hall. Exact timing to be confirmed.</em></button>
           </article>
         </div>
-        <p class="timeline-note">The schedule will be updated as details are confirmed.</p>
+        <p class="timeline-note">Further timings will be shared once confirmed.</p>
       </section>
       <section class="rv"><div class="cd" data-t="2027-01-06T15:30:00+05:30"></div></section>
 
-      <button class="xl to2 rv" data-go="s2"><span>Before this, the engagement</span><small>Saturday, 2 January 2027 · 11:00 am · in the morning light</small></button>
+      <button class="xl to5 rv" data-go="s5"><span>The night before</span><small>Tuesday, 5 January 2027 · Madhuramveppu &amp; Bachelor’s Party · 7:00 pm</small></button>
       <div class="foot">
         <svg class="con" id="con" viewBox="0 0 520 80" role="img" aria-label="A line of stars joining two larger stars">
           <polyline points="20,55 90,25 160,45 230,18 300,50 370,24 440,46 500,22"/>
@@ -708,7 +828,8 @@ var $=function(s){return document.querySelector(s)},$$=function(s){return docume
   var g=$('#grid'),h='',i;
   for(i=0;i<5;i++)h+='<span></span>';
   for(i=1;i<=31;i++){
-    if(i===2)h+='<button class="d hot e" data-open="s2" aria-label="2 January, engagement, 11 am"><span class="tag">Engagement</span><b>2</b></button>';
+    if(i===2)h+='<button class="d hot e" data-open="s2" aria-label="2 January, betrothal, 11 am"><span class="tag">Betrothal</span><b>2</b></button>';
+    else if(i===5)h+='<button class="d hot p" data-open="s5" aria-label="5 January, Madhuramveppu and Bachelor\'s Party, 7 pm"><span class="tag">Celebration</span><b>5</b></button>';
     else if(i===6)h+='<button class="d hot w" data-open="s6" aria-label="6 January, wedding, 3:30 pm"><span class="tag">Wedding</span><b>6</b></button>';
     else h+='<span class="d">'+i+'</span>';
   }
@@ -794,13 +915,29 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeScene()
   $('#begin').addEventListener('click',openInvitation);
   $('#wax-seal').addEventListener('click',openInvitation);
   window.addEventListener('load',function(){
-    ['#s2','#s6'].forEach(function(sel,k){
+    ['#s2','#s5','#s6'].forEach(function(sel,k){
       var l=$(sel+' .layer'),h=l.offsetHeight||2400,s=k+3;
       function q(){s=(s*9301+49297)%233280;return s/233280}
       for(var i=0;i<(k?14:12);i++){var m=document.createElement('i');m.className='mt';
         m.style.cssText='--x:'+q()*96+'%;--z:'+(3+q()*(k?7:4))+'px;--d:'+(18+q()*20)+'s;--dl:-'+q()*30+'s;--dx:'+(q()*80-40)+'px;--h:'+h+'px';
         l.appendChild(m)}
     });
+  });
+})();
+
+
+// Gentle magnetic lift and light-following sheen on glass actions (desktop pointer only).
+(function(){
+  if(!window.matchMedia || !window.matchMedia('(hover: hover) and (pointer: fine)').matches)return;
+  $$('.glass-action').forEach(function(el){
+    el.addEventListener('pointermove',function(e){
+      var r=el.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+      el.style.setProperty('--float-x',((x-r.width/2)/r.width*7).toFixed(2)+'px');
+      el.style.setProperty('--float-y',((y-r.height/2)/r.height*7-3).toFixed(2)+'px');
+      el.style.setProperty('--glow-x',x+'px');el.style.setProperty('--glow-y',y+'px');
+    });
+    el.addEventListener('pointerleave',function(){el.style.setProperty('--float-x','0px');el.style.setProperty('--float-y','0px')});
+    el.addEventListener('blur',function(){el.style.setProperty('--float-x','0px');el.style.setProperty('--float-y','0px')});
   });
 })();
 
