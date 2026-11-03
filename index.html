@@ -6,16 +6,21 @@
 <title>Don & Reshma — January 2027</title>
 <!-- FONT IMPORTS: if you change a font in QUICK CUSTOMISATION below, add it here too.
      Google Fonts URL builder: https://fonts.google.com/ -->
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@400;500;600&family=Mr+De+Haviland&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=DM+Sans:wght@300;400;500&family=Cinzel:wght@400;500;600&family=Mr+De+Haviland&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+/* Locally hosted wedding typefaces — filenames must match /fonts on GitHub. */
+@font-face{font-family:"Simple Serenity";src:url("./fonts/simple-serenity-script.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Wedding Garamond";src:url("./fonts/garamond.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Daydream";src:url("./fonts/daydream.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+
  :root{
  /* =========================================================
     QUICK CUSTOMISATION — edit font names, sizes and colours here.
     If you change a font, also update the FONT IMPORTS link above.
     ========================================================= */
  /* Global font families */
- --serif:"Cormorant Garamond", Georgia, serif;
- --script:"Mr De Haviland", cursive;
+ --serif:"Wedding Garamond", "Cormorant Garamond", Georgia, serif;
+ --script:"Daydream", "Cormorant Garamond", Georgia, serif;
  --sans:"DM Sans", "Helvetica Neue", Arial, sans-serif;
 
  /* Opening card typography */
@@ -31,9 +36,9 @@
  --cover-paper:#12223a;
 
  /* Page typography — change each page independently */
- --calendar-font:"Mr De Haviland", cursive;
- --engagement-font:"Mr De Haviland", cursive;
- --wedding-font:"Mr De Haviland", cursive;
+ --calendar-font:"Simple Serenity", "Mr De Haviland", cursive;
+ --engagement-font:"Simple Serenity", "Mr De Haviland", cursive;
+ --wedding-font:"Simple Serenity", "Mr De Haviland", cursive;
  --calendar-title-size:clamp(2.8rem,11vw,3.7rem);
  --engagement-title-size:clamp(4.2rem,18vw,9rem);
  --wedding-title-size:clamp(4.2rem,18vw,9rem);
@@ -535,6 +540,242 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
 @media(max-width:390px){.scene .btns{gap:.5rem}.scene .btns a.glass-action{padding:.7rem .8rem;font-size:.73rem}}
 @media(prefers-reduced-motion:reduce){#s5 .party-lantern,#cal .p::after{animation:none!important}.scene .btns a.glass-action{transform:none!important;transition:none!important}}
 
+
+/* =========================================================
+   CUSTOM TYPE + SOFTER LIQUID GLASS — November 2026
+   ========================================================= */
+/* Script names in the calendar and on all three celebration pages. */
+#cal .box h1{font-family:"Simple Serenity",cursive;font-weight:400;font-size:clamp(2.8rem,11vw,4.8rem);line-height:1.13}
+#s2 .hero h2,#s5 .hero h2,#s6 .hero h2{
+ font-family:"Simple Serenity",cursive;font-weight:400;
+ font-size:clamp(4.4rem,14vw,8rem);line-height:1.06;
+ width:min(88vw,660px);margin-inline:auto;
+ display:grid;grid-template-columns:1fr;justify-items:stretch;text-align:initial;
+}
+/* The names sit diagonally, then enter from their respective sides. */
+.scene .hero .hero-name{display:block;opacity:0;will-change:transform,opacity}
+.scene .hero .name-don{justify-self:start;text-align:left;transform:translateX(-65px)}
+.scene .hero .name-reshma{justify-self:end;text-align:right;transform:translateX(65px)}
+.scene .hero .name-and{font-family:"Simple Serenity",cursive;font-size:.34em;font-style:normal;font-weight:400;justify-self:center;margin:-.08em 0 -.12em;opacity:0;transform:translateY(10px)}
+.scene.open .hero .name-don{animation:donFromLeft 1.15s .36s cubic-bezier(.16,.76,.2,1) both}
+.scene.open .hero .name-reshma{animation:reshmaFromRight 1.15s .55s cubic-bezier(.16,.76,.2,1) both}
+.scene.open .hero .name-and{animation:andLast .8s 1.3s ease-out both}
+@keyframes donFromLeft{from{opacity:0;transform:translateX(-65px);filter:blur(5px)}to{opacity:1;transform:translateX(0);filter:blur(0)}}
+@keyframes reshmaFromRight{from{opacity:0;transform:translateX(65px);filter:blur(5px)}to{opacity:1;transform:translateX(0);filter:blur(0)}}
+@keyframes andLast{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+/* Daydream is the expressive heading and sign-off font; keep controls legible in DM Sans. */
+.scene .card h3,.scene .timeline-heading h3,.scene .xl span,.scene .foot p{font-family:"Daydream",Georgia,serif;font-weight:400;line-height:1.2}
+.scene .timeline-heading h3{font-size:clamp(2.15rem,6.8vw,3rem)}
+.scene .card h3{font-size:clamp(2.2rem,7vw,3rem)}
+.scene .xl span{font-size:clamp(2.15rem,6vw,2.7rem)}
+.scene .foot p{font-size:clamp(2rem,6vw,2.7rem)}
+/* Garamond for dates, countdowns and event times everywhere. */
+#cal .mon,#cal .wk,#cal .d,#cal .d b,.scene .hero .lede + p,.scene dd:first-of-type,.scene .engage-stop time,.scene .timeline-time,.scene .cd b,.scene .cd small,.cover-date,.scene .xl small{font-family:"Wedding Garamond",Georgia,serif}
+#cal .d b{font-size:1.27em}
+.scene .engage-stop time{font-size:clamp(.82rem,2.4vw,1rem);letter-spacing:.09em}
+.scene .cd b{font-size:2.65rem}
+/* Make the number 5 readable on the saturated celebration badge. */
+#cal .p b{color:#fff!important;text-shadow:0 2px 7px rgba(36,18,55,.9)!important}
+/* Less white paint; more see-through glass, with readable text and fine highlights. */
+.scene .btns a.glass-action{
+ background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.045) 57%,rgba(255,255,255,.025))!important;
+ border-color:rgba(255,255,255,.3)!important;
+ box-shadow:0 10px 28px rgba(13,11,37,.12),inset 0 1px 0 rgba(255,255,255,.24)!important;
+ -webkit-backdrop-filter:blur(18px) saturate(140%);backdrop-filter:blur(18px) saturate(140%);
+}
+.scene .btns a.glass-action::before{opacity:.32}
+.scene .btns a.glass-action:hover,.scene .btns a.glass-action:focus-visible{
+ background:linear-gradient(145deg,rgba(255,255,255,.19),rgba(255,255,255,.065))!important;
+ border-color:rgba(255,255,255,.48)!important;
+ box-shadow:0 15px 32px rgba(13,11,37,.19),inset 0 1px 0 rgba(255,255,255,.35)!important;
+}
+#s2 .btns a.glass-action{color:#24314a!important;background:linear-gradient(145deg,rgba(255,255,255,.22),rgba(255,255,255,.085))!important;border-color:rgba(255,255,255,.38)!important}
+#s2 .btns a.glass-action:hover{color:#24314a!important;background:linear-gradient(145deg,rgba(255,255,255,.3),rgba(255,255,255,.12))!important}
+@media(max-width:390px){#s2 .hero h2,#s5 .hero h2,#s6 .hero h2{font-size:clamp(3.7rem,15vw,5rem);width:92vw}}
+@media(prefers-reduced-motion:reduce){.scene .hero .hero-name,.scene .hero .name-and{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}}
+
+
+/* =========================================================
+   TYPOGRAPHY REFINEMENTS — retain the three-event layout
+   ========================================================= */
+/* Restore the restrained month heading while keeping Garamond dates. */
+#cal .mon{font-size:1.22rem;line-height:1.3;letter-spacing:.01em}
+/* Let the handwritten names be the hero of the calendar. */
+#cal .box h1{font-size:clamp(3.35rem,12.2vw,5.65rem);line-height:1.1;letter-spacing:-.015em}
+/* Date labels: clean and friendly, separate from the traditional numerals. */
+#cal .hot .tag{font-family:"Poppins","DM Sans",Arial,sans-serif;font-size:clamp(.59rem,1.8vw,.69rem);font-weight:500;letter-spacing:.005em}
+/* Return the music widget to its pre-custom-font typography. */
+.player-shell .player-title{font-family:"Cormorant Garamond",Georgia,serif}
+.player-shell .player-status{font-family:"DM Sans",Arial,sans-serif}
+/* Keep expressive headline sizing restrained to protect one-line titles. */
+.scene .card h3{font-size:clamp(1.55rem,5vw,2.15rem);line-height:1.15}
+.scene .timeline-heading h3{font-size:clamp(1.65rem,5.1vw,2.2rem);line-height:1.13}
+.scene .xl span{font-size:clamp(1.45rem,4.75vw,2.05rem);line-height:1.16}
+.scene .foot p{font-size:clamp(1.5rem,4.7vw,2.1rem);line-height:1.15}
+/* Make names fuller and diagonally balanced, rather than pushed to the edges. */
+#s2 .hero h2,#s5 .hero h2,#s6 .hero h2{
+  font-size:clamp(5.15rem,18vw,9.4rem);
+  width:min(90vw,600px);
+  line-height:1.02;
+}
+.scene .hero .name-don{justify-self:start;margin-left:9%}
+.scene .hero .name-reshma{justify-self:end;margin-right:7%}
+.scene .hero .name-and{font-size:.47em;margin:-.1em 0 -.14em}
+@media(max-width:390px){
+  #cal .box h1{font-size:clamp(3.05rem,11.4vw,4rem)}
+  #s2 .hero h2,#s5 .hero h2,#s6 .hero h2{font-size:clamp(4.55rem,17.5vw,5.5rem);width:94vw}
+  .scene .hero .name-don{margin-left:7%}
+  .scene .hero .name-reshma{margin-right:5%}
+  .scene .timeline-heading h3{font-size:1.55rem}
+}
+
+
+/* =========================================================
+   SERENITY DISPLAY NAMES + DAYDREAM HEADLINES — type update
+   ========================================================= */
+/* A larger handwritten signature on the opening calendar. */
+#cal .box h1{
+  font-family:"Simple Serenity",cursive;
+  font-size:clamp(3.65rem,14.1vw,6.8rem);
+  line-height:1.14;
+  letter-spacing:-.018em;
+  transform:rotate(-4deg);
+  transform-origin:center;
+}
+/* Preserve the side entrances: individual CSS rotate does not override
+   the translateX keyframes used to reveal each name. */
+#s2 .hero h2,#s5 .hero h2,#s6 .hero h2{
+  font-family:"Simple Serenity",cursive;
+  font-size:clamp(6rem,23vw,11.7rem);
+  width:min(94vw,760px);
+  line-height:1.05;
+}
+.scene .hero .name-don{rotate:-10deg;transform-origin:center; margin-left:6%}
+.scene .hero .name-reshma{rotate:-10deg;transform-origin:center; margin-right:5%}
+.scene .hero .name-and{font-size:.45em;rotate:-4deg}
+/* Daydream replaces Slight only in the decorative headings and sign-offs. */
+.scene .card h3,.scene .timeline-heading h3,.scene .xl span,.scene .foot p{
+  font-family:"Daydream",Georgia,serif;
+}
+@media(max-width:520px){
+  #cal .box h1{font-size:clamp(3.1rem,13.4vw,4.5rem)}
+  #s2 .hero h2,#s5 .hero h2,#s6 .hero h2{
+    font-size:clamp(5.15rem,23.5vw,7.4rem);
+    width:94vw;
+  }
+  .scene .hero .name-don{margin-left:7%}
+  .scene .hero .name-reshma{margin-right:6%}
+}
+@media(max-width:360px){
+  #cal .box h1{font-size:12.5vw}
+  #s2 .hero h2,#s5 .hero h2,#s6 .hero h2{font-size:22vw}
+}
+
+
+/* =========================================================
+   FINER EVENT TYPOGRAPHY — November 2026
+   ========================================================= */
+/* Both signature names lean in the same direction. */
+.scene .hero .name-don,
+.scene .hero .name-reshma{rotate:-10deg;}
+/* The ampersand is an intentional large part of the signature, not a caption. */
+.scene .hero .name-and{
+  font-family:"Simple Serenity",cursive;
+  font-size:.77em;
+  font-style:normal;
+  line-height:.75;
+  margin:.06em 0 .07em;
+  rotate:-10deg;
+}
+/* Add a little visual weight and scale to practical information. */
+.scene .hero .pre{font-size:clamp(1.12rem,3.1vw,1.32rem);font-weight:500;line-height:1.45;letter-spacing:.005em;}
+.scene .hero .lede{font-size:clamp(1.48rem,4vw,1.75rem);font-weight:500;line-height:1.3;margin-top:1.3rem;}
+.scene .hero .lede + p{font-size:clamp(1.2rem,3.5vw,1.42rem);font-weight:600;line-height:1.5;}
+.scene .card{font-size:clamp(1.12rem,2.8vw,1.22rem);line-height:1.65;}
+.scene .card dt{font-weight:700;opacity:.92;}
+.scene .card dd{font-weight:500;}
+.scene .card dd:first-of-type{font-weight:600;font-size:1.08em;}
+.scene .card dd span{font-size:.92em;}
+.scene .timeline-heading p{font-size:1.06rem;line-height:1.45;}
+.scene .engage-card strong{font-size:clamp(1rem,2.8vw,1.12rem);font-weight:600;}
+.scene .engage-card small{font-size:clamp(.83rem,2.2vw,.93rem);line-height:1.4;}
+.scene .engage-card em{font-size:clamp(.95rem,2.5vw,1.06rem);}
+.scene .timeline-note{font-size:.98rem;}
+.scene .xl small{font-size:clamp(1.02rem,2.65vw,1.12rem);font-weight:600;}
+.scene .btns a.glass-action{font-size:clamp(.85rem,2.5vw,.94rem);font-weight:500;}
+@media(max-width:520px){
+  .scene .hero .name-and{font-size:.72em;margin:.06em 0 .08em;}
+  .scene .card{font-size:1.1rem;}
+  .scene .engage-card strong{font-size:.97rem;}
+  .scene .engage-card small{font-size:.8rem;}
+}
+
+
+/* =========================================================
+   TYPOGRAPHY FINISHING — understated information, clean prose
+   ========================================================= */
+/* Serenity ampersand: larger, on all three celebration pages. */
+.scene .hero .name-and{font-size:.88em;line-height:.78;margin:.02em 0 .06em}
+@media(max-width:520px){.scene .hero .name-and{font-size:.86em;margin:.02em 0 .06em}}
+
+/* Invitation copy: clean Poppins, with no newspaper-like italic styling. */
+.scene .hero .pre,
+.scene .hero .lede{
+  font-family:"Poppins","DM Sans",Arial,sans-serif;
+  font-style:normal;
+  font-weight:400;
+  letter-spacing:.005em;
+}
+.scene .hero .pre{font-size:clamp(.91rem,2.7vw,1.02rem);line-height:1.55;margin-bottom:1.05rem}
+.scene .hero .lede{font-size:clamp(1rem,3.1vw,1.15rem);line-height:1.5;margin-top:1.15rem}
+
+/* Return event information to its original scale. Only values get a little weight. */
+.scene .card{font-size:var(--body-copy-size);line-height:1.65}
+.scene .card dt{font-weight:500;opacity:.75}
+.scene .card dd{font-weight:500;font-size:inherit}
+.scene .card dd:first-of-type{font-size:inherit;font-weight:500}
+.scene .card dd span{font-size:inherit}
+/* Distinguish key event dates, times and venues without enlarging them. */
+.scene .hero .lede + p{font-size:1rem;font-weight:500;line-height:1.5}
+
+/* Subtext, supporting notes and next-event details: Poppins, upright, compact. */
+.scene .timeline-note,
+.scene .timeline-heading p,
+.scene .xl small,
+.scene .engage-card em{
+  font-family:"Poppins","DM Sans",Arial,sans-serif;
+  font-style:normal;
+  font-weight:400;
+}
+.scene .timeline-note{font-size:.82rem;line-height:1.55}
+.scene .timeline-heading p{font-size:.9rem;line-height:1.5}
+.scene .xl small{font-size:.87rem;line-height:1.45;font-weight:400}
+.scene .engage-card em{font-size:.85rem;line-height:1.5}
+/* Navigation/card captions remain compact on small screens. */
+@media(max-width:520px){
+  .scene .card{font-size:var(--body-copy-size)}
+  .scene .xl small{font-size:.82rem}
+  .scene .timeline-note{font-size:.78rem}
+}
+
+/* Keep the Serenity ampersand identical on all three event pages.
+   The older #s2/#s6 h2 i rule was overriding its size. */
+#s2 .hero h2 i.name-and,
+#s5 .hero h2 i.name-and,
+#s6 .hero h2 i.name-and{
+  font-size:.88em;
+  line-height:.78;
+  margin:.02em 0 .06em;
+}
+@media(max-width:520px){
+  #s2 .hero h2 i.name-and,
+  #s5 .hero h2 i.name-and,
+  #s6 .hero h2 i.name-and{
+    font-size:.86em;
+    margin:.02em 0 .06em;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -638,7 +879,7 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
     <div class="c">
       <header class="hero">
         <h2 data-split="Don|Reshma"></h2>
-        <p class="lede">are celebrating our betrothal, and we’d love you there.</p>
+        <p class="lede">invite you to celebrate their betrothal.</p>
         <p>Saturday, 2 January 2027 · 11:00 am</p>
       </header>
       <section class="rv"><div class="card">
@@ -672,7 +913,7 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
         <p class="timeline-note">Further timings will be added once confirmed.</p>
       </section>
       <button class="xl to5 rv" data-go="s5"><span>Next, a night to celebrate</span><small>Tuesday, 5 January 2027 · Madhuramveppu &amp; Bachelor’s Party · 7:00 pm</small></button>
-      <div class="foot rv"><p>With love, Don &amp; Reshma</p></div>
+      <div class="foot rv"><p>With love, Don and Reshma</p></div>
     </div>
   </div>
 </div>
@@ -837,11 +1078,12 @@ var $=function(s){return document.querySelector(s)},$$=function(s){return docume
   setTimeout(function(){$('#hint').classList.add('on')},4000);
 })();
 
-// Names, letter by letter
+// Directional name entrance: Don from left, Reshma from right, "and" last.
 $$('[data-split]').forEach(function(el){
-  var n=el.dataset.split.split('|'),k=0;
-  function w(t){return '<span class="ltr" style="--i:'+(k++)*3+'">'+t+'</span>'}
-  el.innerHTML='<span>'+w(n[0])+'</span><i class="ltr" style="--i:'+(k++)+'">and</i><span>'+w(n[1])+'</span>';
+  var names=el.dataset.split.split('|');
+  el.innerHTML='<span class="hero-name name-don">'+names[0]+'</span>'+
+    '<i class="name-and">&amp;</i>'+
+    '<span class="hero-name name-reshma">'+names[1]+'</span>';
 });
 
 // Stars for the evening sky
