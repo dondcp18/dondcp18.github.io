@@ -776,6 +776,180 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
   }
 }
 
+
+/* =========================================================
+   MOBILE-FIRST STORY HOME · November 2026
+   Calendar remains the first viewport; memories follow on scroll.
+   ========================================================= */
+html{scroll-behavior:smooth}
+body.site-open{height:auto;min-height:100%;overflow-x:hidden;overflow-y:auto}
+body.album-open{overflow:hidden}
+#cal{position:relative;inset:auto;display:block;min-height:100svh;width:100%;padding:0;overflow:visible;background:linear-gradient(180deg,#0b1024,#15142a 60%,#0a0d1c);}
+#cal::before,#cal::after{bottom:auto;height:100svh}
+.calendar-viewport{min-height:100svh;min-height:100dvh;display:grid;place-items:center;position:relative;padding:clamp(1.5rem,4vh,3rem) 1.25rem 2.2rem}
+.calendar-viewport>.box{width:min(440px,100%)}
+.scroll-cue{display:inline-flex;flex-direction:column;gap:.12rem;align-items:center;justify-content:center;margin-top:1.15rem;font:400 .67rem/1.3 "Poppins",var(--sans);letter-spacing:.09em;text-transform:uppercase;text-decoration:none;color:rgba(255,239,208,.74);opacity:0;transform:translateY(8px);transition:opacity .8s 1.25s,transform .8s 1.25s;touch-action:manipulation}
+#cal.lit .scroll-cue{opacity:1;transform:none}
+.scroll-cue svg{stroke:currentColor;fill:none;stroke-width:1.5;animation:scrollFloat 2.4s ease-in-out infinite}
+@keyframes scrollFloat{50%{transform:translateY(4px)}}
+.memories-home{position:relative;padding:clamp(4rem,8vw,6.5rem) max(1.1rem,env(safe-area-inset-left)) 5rem;max-width:950px;margin:0 auto;text-align:center;scroll-margin-top:1rem}
+.memories-eyebrow{font:500 .65rem/1.5 "Poppins",var(--sans);letter-spacing:.2em;color:#d9bd7b;margin:0 0 1rem}
+.memories-home h2,.album-sheet h2{font:400 clamp(2.5rem,6vw,4.3rem)/1.15 "Daydream",var(--serif);color:#f6e9cc;margin:0 0 .9rem}
+.memories-intro{font:400 .91rem/1.8 "Poppins",var(--sans);color:rgba(246,239,224,.72);max-width:520px;margin:0 auto 2.5rem}
+.album-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(.75rem,2vw,1.3rem)}
+.album-tile{border:0;padding:0;color:#f7edd9;background:none;text-align:left;min-width:0;touch-action:manipulation;transition:transform .35s;}
+.album-tile:hover,.album-tile:focus-visible{transform:translateY(-7px)}
+.album-art{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:3/4;border:1px solid rgba(239,217,172,.26);border-radius:1rem;overflow:hidden;box-shadow:0 14px 40px rgba(0,0,0,.28);}
+.album-art::before{content:"";position:absolute;inset:0;z-index:-1;opacity:.7;background:radial-gradient(circle at 30% 20%,rgba(255,248,223,.35),transparent 30%),radial-gradient(circle at 75% 75%,rgba(240,190,135,.22),transparent 45%)}
+.album-art::after{content:"";position:absolute;inset:9px;border:1px solid rgba(255,235,196,.25);border-radius:.7rem;pointer-events:none}
+.album-art-morning{background:linear-gradient(155deg,#8fb9cb,#d5d4cb 46%,#b1a16c)}
+.album-art-evening{background:linear-gradient(150deg,#2a213d,#825677 50%,#c28a70)}
+.album-art-night{background:linear-gradient(150deg,#17213e,#52436a 50%,#161a38)}
+.album-art-mark{font:400 clamp(2.7rem,7vw,5.2rem)/1 var(--serif);color:#fff4d8;text-shadow:0 4px 20px rgba(0,0,0,.15)}
+.album-art-month{font:500 .57rem "Poppins",var(--sans);letter-spacing:.21em;color:#fff4e5}
+.album-tile-label{display:block;margin:.8rem .12rem .1rem;font:400 clamp(.98rem,2.6vw,1.33rem)/1.3 "Daydream",var(--serif);white-space:normal}
+.album-tile-note{display:block;margin:0 .12rem;font:400 .7rem/1.5 "Poppins",var(--sans);color:#c4bcba}
+.memories-outro{font:italic 400 1.2rem/1.5 var(--serif);color:#dbc8a5;margin:3rem 0 0}
+.home-footer{padding:1.5rem 1.25rem calc(env(safe-area-inset-bottom,0px) + 5rem);border-top:1px solid rgba(217,189,123,.14);text-align:center;color:#acaaaf}
+.home-footer span{font:500 .61rem "Poppins",var(--sans);letter-spacing:.24em;color:#d4bb88}
+.home-footer p{font:400 .74rem/1.8 "Poppins",var(--sans);margin:.3rem 0}
+/* Album is deliberately a placeholder until real photographs are published. */
+.album-overlay{position:fixed;inset:0;z-index:1101;background:rgba(6,9,22,.94);backdrop-filter:blur(24px);overflow-y:auto;overscroll-behavior:contain;padding:max(env(safe-area-inset-top,0px),1rem) 1rem max(env(safe-area-inset-bottom,0px),1rem)}
+.album-overlay[hidden]{display:none!important}
+.album-sheet{width:min(610px,100%);margin:0 auto;text-align:center;padding:1rem 0 3rem}
+.album-close{display:flex;align-items:center;gap:.55rem;margin:0 0 2.2rem auto;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:.45rem .85rem;color:#f9e7cc;font-size:1.4rem;line-height:1;min-height:44px;touch-action:manipulation}
+.album-close span{font:400 .8rem "Poppins",var(--sans)}
+.album-hero-art{display:grid;place-items:center;width:min(340px,88%);aspect-ratio:3/4;margin:2rem auto;border:1px solid rgba(230,205,158,.25);border-radius:1.3rem;box-shadow:0 20px 60px rgba(0,0,0,.23)}
+.album-hero-art span{font:400 clamp(2rem,7vw,3rem)/1.4 "Daydream",var(--serif);color:#fff3d7}
+.album-message,.album-private-note{font:400 .9rem/1.7 "Poppins",var(--sans);color:#dfd6ca;max-width:430px;margin:1rem auto}
+.album-private-note{font-size:.75rem;color:#a8a5a9}
+/* Two venues are intentionally separated and independently actionable. */
+.twin-intro{margin:-.3rem 0 1.5rem;font:400 .83rem/1.6 "Poppins",var(--sans);opacity:.8}
+.venue-stop{padding:1rem 0 .9rem}
+.venue-head{display:flex;align-items:center;gap:.8rem}
+.venue-number{display:grid;place-items:center;flex:0 0 2.2rem;height:2.2rem;border:1px solid rgba(245,209,165,.45);border-radius:50%;font:400 1rem var(--serif);color:#f8d9b1}
+.venue-kicker{font:500 .63rem/1.5 "Poppins",var(--sans);letter-spacing:.09em;color:#f9cfa7}
+.venue-head h4{font:400 clamp(1.5rem,4vw,2rem)/1.25 "Daydream",var(--serif);margin:.08rem 0 0}
+.venue-place{font:500 .95rem/1.5 "Poppins",var(--sans);margin:.9rem 0 .25rem}
+.venue-place span{font-weight:400;opacity:.85}
+.venue-description{font:400 .83rem/1.7 "Poppins",var(--sans);color:rgba(255,245,230,.77);margin:.15rem 0 .8rem}
+.venue-actions{gap:.55rem;margin-top:1rem}
+#s5 .venue-actions .glass-action{font-size:.73rem;padding:.62rem .77rem;white-space:normal}
+.venue-transfer{display:flex;gap:1.1rem;padding:1.2rem 0 1.2rem .85rem}
+.transfer-line{width:1px;min-height:6rem;background:linear-gradient(transparent,#edc8a0,transparent);position:relative}
+.transfer-line::after{content:'➜';position:absolute;top:47%;left:-.34rem;color:#f6d3a7;transform:rotate(90deg);font-size:.8rem}
+.transfer-kicker{font:500 .61rem/1.4 "Poppins",var(--sans);letter-spacing:.09em;color:#f2d4ac}
+.venue-transfer p{font:400 .82rem/1.6 "Poppins",var(--sans);opacity:.82;margin:.3rem 0 .6rem}
+.transfer-link{display:inline-flex;gap:.5rem;align-items:center;border:1px solid rgba(255,236,210,.28);background:rgba(255,255,255,.08);backdrop-filter:blur(12px);border-radius:999px;padding:.55rem 1rem;text-decoration:none;color:#fff2db;font:500 .75rem "Poppins",var(--sans);min-height:44px;transition:transform .25s,background .25s}
+.transfer-link:hover{transform:translateY(-3px);background:rgba(255,255,255,.14)}
+.venue-transfer small{display:block;font:400 .68rem/1.6 "Poppins",var(--sans);color:rgba(255,245,230,.65);margin-top:.55rem}
+/* Quiet scripture breaks and links to each event's album. */
+/* Scripture as a quiet cinematic caption, rather than a headline. */
+.scripture{width:min(100%,630px);padding:2.4rem 1.45rem 3rem;margin:0 auto;display:flex;flex-direction:column;align-items:flex-end;text-align:right}
+.scripture-ornament{display:none}
+.scripture blockquote{font:400 clamp(.91rem,2.9vw,1.05rem)/1.75 "Poppins",var(--sans);font-style:normal;letter-spacing:.002em;max-width:390px;margin:0;color:inherit;text-wrap:pretty}
+.scripture p{font:500 .66rem/1.5 "Poppins",var(--sans);letter-spacing:.15em;text-transform:uppercase;margin:.7rem 0 0;opacity:.75}
+@media(max-width:520px){.scripture{padding:2rem 1.65rem 2.7rem}.scripture blockquote{max-width:295px;font-size:.92rem;line-height:1.7}}
+.event-memories{padding:1rem max(1.2rem,calc((100vw - 600px)/2)) 3rem;margin:0 auto}
+.event-memories-inner{display:flex;align-items:center;gap:1rem;padding:1.1rem;border:1px solid rgba(236,219,184,.28);border-radius:1.3rem;background:rgba(255,255,255,.075);backdrop-filter:blur(14px)}
+.event-photo-symbol{display:grid;place-items:center;flex:0 0 3.8rem;height:4.7rem;border:1px solid rgba(239,216,176,.25);border-radius:.7rem;font-size:2rem;color:#ebc899;background:rgba(255,255,255,.06)}
+.event-memories-inner>div{flex:1;min-width:0}
+.event-memories-kicker{font:500 .55rem/1.4 "Poppins",var(--sans);letter-spacing:.14em;opacity:.74}
+.event-memories h3{font:400 1.35rem/1.2 "Daydream",var(--serif);margin:.25rem 0}
+.event-memories p{font:400 .72rem/1.55 "Poppins",var(--sans);margin:.2rem 0;opacity:.78}
+.event-album-link{flex:0 0 auto;background:rgba(255,255,255,.1);color:inherit;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:.6rem .85rem;font:500 .72rem/1.4 "Poppins",var(--sans);min-height:44px;transition:transform .25s,background .25s}
+.event-album-link:hover{transform:translateY(-3px);background:rgba(255,255,255,.17)}
+/* Refined opening — quietly lift the paper rather than sending elements away. */
+.cover-props{opacity:.17;filter:blur(3px)}
+.cover.opening .wax-seal{animation:sealLiftRefined .6s ease-in forwards}
+.cover.opening .cover-flap{transform:rotateX(148deg);opacity:.22;transition-duration:.85s}
+.cover.opening .cover-front{animation:cardUnfoldRefined .9s .16s ease-in-out forwards}
+.cover.opening .cover-constellations,.cover.opening .cover-emblem,.cover.opening .cover-date,.cover.opening .cover-motto{animation:inkDissolve .45s .24s ease forwards}
+@keyframes sealLiftRefined{to{transform:translate(-50%,-55%) scale(.9);opacity:0}}
+@keyframes cardUnfoldRefined{to{transform:translateY(-8px) scale(1.015);opacity:0}}
+#intro.out{filter:blur(2px);transition-duration:.72s}
+#intro.opening-done .cover-stage{transform:none}
+@media(max-width:600px){
+  .memories-home{padding:4.4rem 1.05rem 4rem}
+  .album-grid{gap:.55rem}
+  .album-art{border-radius:.72rem}
+  .album-art::after{inset:5px;border-radius:.48rem}
+  .album-tile-label{font-size:.96rem;line-height:1.25}
+  .album-tile-note{font-size:.6rem;line-height:1.4}
+  .album-art-mark{font-size:clamp(2.3rem,10vw,3.4rem)}
+  .album-art-month{font-size:.43rem}
+  .event-memories-inner{flex-wrap:wrap}
+  .event-memories-inner>div{flex:1 1 calc(100% - 6rem)}
+  .event-album-link{margin-left:auto}
+  .venue-head h4{font-size:1.7rem}
+  .venue-actions .glass-action{flex:1 1 43%;justify-content:center}
+  .calendar-viewport{padding-bottom:1rem}
+}
+@media(max-width:350px){.album-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:.35rem}.album-tile-label{font-size:.78rem}.album-tile-note{font-size:.55rem}.event-photo-symbol{flex-basis:3rem}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.scroll-cue svg{animation:none!important}.album-tile,.event-album-link,.transfer-link{transition:none!important}}
+
+
+/* ===== SCROLL-DRIVEN MEMORIES — mobile-first, no scroll trapping ===== */
+.album-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1.1rem,3vw,2rem);align-items:start}
+.album-tile{display:block;text-align:center;overflow:visible;transform:none!important;min-width:0}
+.album-tile:hover .photo-stack,.album-tile:focus-visible .photo-stack{filter:brightness(1.1)}
+.photo-stack{--stack-progress:0;position:relative;display:block;width:100%;aspect-ratio:4/5.2;margin:0 auto 1.8rem;isolation:isolate;filter:drop-shadow(0 14px 15px rgba(0,0,0,.23));transition:filter .3s}
+.stack-photo{position:absolute;inset:7% 11%;background:#ddd3bc;border:6px solid #e7ddc8;border-bottom-width:18px;box-shadow:0 7px 26px rgba(0,0,0,.38);opacity:var(--show,0);transform:translate3d(var(--fly-x,0px),var(--fly-y,0px),0) rotate(var(--rot,0deg)) scale(var(--scale,1));will-change:transform,opacity;backface-visibility:hidden}
+.stack-photo-1{z-index:1}.stack-photo-2{z-index:2}.stack-photo-3{z-index:3}.stack-photo-4{z-index:4}
+.photo-art{position:relative;display:flex;width:100%;height:100%;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;background-color:#263448}
+.photo-art::before,.film-frame::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 28% 27%,rgba(255,255,255,.30),transparent 34%),linear-gradient(125deg,rgba(255,255,255,.09),transparent 52%,rgba(0,0,0,.31));pointer-events:none}
+.photo-art-mark{font:400 clamp(2.5rem,6vw,4.2rem)/1 var(--serif);color:rgba(255,247,223,.7);font-style:italic}
+.photo-art-caption{font:500 .38rem/1.5 "Poppins",var(--sans);letter-spacing:.15em;color:rgba(255,244,223,.73);margin-top:.8rem}
+.photo-art-morning-1{background:linear-gradient(155deg,#8da5a3,#c6af8d 60%,#4e716d)}
+.photo-art-morning-2{background:linear-gradient(35deg,#425c60,#9caeaa 46%,#e0d0b2)}
+.photo-art-morning-3{background:linear-gradient(140deg,#d1b988,#6c919e 54%,#343d58)}
+.photo-art-morning-4{background:linear-gradient(30deg,#536e73,#b4c7bb 56%,#ead5a6)}
+.photo-art-morning-5{background:linear-gradient(135deg,#617c7b,#d1c29e 55%,#849b8c)}
+.photo-art-morning-6{background:linear-gradient(25deg,#395c68,#a4bfba 51%,#ecd0a0)}
+.photo-art-evening-1{background:linear-gradient(155deg,#332a4b,#98697e 60%,#d6a178)}
+.photo-art-evening-2{background:linear-gradient(35deg,#55405b,#c49a7b 46%,#42324d)}
+.photo-art-evening-3{background:linear-gradient(140deg,#bb7d75,#73527b 54%,#221c40)}
+.photo-art-evening-4{background:linear-gradient(30deg,#2e254c,#986d87 56%,#ebbd87)}
+.photo-art-evening-5{background:linear-gradient(145deg,#3c2d52,#b17d83 52%,#e0ad7b)}
+.photo-art-evening-6{background:linear-gradient(25deg,#251f3e,#755377 52%,#e8ae86)}
+.photo-art-night-1{background:linear-gradient(155deg,#10182d,#46557d 60%,#b69f9f)}
+.photo-art-night-2{background:linear-gradient(35deg,#1b234a,#777d99 46%,#373055)}
+.photo-art-night-3{background:linear-gradient(140deg,#a39e9c,#47486f 54%,#0c1330)}
+.photo-art-night-4{background:linear-gradient(30deg,#131c36,#686c8b 56%,#bca99e)}
+.photo-art-night-5{background:linear-gradient(120deg,#172341,#73748c 52%,#9a869e)}
+.photo-art-night-6{background:linear-gradient(25deg,#10172f,#43466e 60%,#a8a3a6)}
+.stack-date{position:absolute;z-index:7;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:#fff8e8;text-shadow:0 2px 18px rgba(0,0,0,.6)}
+.stack-date strong{font:400 clamp(2.8rem,7vw,5.3rem)/1 "Wedding Garamond",var(--serif)}
+.stack-date small{font:500 clamp(.48rem,1vw,.65rem)/1.6 "Poppins",var(--sans);letter-spacing:.26em}
+.album-tile-label{font-size:clamp(1.1rem,2.3vw,1.5rem)}
+.album-tile-note{margin-top:.3rem}
+/* Event photo filmstrips: movement corresponds to vertical scroll within each scene. */
+.event-memories{width:min(780px,100%);padding:2.3rem 1rem 3rem;margin:0 auto;overflow:hidden}
+.event-memories-heading{margin:0 auto 1.2rem;text-align:center}
+.event-memories h3{font:400 clamp(1.7rem,4vw,2.4rem)/1.2 "Daydream",var(--serif);margin:.25rem 0}
+.event-memories-heading p{font:400 .79rem/1.6 "Poppins",var(--sans);opacity:.72;margin:.4rem auto;max-width:340px}
+.film-window{height:clamp(210px,46vw,300px);position:relative;border:1px solid rgba(236,219,184,.29);border-radius:1.1rem;overflow:hidden;isolation:isolate;background:rgba(9,12,25,.55);box-shadow:0 20px 45px rgba(0,0,0,.18)}
+.film-track{position:absolute;top:50%;left:0;display:flex;align-items:center;gap:9px;width:max-content;padding:0 18px;transform:translate3d(calc(-1px * var(--travel,0)), -50%, 0);will-change:transform}
+.film-frame{position:relative;display:flex;flex-direction:column;justify-content:space-between;flex:0 0 clamp(152px,36vw,224px);height:clamp(184px,38vw,260px);padding:.8rem;color:rgba(255,249,227,.92);border:5px solid rgba(255,246,225,.73);box-shadow:0 6px 20px rgba(0,0,0,.2);overflow:hidden}
+.film-frame:nth-child(2n){transform:translateY(8px) rotate(1.5deg)}.film-frame:nth-child(3n){transform:translateY(-7px) rotate(-2deg)}
+.film-frame-number{position:relative;font:500 .65rem "Poppins",var(--sans);letter-spacing:.15em}
+.film-frame-label{position:relative;font:500 .56rem "Poppins",var(--sans);letter-spacing:.12em;text-align:right}
+.film-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(3,5,15,.3),transparent 18% 70%,rgba(3,5,15,.45));z-index:2}
+.film-window>.event-album-link{position:absolute;z-index:3;bottom:1rem;left:50%;transform:translateX(-50%);white-space:nowrap;color:#fff8e9;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);background:rgba(25,27,41,.40);border-color:rgba(255,255,255,.48);box-shadow:0 5px 24px rgba(0,0,0,.28)}
+.film-window>.event-album-link:hover{transform:translate(-50%,-3px);background:rgba(40,40,52,.55)}
+.film-caption{text-align:center!important;font:500 .56rem/1.5 "Poppins",var(--sans)!important;letter-spacing:.16em;opacity:.6;margin:.85rem 0 0!important}
+@media(max-width:650px){
+  .album-grid{display:flex;flex-direction:column;align-items:center;gap:3.6rem}
+  .album-tile{width:min(79vw,315px)}
+  .photo-stack{width:min(70vw,265px);margin-bottom:1.2rem}
+  .stack-photo{border-width:7px;border-bottom-width:21px}
+  .stack-date strong{font-size:4.1rem}
+  .event-memories{padding:2rem .8rem 2.8rem}
+  .film-window{height:250px}
+  .film-frame{flex-basis:180px;height:218px}
+}
+@media(prefers-reduced-motion:reduce){.stack-photo{will-change:auto;transition:none!important}.film-track{will-change:auto}}
+
 </style>
 </head>
 <body>
@@ -853,6 +1027,7 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
   </div>
 </div>
 <main id="cal" inert>
+  <section class="calendar-viewport" aria-label="January 2027 event calendar">
   <div class="box">
     <p class="calendar-invite">With joy, we invite you to celebrate</p>
     <h1>Don &amp; Reshma</h1>
@@ -861,8 +1036,41 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
     <div class="wk" aria-hidden="true"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
     <div class="grid" id="grid"></div>
     <p class="hint" id="hint">Tap a glowing date to open it.</p>
+    <a class="scroll-cue" href="#memories"><span>Scroll to our memories</span><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="m5 9 7 7 7-7"/></svg></a>
   </div>
+  </section>
+  <section class="memories-home" id="memories" aria-labelledby="memories-title">
+    <p class="memories-eyebrow">THREE DAYS · ONE STORY</p>
+    <h2 id="memories-title">Our Memories</h2>
+    <p class="memories-intro">Some moments deserve a place to stay. Our photo albums will bloom here as the celebrations unfold.</p>
+    <div class="album-grid">
+      <button class="album-tile" type="button" data-album="s2" aria-label="Explore the the betrothal memories album">
+        <span class="photo-stack" data-stack="s2"><span class="stack-photo stack-photo-1" aria-hidden="true"><span class="photo-art photo-art-morning-1"><span class="photo-art-mark">I</span><span class="photo-art-caption">MEMORIES TO COME</span></span></span><span class="stack-photo stack-photo-2" aria-hidden="true"><span class="photo-art photo-art-morning-2"><span class="photo-art-mark">II</span><span class="photo-art-caption">MEMORIES TO COME</span></span></span><span class="stack-photo stack-photo-3" aria-hidden="true"><span class="photo-art photo-art-morning-3"><span class="photo-art-mark">III</span><span class="photo-art-caption">MEMORIES TO COME</span></span></span><span class="stack-photo stack-photo-4" aria-hidden="true"><span class="photo-art photo-art-morning-4"><span class="photo-art-mark">IV</span><span class="photo-art-caption">MEMORIES TO COME</span></span></span><span class="stack-date"><strong>02</strong><small>JAN 2027</small></span></span>
+        <span class="album-tile-label">The Betrothal</span><span class="album-tile-note">Tap to open album · Photos coming soon</span>
+      </button>
+      <button class="album-tile" type="button" data-album="s5" aria-label="Explore the the celebration memories album">
+        <span class="photo-stack" data-stack="s5"><span class="stack-photo stack-photo-1" aria-hidden="true"><span class="photo-art photo-art-evening-1"><span class="photo-art-mark">I</span><span class="photo-art-caption">MEMORIES TO COME</span></span></span><span class="stack-photo stack-photo-2" aria-hidden="true"><span class="photo-art photo-art-evening-2"><span class="photo-art-mark">II</span><span class="photo-art-caption">MEMORIES TO COME</span></span></span><span class="stack-photo stack-photo-3" aria-hidden="true"><span class="photo-art photo-art-evening-3"><span class="photo-art-mark">III</span><span class="photo-art-caption">MEMORIES TO COME</span></span></span><span class="stack-photo stack-photo-4" aria-hidden="true"><span class="photo-art photo-art-evening-4"><span class="photo-art-mark">IV</span><span class="photo-art-caption">MEMORIES TO COME</span></span></span><span class="stack-date"><strong>05</strong><small>JAN 2027</small></span></span>
+        <span class="album-tile-label">The Celebration</span><span class="album-tile-note">Tap to open album · Photos coming soon</span>
+      </button>
+      <button class="album-tile" type="button" data-album="s6" aria-label="Explore the the wedding memories album">
+        <span class="photo-stack" data-stack="s6"><span class="stack-photo stack-photo-1" aria-hidden="true"><span class="photo-art photo-art-night-1"><span class="photo-art-mark">I</span><span class="photo-art-caption">MEMORIES TO COME</span></span></span><span class="stack-photo stack-photo-2" aria-hidden="true"><span class="photo-art photo-art-night-2"><span class="photo-art-mark">II</span><span class="photo-art-caption">MEMORIES TO COME</span></span></span><span class="stack-photo stack-photo-3" aria-hidden="true"><span class="photo-art photo-art-night-3"><span class="photo-art-mark">III</span><span class="photo-art-caption">MEMORIES TO COME</span></span></span><span class="stack-photo stack-photo-4" aria-hidden="true"><span class="photo-art photo-art-night-4"><span class="photo-art-mark">IV</span><span class="photo-art-caption">MEMORIES TO COME</span></span></span><span class="stack-date"><strong>06</strong><small>JAN 2027</small></span></span>
+        <span class="album-tile-label">The Wedding</span><span class="album-tile-note">Tap to open album · Photos coming soon</span>
+      </button>
+    </div>
+    <p class="memories-outro">For now, the best part is still ahead of us.</p>
+  </section>
+  <footer class="home-footer"><span>DON &amp; RESHMA</span><p>Made with love, for everyone celebrating with us.</p></footer>
 </main>
+<div class="album-overlay" id="album-overlay" role="dialog" aria-modal="true" aria-labelledby="album-title" hidden>
+  <div class="album-sheet">
+    <button class="album-close" type="button" id="album-close" aria-label="Close album">&times; <span>Back</span></button>
+    <p class="memories-eyebrow" id="album-date">JANUARY 2027</p>
+    <h2 id="album-title">Our Memories</h2>
+    <div class="album-hero-art" id="album-hero-art"><span>Memories<br>coming soon</span></div>
+    <p class="album-message" id="album-message">Our photographs will be here after the celebration.</p>
+    <p class="album-private-note">Check back after the festivities for photographs from the day.</p>
+  </div>
+</div>
 
 <!-- Betrothal -->
 <div class="scene" id="s2" aria-hidden="true">
@@ -893,6 +1101,11 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
           <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Don%20%26%20Reshma%20Betrothal&amp;dates=20270102T053000Z/20270102T083000Z&amp;location=St.%20Joseph%27s%20Syro%20Malabar%20Church%2C%20Kunnumbhagam" target="_blank" rel="noopener" class="glass-action"><svg class="glass-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M12 13v5M9.5 15.5h5"/></svg><span>Add to calendar</span></a>
         </div>
       </div></section>
+      <section class="scripture rv" aria-label="Scripture for The Betrothal">
+        <span class="scripture-ornament" aria-hidden="true">✦</span>
+        <blockquote>“Two are better than one.”</blockquote>
+        <p>Ecclesiastes 4:9</p>
+      </section>
       <section class="rv"><div class="cd" data-t="2027-01-02T11:00:00+05:30"></div></section>
       <section class="rv engagement-timeline" aria-label="Betrothal day timeline">
         <div class="timeline-heading"><span class="timeline-kicker">THE BETROTHAL</span><h3>A day to remember</h3><p>The moments around our celebration</p></div>
@@ -912,7 +1125,12 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
         </div>
         <p class="timeline-note">Further timings will be added once confirmed.</p>
       </section>
-      <button class="xl to5 rv" data-go="s5"><span>Next, a night to celebrate</span><small>Tuesday, 5 January 2027 · Madhuramveppu &amp; Bachelor’s Party · 7:00 pm</small></button>
+      <section class="event-memories rv" aria-label="The Betrothal photographs">
+        <div class="event-memories-heading"><span class="event-memories-kicker">MOMENTS WORTH KEEPING</span><h3>The Betrothal Memories</h3><p>A little filmstrip for the moments we'll share after the day.</p></div>
+        <div class="film-window" data-film="s2"><div class="film-track"><span class="film-frame film-frame-1 photo-art-morning-1" aria-hidden="true"><span class="film-frame-number">02 / 01</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span class="film-frame film-frame-2 photo-art-morning-2" aria-hidden="true"><span class="film-frame-number">02 / 02</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span class="film-frame film-frame-3 photo-art-morning-3" aria-hidden="true"><span class="film-frame-number">02 / 03</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span class="film-frame film-frame-4 photo-art-morning-4" aria-hidden="true"><span class="film-frame-number">02 / 04</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span class="film-frame film-frame-5 photo-art-morning-5" aria-hidden="true"><span class="film-frame-number">02 / 05</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span class="film-frame film-frame-6 photo-art-morning-6" aria-hidden="true"><span class="film-frame-number">02 / 06</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span></div><div class="film-shade" aria-hidden="true"></div><button type="button" data-album="s2" class="event-album-link">View album <span aria-hidden="true">↗</span></button></div>
+        <p class="film-caption">SCROLL DOWN TO EXPLORE THE FRAMES <span aria-hidden="true">↓</span></p>
+      </section>
+      <button class="xl to5 rv" data-go="s5"><span>Next, a night to celebrate</span><small>Tuesday, 5 January 2027 · Madhuramveppu 7:00 pm · Party afterwards</small></button>
       <div class="foot rv"><p>With love, Don and Reshma</p></div>
     </div>
   </div>
@@ -938,32 +1156,58 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
         <p class="lede">one more night before forever.</p>
         <p>Tuesday, 5 January 2027 · 7:00 pm</p>
       </header>
-      <section class="rv"><div class="card">
+      <section class="rv"><div class="card twin-venues">
         <h3>The celebration</h3>
-        <dl>
-          <dt>When</dt><dd>Tuesday, 5 January 2027, from 7:00 pm</dd>
-          <dt>Where</dt><dd>Springdale Heritage Resort<br><span style="opacity:.78">Periyar, Kerala</span></dd>
-          <dt>Evening</dt><dd>Madhuramveppu at 7:00 pm, followed by the Bachelor’s Party.</dd>
-        </dl>
-        <div class="btns">
-          <a href="https://maps.app.goo.gl/QeV1Snhv4C9R3AJ79" target="_blank" rel="noopener noreferrer" class="glass-action"><svg class="glass-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>View in maps</span></a>
-          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Don+%26+Reshma+%E2%80%94+Madhuramveppu+%26+Bachelor%27s+Party&amp;dates=20270105T133000Z%2F20270105T173000Z&amp;details=Madhuramveppu+at+7%3A00+PM%2C+followed+by+the+Bachelor%27s+Party.&amp;location=Springdale+Heritage+Resort%2C+Periyar%2C+Kerala" target="_blank" rel="noopener noreferrer" class="glass-action"><svg class="glass-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M12 13v5M9.5 15.5h5"/></svg><span>Add to calendar</span></a>
+        <p class="twin-intro">Two gatherings, two places, one memorable night.</p>
+        <div class="venue-stop">
+          <div class="venue-head"><span class="venue-number">01</span><div><span class="venue-kicker">7:00 PM · CONFIRMED</span><h4>Madhuramveppu</h4></div></div>
+          <p class="venue-place">Don’s House</p>
+          <p class="venue-description">We begin at home with a cherished tradition and those closest to us.</p>
+          <div class="btns venue-actions">
+            <a href="https://maps.app.goo.gl/UkGB81A5g1Hqh62N9" target="_blank" rel="noopener noreferrer" class="glass-action"><svg class="glass-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>View house in Maps</span></a>
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Don+%26+Reshma+%E2%80%94+Madhuramveppu&amp;dates=20270105T133000Z%2F20270105T150000Z&amp;details=Madhuramveppu+begins+at+7%3A00+PM+IST.+House+location%3A+https%3A%2F%2Fmaps.app.goo.gl%2FUkGB81A5g1Hqh62N9.+Bachelor%E2%80%99s+Party+follows+at+Springdale+Heritage+Resort.&amp;location=Don%27s+House+%28see+event+map+link%29" target="_blank" rel="noopener noreferrer" class="glass-action"><svg class="glass-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M12 13v5M9.5 15.5h5"/></svg><span>Add Madhuramveppu</span></a>
+          </div>
+        </div>
+        <div class="venue-transfer">
+          <span class="transfer-line" aria-hidden="true"></span>
+          <div><span class="transfer-kicker">THEN WE HEAD TO THE RESORT</span><p>Travelling from Don’s House to the party</p>
+          <a class="transfer-link" href="https://maps.app.goo.gl/8JjPTvDz9Ca11j6DA" target="_blank" rel="noopener noreferrer">Directions to resort <span aria-hidden="true">↗</span></a>
+          <small>Open the shared Google Maps route from Don’s House to the resort.</small></div>
+        </div>
+        <div class="venue-stop">
+          <div class="venue-head"><span class="venue-number">02</span><div><span class="venue-kicker">AROUND 9:00 PM · TENTATIVE</span><h4>Bachelor’s Party</h4></div></div>
+          <p class="venue-place">Springdale Heritage Resort <span>· Periyar, Kerala</span></p>
+          <p class="venue-description">The celebration continues at the resort once Madhuramveppu finishes. The start time may change.</p>
+          <div class="btns venue-actions">
+            <a href="https://maps.app.goo.gl/QeV1Snhv4C9R3AJ79" target="_blank" rel="noopener noreferrer" class="glass-action"><svg class="glass-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span>View resort in Maps</span></a>
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Don+%26+Reshma+%E2%80%94+Bachelor%E2%80%99s+Party+%28approximate+start%29&amp;dates=20270105T153000Z%2F20270105T183000Z&amp;details=Approximate+9+PM+IST+start%2C+subject+to+Madhuramveppu+finishing.+Please+check+with+the+family+for+the+final+time.+Venue%3A+https%3A%2F%2Fmaps.app.goo.gl%2FQeV1Snhv4C9R3AJ79&amp;location=Springdale+Heritage+Resort%2C+Periyar%2C+Kerala" target="_blank" rel="noopener noreferrer" class="glass-action"><svg class="glass-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 10h18M12 13v5M9.5 15.5h5"/></svg><span>Add Bachelor’s Party</span></a>
+          </div>
         </div>
       </div></section>
       <section class="rv"><div class="cd" data-t="2027-01-05T19:00:00+05:30"></div></section>
+      <section class="scripture rv" aria-label="Scripture for The Celebration">
+        <span class="scripture-ornament" aria-hidden="true">✦</span>
+        <blockquote>“This is the day which the LORD hath made; we will rejoice and be glad in it.”</blockquote>
+        <p>Psalm 118:24</p>
+      </section>
       <section class="rv engagement-timeline" aria-label="Madhuramveppu and Bachelor's Party timeline">
         <div class="timeline-heading"><span class="timeline-kicker">THE NIGHT BEFORE</span><h3>Sweet beginnings, golden memories</h3><p>Two celebrations. One unforgettable evening.</p></div>
         <div class="engagement-list">
           <article class="engage-stop left">
             <time>7:00 PM</time><span class="engage-spine" aria-hidden="true"><i></i></span>
-            <button class="engage-card" type="button" aria-expanded="false"><strong>Madhuramveppu</strong><small>Springdale Heritage Resort</small><em>We begin the evening with a cherished tradition.</em></button>
+            <button class="engage-card" type="button" aria-expanded="false"><strong>Madhuramveppu</strong><small>Don’s House</small><em>We begin the evening at home with a cherished tradition.</em></button>
           </article>
           <article class="engage-stop right">
-            <time>TO FOLLOW</time><span class="engage-spine" aria-hidden="true"><i></i></span>
-            <button class="engage-card" type="button" aria-expanded="false"><strong>Bachelor’s Party</strong><small>Same venue · Springdale Heritage Resort</small><em>Then the celebration continues into the night.</em></button>
+            <time>AROUND 9:00 PM*</time><span class="engage-spine" aria-hidden="true"><i></i></span>
+            <button class="engage-card" type="button" aria-expanded="false"><strong>Bachelor’s Party</strong><small>Springdale Heritage Resort · Periyar</small><em>After Madhuramveppu, we travel to the resort for the party.</em></button>
           </article>
         </div>
-        <p class="timeline-note">The Bachelor’s Party follows Madhuramveppu; its start time is not separately scheduled.</p>
+        <p class="timeline-note">*9:00 PM is an estimate. The party begins once Madhuramveppu finishes and guests arrive at the resort.</p>
+      </section>
+      <section class="event-memories rv" aria-label="The Celebration photographs">
+        <div class="event-memories-heading"><span class="event-memories-kicker">MOMENTS WORTH KEEPING</span><h3>The Celebration Memories</h3><p>A little filmstrip for the moments we'll share after the day.</p></div>
+        <div class="film-window" data-film="s5"><div class="film-track"><span class="film-frame film-frame-1 photo-art-evening-1" aria-hidden="true"><span class="film-frame-number">05 / 01</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span class="film-frame film-frame-2 photo-art-evening-2" aria-hidden="true"><span class="film-frame-number">05 / 02</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span class="film-frame film-frame-3 photo-art-evening-3" aria-hidden="true"><span class="film-frame-number">05 / 03</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span class="film-frame film-frame-4 photo-art-evening-4" aria-hidden="true"><span class="film-frame-number">05 / 04</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span class="film-frame film-frame-5 photo-art-evening-5" aria-hidden="true"><span class="film-frame-number">05 / 05</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span class="film-frame film-frame-6 photo-art-evening-6" aria-hidden="true"><span class="film-frame-number">05 / 06</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span></div><div class="film-shade" aria-hidden="true"></div><button type="button" data-album="s5" class="event-album-link">View album <span aria-hidden="true">↗</span></button></div>
+        <p class="film-caption">SCROLL DOWN TO EXPLORE THE FRAMES <span aria-hidden="true">↓</span></p>
       </section>
       <button class="xl to6 rv" data-go="s6"><span>Tomorrow, the wedding</span><small>Wednesday, 6 January 2027 · 3:30 pm · under the evening sky</small></button>
       <div class="foot rv"><p>Before forever, one golden night.</p></div>
@@ -1013,9 +1257,19 @@ body::after{content:"";position:fixed;inset:0;z-index:45;pointer-events:none;opa
         </div>
         <p class="timeline-note">Further timings will be shared once confirmed.</p>
       </section>
+      <section class="scripture rv" aria-label="Scripture for The Wedding">
+        <span class="scripture-ornament" aria-hidden="true">✦</span>
+        <blockquote>“And now abideth faith, hope, charity, these three; but the greatest of these is charity.”</blockquote>
+        <p>1 Corinthians 13:13</p>
+      </section>
       <section class="rv"><div class="cd" data-t="2027-01-06T15:30:00+05:30"></div></section>
 
-      <button class="xl to5 rv" data-go="s5"><span>The night before</span><small>Tuesday, 5 January 2027 · Madhuramveppu &amp; Bachelor’s Party · 7:00 pm</small></button>
+      <section class="event-memories rv" aria-label="The Wedding photographs">
+        <div class="event-memories-heading"><span class="event-memories-kicker">MOMENTS WORTH KEEPING</span><h3>The Wedding Memories</h3><p>A little filmstrip for the moments we'll share after the day.</p></div>
+        <div class="film-window" data-film="s6"><div class="film-track"><span class="film-frame film-frame-1 photo-art-night-1" aria-hidden="true"><span class="film-frame-number">06 / 01</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span class="film-frame film-frame-2 photo-art-night-2" aria-hidden="true"><span class="film-frame-number">06 / 02</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span class="film-frame film-frame-3 photo-art-night-3" aria-hidden="true"><span class="film-frame-number">06 / 03</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span class="film-frame film-frame-4 photo-art-night-4" aria-hidden="true"><span class="film-frame-number">06 / 04</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span class="film-frame film-frame-5 photo-art-night-5" aria-hidden="true"><span class="film-frame-number">06 / 05</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span class="film-frame film-frame-6 photo-art-night-6" aria-hidden="true"><span class="film-frame-number">06 / 06</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span></div><div class="film-shade" aria-hidden="true"></div><button type="button" data-album="s6" class="event-album-link">View album <span aria-hidden="true">↗</span></button></div>
+        <p class="film-caption">SCROLL DOWN TO EXPLORE THE FRAMES <span aria-hidden="true">↓</span></p>
+      </section>
+      <button class="xl to5 rv" data-go="s5"><span>The night before</span><small>Tuesday, 5 January 2027 · Madhuramveppu 7:00 pm · Party afterwards</small></button>
       <div class="foot">
         <svg class="con" id="con" viewBox="0 0 520 80" role="img" aria-label="A line of stars joining two larger stars">
           <polyline points="20,55 90,25 160,45 230,18 300,50 370,24 440,46 500,22"/>
@@ -1142,6 +1396,15 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeScene()
     if(e)e.preventDefault();
     var intro=$('#intro'),card=$('#cover-card'),c=$('#cal');
     if(card.classList.contains('opening'))return;
+    // The visitor's invitation-opening tap also starts Golden on mobile browsers.
+    // Audible autoplay without a gesture is blocked by Safari and most mobile browsers.
+    var openingAudio=$('#wedding-audio');
+    if(openingAudio && openingAudio.paused){
+      var openingPlay=openingAudio.play();
+      if(openingPlay && typeof openingPlay.catch==='function')openingPlay.catch(function(){
+        // Keep the invitation opening normally if audio playback is unavailable.
+      });
+    }
     card.classList.add('opening');
     $('#begin').setAttribute('aria-disabled','true');
     $('#wax-seal').setAttribute('disabled','disabled');
@@ -1149,10 +1412,10 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeScene()
     setTimeout(function(){
       intro.classList.add('opening-done');
       intro.classList.add('out');
-      c.removeAttribute('inert');c.classList.add('show');
+      c.removeAttribute('inert');c.classList.add('show');document.body.classList.add('site-open');
       setTimeout(function(){c.classList.add('lit')},700);
-      setTimeout(function(){intro.style.display='none'},1050);
-    },1050);
+      setTimeout(function(){intro.style.display='none';intro.setAttribute('aria-hidden','true')},800);
+    },860);
   }
   $('#begin').addEventListener('click',openInvitation);
   $('#wax-seal').addEventListener('click',openInvitation);
@@ -1181,6 +1444,92 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')closeScene()
     el.addEventListener('pointerleave',function(){el.style.setProperty('--float-x','0px');el.style.setProperty('--float-y','0px')});
     el.addEventListener('blur',function(){el.style.setProperty('--float-x','0px');el.style.setProperty('--float-y','0px')});
   });
+})();
+
+// Memories: albums open as mobile-friendly overlays, ready for future photographs.
+(function(){
+  var albums={
+    s2:{title:'The Betrothal',date:'SATURDAY · 2 JANUARY 2027',theme:'morning'},
+    s5:{title:'The Celebration',date:'TUESDAY · 5 JANUARY 2027',theme:'evening'},
+    s6:{title:'The Wedding',date:'WEDNESDAY · 6 JANUARY 2027',theme:'night'}
+  };
+  var overlay=$('#album-overlay'),lastFocus=null;
+  function closeAlbum(){
+    if(overlay.hidden)return;
+    overlay.hidden=true;document.body.classList.remove('album-open');
+    if(lastFocus&&lastFocus.isConnected)lastFocus.focus({preventScroll:true});
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('[data-album]');
+    if(!a)return;
+    var data=albums[a.dataset.album];if(!data)return;
+    lastFocus=a;
+    $('#album-title').textContent=data.title;
+    $('#album-date').textContent=data.date;
+    $('#album-hero-art').className='album-hero-art album-art-'+data.theme;
+    $('#album-message').textContent='Our '+data.title.toLowerCase().replace('the ','')+' photographs will appear here after the event.';
+    overlay.hidden=false;document.body.classList.add('album-open');
+    $('#album-close').focus({preventScroll:true});
+  });
+  $('#album-close').addEventListener('click',closeAlbum);
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeAlbum()});
+  document.addEventListener('keydown',function(e){
+    if(overlay.hidden)return;
+    if(e.key==='Escape'){e.stopImmediatePropagation();closeAlbum();}
+    if(e.key==='Tab'){
+      // Only the close button is currently interactive inside the album view.
+      e.preventDefault();$('#album-close').focus();
+    }
+  },true);
+})();
+
+
+// Photo stacks settle one-by-one with normal page scrolling; filmstrips pan inside event scenes.
+(function(){
+  var stacks=Array.prototype.slice.call(document.querySelectorAll('[data-stack]'));
+  var films=Array.prototype.slice.call(document.querySelectorAll('[data-film]'));
+  var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rafPending=false;
+  function clamp(n,a,b){return Math.max(a,Math.min(b,n))}
+  function draw(){
+    rafPending=false;
+    var vh=window.innerHeight||700;
+    stacks.forEach(function(stack){
+      var rect=stack.getBoundingClientRect();
+      // Animates as each stack travels from the bottom into the upper half of the viewport.
+      var progress=reduceMotion?1:clamp((vh*.94-rect.top)/(vh*.75),0,1);
+      var cards=stack.querySelectorAll('.stack-photo');
+      cards.forEach(function(card,i){
+        var f=reduceMotion?1:clamp((progress-i*.18)/.32,0,1);
+        // Soft ease out. Different final angles give each pile a handmade look.
+        var ease=1-Math.pow(1-f,3);
+        var angles=[-8,7,-5,4],xs=[-7,10,-12,5],ys=[9,-7,7,-4];
+        var startX=(i%2===0?-85:85),startY=72+i*18;
+        card.style.setProperty('--show',String(f));
+        card.style.setProperty('--fly-x',(startX*(1-ease)+xs[i]*ease).toFixed(1)+'px');
+        card.style.setProperty('--fly-y',(startY*(1-ease)+ys[i]*ease).toFixed(1)+'px');
+        card.style.setProperty('--rot',(angles[i]*ease).toFixed(2)+'deg');
+        card.style.setProperty('--scale',(0.86+.14*ease).toFixed(3));
+      });
+    });
+    films.forEach(function(film){
+      var scene=film.closest('.scene'),rect=film.getBoundingClientRect();
+      // Only calculate when the event scene is visible or near it.
+      if(scene&&!scene.classList.contains('open'))return;
+      var track=film.querySelector('.film-track');
+      var distance=Math.max(0,track.scrollWidth-film.clientWidth);
+      // Pan as the filmstrip enters and leaves the viewport, ending on the final image.
+      var progress=reduceMotion?0:clamp((vh*.89-rect.top)/(vh+rect.height*.28),0,1);
+      track.style.setProperty('--travel',(distance*progress).toFixed(2));
+    });
+  }
+  function schedule(){if(rafPending)return;rafPending=true;requestAnimationFrame(draw)}
+  window.addEventListener('scroll',schedule,{passive:true});
+  window.addEventListener('resize',schedule,{passive:true});
+  document.querySelectorAll('.scene').forEach(function(scene){scene.addEventListener('scroll',schedule,{passive:true})});
+  document.addEventListener('click',function(e){if(e.target.closest('[data-open],[data-go],[data-back]'))requestAnimationFrame(schedule)});
+  schedule();
+  window.addEventListener('load',schedule);
 })();
 
 // Countdowns
