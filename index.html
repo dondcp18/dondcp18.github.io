@@ -998,6 +998,83 @@ body.album-open{overflow:hidden}
 .album-sheet.photos-present .album-message{font-size:.8rem;margin:.6rem auto 1.25rem}
 @media(min-width:560px){.album-photo-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 
+
+/* =========================================================
+   RSVP EXPERIMENT — front-end preview; no response backend yet
+   ========================================================= */
+.rsvp-section{position:relative;width:min(780px,100%);margin:0 auto;padding:1rem clamp(1.05rem,4vw,2.5rem) 6.5rem;scroll-margin-top:1.5rem;color:#f6ecdd}
+.rsvp-section::before{content:"";position:absolute;inset:0 -12% auto;height:90%;pointer-events:none;background:radial-gradient(ellipse at 50% 26%,rgba(142,120,160,.17),transparent 68%)}
+.rsvp-heading{text-align:center;position:relative;margin-bottom:1.7rem}
+.rsvp-heading h2{font:400 clamp(2.15rem,7.6vw,3.25rem)/1.15 "Daydream",var(--serif);margin:.3rem 0 .55rem;color:#f6e9cc}
+.rsvp-heading p:last-child{font:400 .85rem/1.75 "Poppins",var(--sans);max-width:475px;margin:0 auto;color:rgba(246,239,224,.74)}
+.rsvp-card{position:relative;isolation:isolate;padding:clamp(1.1rem,4vw,2.2rem);border:1px solid rgba(245,219,176,.24);border-radius:1.65rem;background:linear-gradient(146deg,rgba(255,255,255,.115),rgba(255,255,255,.035) 60%,rgba(255,255,255,.06));box-shadow:0 20px 55px rgba(0,0,0,.23),inset 0 1px rgba(255,255,255,.15);-webkit-backdrop-filter:blur(22px) saturate(125%);backdrop-filter:blur(22px) saturate(125%)}
+.rsvp-step{display:flex;align-items:center;gap:.75rem;margin-bottom:1.05rem;color:#f4dcaf;font:500 .64rem/1.5 "Poppins",var(--sans);letter-spacing:.16em;text-transform:uppercase}
+.rsvp-step::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(228,198,149,.3),transparent)}
+.rsvp-field{display:grid;gap:.48rem;margin-bottom:1.2rem}
+.rsvp-field>label,.rsvp-legend{font:500 .83rem/1.5 "Poppins",var(--sans);color:#faf1df}
+.rsvp-helper{font:400 .72rem/1.55 "Poppins",var(--sans);color:rgba(245,237,224,.66);margin:0 0 .6rem}
+.rsvp-field input[type="text"],.rsvp-field input[type="number"],.rsvp-field textarea{width:100%;min-height:48px;padding:.72rem .85rem;border:1px solid rgba(255,236,206,.24);border-radius:.78rem;background:rgba(10,14,31,.3);font:400 16px/1.4 "Poppins",var(--sans);color:#fff8ea;outline:none;transition:border-color .2s,background .2s;-webkit-appearance:none;appearance:none}
+.rsvp-field textarea{resize:vertical;min-height:85px}
+.rsvp-field input:focus,.rsvp-field textarea:focus{border-color:rgba(239,205,155,.75);background:rgba(10,14,31,.45)}
+.rsvp-field input::placeholder,.rsvp-field textarea::placeholder{color:rgba(239,231,216,.44)}
+.rsvp-choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.55rem;margin-bottom:1.45rem}
+.rsvp-choice{position:relative;display:flex;align-items:center;justify-content:center;min-height:52px;padding:.65rem .3rem;border:1px solid rgba(247,227,192,.22);border-radius:.82rem;background:rgba(255,255,255,.035);font:500 .77rem "Poppins",var(--sans);color:#f7eadd;text-align:center;cursor:pointer;transition:border-color .2s,background .2s,transform .2s}
+.rsvp-choice input{position:absolute;width:100%;height:100%;inset:0;opacity:0;cursor:pointer;margin:0}
+.rsvp-choice:has(input:checked){background:rgba(222,189,135,.19);border-color:rgba(245,211,161,.8);box-shadow:inset 0 1px rgba(255,255,255,.12)}
+.rsvp-choice:has(input:focus-visible){outline:2px solid #e5cf98;outline-offset:3px}
+.rsvp-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem;margin-bottom:1.3rem}
+.rsvp-check{display:flex;align-items:center;gap:.6rem;min-height:47px;padding:.6rem .65rem;border:1px solid rgba(255,236,206,.17);border-radius:.78rem;background:rgba(255,255,255,.035);font:400 .75rem/1.45 "Poppins",var(--sans);cursor:pointer}
+.rsvp-check input{width:18px;height:18px;flex:0 0 18px;accent-color:#d9bd7b}
+.rsvp-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:.85rem}
+.rsvp-hidden[hidden],#rsvp-response[hidden]{display:none!important}
+.rsvp-note{font:400 .72rem/1.65 "Poppins",var(--sans);color:#d9c8ac;background:rgba(204,161,99,.075);border-left:2px solid rgba(221,190,139,.55);padding:.75rem .85rem;margin:0 0 1.3rem;border-radius:0 .65rem .65rem 0}
+.rsvp-submit,.rsvp-copy{display:flex;align-items:center;justify-content:center;gap:.45rem;min-height:49px;width:100%;border:1px solid rgba(246,220,178,.6);border-radius:999px;padding:.72rem 1rem;color:#fff5e4;background:linear-gradient(140deg,rgba(213,174,127,.28),rgba(145,116,153,.18));font:500 .85rem "Poppins",var(--sans);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:background .2s,transform .2s}
+.rsvp-submit:active,.rsvp-copy:active{transform:scale(.98)}
+.rsvp-response{margin-top:1.4rem;padding:1.2rem;border-radius:1rem;border:1px solid rgba(229,201,158,.25);background:rgba(8,13,26,.45)}
+.rsvp-response h3{font:400 1.55rem/1.15 "Daydream",var(--serif);margin:0 0 .5rem;color:#f5e2be}
+.rsvp-response p{font:400 .75rem/1.65 "Poppins",var(--sans);color:#dcd0bf;margin:.4rem 0 1rem}
+.rsvp-response pre{font:400 .76rem/1.7 "Poppins",var(--sans);white-space:pre-wrap;overflow-wrap:anywhere;margin:0 0 1rem;color:#fff4e5}
+.rsvp-test-label{display:block;text-align:center;margin-top:1rem;font:400 .64rem/1.6 "Poppins",var(--sans);color:rgba(255,244,226,.55)}
+@media(max-width:390px){.rsvp-choice{font-size:.7rem;padding:.45rem .2rem}.rsvp-options{grid-template-columns:1fr}.rsvp-row{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.rsvp-choice,.rsvp-submit,.rsvp-copy{transition:none}}
+
+
+/* RSVP on each invitation: collapsed by default; does not change calendar. */
+.scene .invitation-rsvp{width:min(630px,calc(100% - 2.3rem));padding:0;margin:2rem auto 3.2rem;color:inherit}
+.invitation-rsvp .rsvp-shell{overflow:hidden;border:1px solid rgba(247,225,193,.31);border-radius:1.45rem;background:linear-gradient(140deg,rgba(255,255,255,.14),rgba(255,255,255,.045));-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:0 13px 35px rgba(13,12,28,.11)}
+#s2 .invitation-rsvp .rsvp-shell{background:rgba(255,255,255,.39);border-color:rgba(48,65,87,.16)}
+.invitation-rsvp .rsvp-toggle{width:100%;display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:88px;padding:1.1rem 1.4rem;border:0;background:transparent;color:inherit;text-align:left;touch-action:manipulation}
+.invitation-rsvp .rsvp-toggle small{display:block;margin:0 0 .23rem;font:500 .59rem/1.35 'Poppins',sans-serif;letter-spacing:.18em;color:#f3d5a7}
+#s2 .invitation-rsvp .rsvp-toggle small{color:#77603a}
+.invitation-rsvp .rsvp-toggle strong{font:400 clamp(1.45rem,4vw,1.95rem)/1.15 'Daydream',Georgia,serif}
+.invitation-rsvp .rsvp-chevron{display:grid;place-items:center;flex:0 0 35px;width:35px;height:35px;border:1px solid rgba(255,255,255,.29);border-radius:50%;background:rgba(255,255,255,.075);transition:transform .32s ease}
+#s2 .invitation-rsvp .rsvp-chevron{border-color:rgba(47,59,78,.19)}
+.invitation-rsvp[data-open="true"] .rsvp-chevron{transform:rotate(180deg)}
+.invitation-rsvp .rsvp-content{padding:0 1.35rem 1.4rem;animation:rsvpSlide .3s ease both}
+.invitation-rsvp .rsvp-content[hidden]{display:none!important}
+@keyframes rsvpSlide{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:translateY(0)}}
+.invitation-rsvp .rsvp-description{font:400 .77rem/1.65 'Poppins',sans-serif;opacity:.76;margin:0 0 1.3rem}
+.invitation-rsvp .rsvp-field>label,.invitation-rsvp .rsvp-legend{color:inherit}
+.invitation-rsvp .rsvp-field input[type="text"],.invitation-rsvp .rsvp-field input[type="number"],.invitation-rsvp .rsvp-field textarea{color:#fff8e9}
+#s2 .invitation-rsvp .rsvp-field input[type="text"],#s2 .invitation-rsvp .rsvp-field input[type="number"],#s2 .invitation-rsvp .rsvp-field textarea{color:#24314a;background:rgba(255,255,255,.56);border-color:rgba(41,62,84,.23)}
+#s2 .invitation-rsvp input::placeholder,#s2 .invitation-rsvp textarea::placeholder{color:rgba(45,59,80,.48)}
+#s2 .invitation-rsvp .rsvp-choice,#s2 .invitation-rsvp .rsvp-check{color:#24314a;border-color:rgba(35,51,67,.18);background:rgba(255,255,255,.38)}
+#s2 .invitation-rsvp .rsvp-choice:has(input:checked){background:rgba(221,188,124,.38);border-color:#9c793f}
+#s2 .invitation-rsvp .rsvp-helper{color:#4e5c70}
+#s2 .invitation-rsvp .rsvp-note{color:#394962}
+#s2 .invitation-rsvp .rsvp-submit{color:#26344f;border-color:rgba(41,60,78,.35);background:rgba(255,255,255,.55)}
+.invitation-rsvp .rsvp-choice-grid{margin-bottom:1.1rem}
+.invitation-rsvp .rsvp-step{margin-top:1rem}
+.invitation-rsvp .rsvp-step:first-of-type{margin-top:0}
+.invitation-rsvp .rsvp-submit:disabled{opacity:.63;cursor:wait}
+.invitation-rsvp .rsvp-feedback{font:400 .77rem/1.65 'Poppins',sans-serif;margin:.8rem 0 0;color:inherit}
+.invitation-rsvp .rsvp-feedback[hidden]{display:none}
+.invitation-rsvp .rsvp-confirmation{font:500 .7rem/1.55 'Poppins',sans-serif;opacity:.8;margin:.5rem 0 0}
+.invitation-rsvp .rsvp-confirmation[hidden]{display:none}
+.invitation-rsvp .rsvp-hp{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
+@media(max-width:520px){.scene .invitation-rsvp{width:calc(100% - 1.45rem)}.invitation-rsvp .rsvp-toggle{min-height:76px;padding:1rem}.invitation-rsvp .rsvp-content{padding:0 1rem 1.15rem}.invitation-rsvp .rsvp-row{grid-template-columns:1fr}.invitation-rsvp .rsvp-choice-grid{gap:.33rem}.invitation-rsvp .rsvp-choice{font-size:.68rem}}
+@media(prefers-reduced-motion:reduce){.invitation-rsvp .rsvp-content{animation:none}.invitation-rsvp .rsvp-chevron{transition:none}}
+
 </style>
 </head>
 <body>
@@ -1107,6 +1184,7 @@ body.album-open{overflow:hidden}
     </div>
     <p class="memories-outro">For now, the best part is still ahead of us.</p>
   </section>
+
   <footer class="home-footer"><span>DON &amp; RESHMA</span><p>Made with love, for everyone celebrating with us.</p></footer>
 </main>
 <div class="album-overlay" id="album-overlay" role="dialog" aria-modal="true" aria-labelledby="album-title" hidden>
@@ -1173,6 +1251,32 @@ body.album-open{overflow:hidden}
           </article>
         </div>
         <p class="timeline-note">Further timings will be added once confirmed.</p>
+      </section>
+
+      <section class="invitation-rsvp rv" data-rsvp="s2" aria-label="RSVP for the Betrothal" data-open="false">
+        <div class="rsvp-shell">
+          <button type="button" class="rsvp-toggle" aria-expanded="false" aria-controls="rsvp-panel-s2"><span><small>WE'D LOVE TO HEAR FROM YOU</small><strong>Will you join us?</strong><span class="rsvp-confirmation" hidden>✓ Response received · Tap to review or update</span></span><span class="rsvp-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m5 9 7 7 7-7"/></svg></span></button>
+          <div class="rsvp-content" id="rsvp-panel-s2" hidden>
+            <p class="rsvp-description">For the betrothal, let us know your plans. Assistance requests are for information only, not guaranteed arrangements.</p>
+            <form class="rsvp-form" autocomplete="on">
+              <input type="text" class="rsvp-hp" name="website" autocomplete="off" tabindex="-1" aria-hidden="true">
+              <div class="rsvp-step">01 · Your reply</div>
+              <div class="rsvp-field"><label for="name-s2">Your name</label><input id="name-s2" name="name" type="text" maxlength="100" required autocomplete="name" placeholder="How should we address you?"></div>
+              <div class="rsvp-field"><span class="rsvp-legend">Will you be there?</span><div class="rsvp-choice-grid"><label class="rsvp-choice"><input type="radio" name="attendance" value="yes" checked><span>Joyfully yes</span></label><label class="rsvp-choice"><input type="radio" name="attendance" value="maybe"><span>Maybe</span></label><label class="rsvp-choice"><input type="radio" name="attendance" value="no"><span>Can't make it</span></label></div></div>
+              <div class="rsvp-attending">
+                
+                <div class="rsvp-row"><div class="rsvp-field"><label for="count-s2">Number of guests (including you)</label><input id="count-s2" name="guestCount" type="number" min="1" max="20" value="1" inputmode="numeric"></div><div class="rsvp-field"><label for="contact-s2">Contact (phone or email)</label><input id="contact-s2" name="contact" type="text" maxlength="150" autocomplete="off" placeholder="For questions about your RSVP"></div></div>
+                <div class="rsvp-step">02 · Anything you need?</div>
+                <div class="rsvp-options"><label class="rsvp-check"><input type="checkbox" name="assistance" value="accommodation"> Accommodation information</label><label class="rsvp-check"><input type="checkbox" name="assistance" value="transport"> Transport guidance</label></div>
+                <p class="rsvp-note">These are requests for information, not bookings or promises of rooms or transport.</p>
+              </div>
+              <div class="rsvp-field"><label for="notes-s2">Anything else? <span style="opacity:.65">(optional)</span></label><textarea id="notes-s2" name="notes" maxlength="1000" rows="2" placeholder="A note for us…"></textarea></div>
+              <button class="rsvp-submit" type="submit">Send RSVP</button>
+              <p class="rsvp-feedback" role="status" aria-live="polite" hidden></p>
+              <p class="rsvp-note">Your details are sent to the wedding hosts' private RSVP spreadsheet and used to plan the celebrations.</p>
+            </form>
+          </div>
+        </div>
       </section>
       <section class="event-memories rv" aria-label="The Betrothal photographs">
         <div class="event-memories-heading"><span class="event-memories-kicker">MOMENTS WORTH KEEPING</span><h3>The Betrothal Memories</h3><p>A little filmstrip for the moments we'll share after the day.</p></div>
@@ -1253,6 +1357,32 @@ body.album-open{overflow:hidden}
         </div>
         <p class="timeline-note">*9:00 PM is an estimate. The party begins once Madhuramveppu finishes and guests arrive at the resort.</p>
       </section>
+
+      <section class="invitation-rsvp rv" data-rsvp="s5" aria-label="RSVP for the Celebration" data-open="false">
+        <div class="rsvp-shell">
+          <button type="button" class="rsvp-toggle" aria-expanded="false" aria-controls="rsvp-panel-s5"><span><small>WE'D LOVE TO HEAR FROM YOU</small><strong>Will you join us?</strong><span class="rsvp-confirmation" hidden>✓ Response received · Tap to review or update</span></span><span class="rsvp-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m5 9 7 7 7-7"/></svg></span></button>
+          <div class="rsvp-content" id="rsvp-panel-s5" hidden>
+            <p class="rsvp-description">For the celebration, let us know your plans. Assistance requests are for information only, not guaranteed arrangements.</p>
+            <form class="rsvp-form" autocomplete="on">
+              <input type="text" class="rsvp-hp" name="website" autocomplete="off" tabindex="-1" aria-hidden="true">
+              <div class="rsvp-step">01 · Your reply</div>
+              <div class="rsvp-field"><label for="name-s5">Your name</label><input id="name-s5" name="name" type="text" maxlength="100" required autocomplete="name" placeholder="How should we address you?"></div>
+              <div class="rsvp-field"><span class="rsvp-legend">Will you be there?</span><div class="rsvp-choice-grid"><label class="rsvp-choice"><input type="radio" name="attendance" value="yes" checked><span>Joyfully yes</span></label><label class="rsvp-choice"><input type="radio" name="attendance" value="maybe"><span>Maybe</span></label><label class="rsvp-choice"><input type="radio" name="attendance" value="no"><span>Can't make it</span></label></div></div>
+              <div class="rsvp-attending">
+                <div class="rsvp-field rsvp-subevents"><span class="rsvp-legend">Which part of January 5?</span><div class="rsvp-options"><label class="rsvp-check"><input type="checkbox" name="subevent" value="Madhuramveppu" checked> Madhuramveppu</label><label class="rsvp-check"><input type="checkbox" name="subevent" value="Bachelor’s Party" checked> Bachelor’s Party</label></div></div>
+                <div class="rsvp-row"><div class="rsvp-field"><label for="count-s5">Number of guests (including you)</label><input id="count-s5" name="guestCount" type="number" min="1" max="20" value="1" inputmode="numeric"></div><div class="rsvp-field"><label for="contact-s5">Contact (phone or email)</label><input id="contact-s5" name="contact" type="text" maxlength="150" autocomplete="off" placeholder="For questions about your RSVP"></div></div>
+                <div class="rsvp-step">02 · Anything you need?</div>
+                <div class="rsvp-options"><label class="rsvp-check"><input type="checkbox" name="assistance" value="accommodation"> Accommodation information</label><label class="rsvp-check"><input type="checkbox" name="assistance" value="transport"> Transport guidance</label></div>
+                <p class="rsvp-note">These are requests for information, not bookings or promises of rooms or transport.</p>
+              </div>
+              <div class="rsvp-field"><label for="notes-s5">Anything else? <span style="opacity:.65">(optional)</span></label><textarea id="notes-s5" name="notes" maxlength="1000" rows="2" placeholder="A note for us…"></textarea></div>
+              <button class="rsvp-submit" type="submit">Send RSVP</button>
+              <p class="rsvp-feedback" role="status" aria-live="polite" hidden></p>
+              <p class="rsvp-note">Your details are sent to the wedding hosts' private RSVP spreadsheet and used to plan the celebrations.</p>
+            </form>
+          </div>
+        </div>
+      </section>
       <section class="event-memories rv" aria-label="The Celebration photographs">
         <div class="event-memories-heading"><span class="event-memories-kicker">MOMENTS WORTH KEEPING</span><h3>The Celebration Memories</h3><p>A little filmstrip for the moments we'll share after the day.</p></div>
         <div class="film-window" data-film="s5"><div class="film-track"><span aria-hidden="true" class="film-frame film-frame-1 photo-art-evening-1"><span class="film-frame-number">05 / 01</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-2 photo-art-evening-2"><span class="film-frame-number">05 / 02</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-3 photo-art-evening-3"><span class="film-frame-number">05 / 03</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-4 photo-art-evening-4"><span class="film-frame-number">05 / 04</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-5 photo-art-evening-5"><span class="film-frame-number">05 / 05</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-6 photo-art-evening-6"><span class="film-frame-number">05 / 06</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-1 photo-art-evening-1"><span class="film-frame-number">05 / 07</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-2 photo-art-evening-2"><span class="film-frame-number">05 / 08</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-3 photo-art-evening-3"><span class="film-frame-number">05 / 09</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-4 photo-art-evening-4"><span class="film-frame-number">05 / 10</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span></div><div class="film-shade" aria-hidden="true"></div><button type="button" data-album="s5" class="event-album-link">View album</button></div>
@@ -1313,6 +1443,32 @@ body.album-open{overflow:hidden}
       </section>
       <section class="rv"><div class="cd" data-t="2027-01-06T15:30:00+05:30"></div></section>
 
+
+      <section class="invitation-rsvp rv" data-rsvp="s6" aria-label="RSVP for the Wedding" data-open="false">
+        <div class="rsvp-shell">
+          <button type="button" class="rsvp-toggle" aria-expanded="false" aria-controls="rsvp-panel-s6"><span><small>WE'D LOVE TO HEAR FROM YOU</small><strong>Will you join us?</strong><span class="rsvp-confirmation" hidden>✓ Response received · Tap to review or update</span></span><span class="rsvp-chevron" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m5 9 7 7 7-7"/></svg></span></button>
+          <div class="rsvp-content" id="rsvp-panel-s6" hidden>
+            <p class="rsvp-description">For the wedding, let us know your plans. Assistance requests are for information only, not guaranteed arrangements.</p>
+            <form class="rsvp-form" autocomplete="on">
+              <input type="text" class="rsvp-hp" name="website" autocomplete="off" tabindex="-1" aria-hidden="true">
+              <div class="rsvp-step">01 · Your reply</div>
+              <div class="rsvp-field"><label for="name-s6">Your name</label><input id="name-s6" name="name" type="text" maxlength="100" required autocomplete="name" placeholder="How should we address you?"></div>
+              <div class="rsvp-field"><span class="rsvp-legend">Will you be there?</span><div class="rsvp-choice-grid"><label class="rsvp-choice"><input type="radio" name="attendance" value="yes" checked><span>Joyfully yes</span></label><label class="rsvp-choice"><input type="radio" name="attendance" value="maybe"><span>Maybe</span></label><label class="rsvp-choice"><input type="radio" name="attendance" value="no"><span>Can't make it</span></label></div></div>
+              <div class="rsvp-attending">
+                
+                <div class="rsvp-row"><div class="rsvp-field"><label for="count-s6">Number of guests (including you)</label><input id="count-s6" name="guestCount" type="number" min="1" max="20" value="1" inputmode="numeric"></div><div class="rsvp-field"><label for="contact-s6">Contact (phone or email)</label><input id="contact-s6" name="contact" type="text" maxlength="150" autocomplete="off" placeholder="For questions about your RSVP"></div></div>
+                <div class="rsvp-step">02 · Anything you need?</div>
+                <div class="rsvp-options"><label class="rsvp-check"><input type="checkbox" name="assistance" value="accommodation"> Accommodation information</label><label class="rsvp-check"><input type="checkbox" name="assistance" value="transport"> Transport guidance</label></div>
+                <p class="rsvp-note">These are requests for information, not bookings or promises of rooms or transport.</p>
+              </div>
+              <div class="rsvp-field"><label for="notes-s6">Anything else? <span style="opacity:.65">(optional)</span></label><textarea id="notes-s6" name="notes" maxlength="1000" rows="2" placeholder="A note for us…"></textarea></div>
+              <button class="rsvp-submit" type="submit">Send RSVP</button>
+              <p class="rsvp-feedback" role="status" aria-live="polite" hidden></p>
+              <p class="rsvp-note">Your details are sent to the wedding hosts' private RSVP spreadsheet and used to plan the celebrations.</p>
+            </form>
+          </div>
+        </div>
+      </section>
       <section class="event-memories rv" aria-label="The Wedding photographs">
         <div class="event-memories-heading"><span class="event-memories-kicker">MOMENTS WORTH KEEPING</span><h3>The Wedding Memories</h3><p>A little filmstrip for the moments we'll share after the day.</p></div>
         <div class="film-window" data-film="s6"><div class="film-track"><span aria-hidden="true" class="film-frame film-frame-1 photo-art-night-1"><span class="film-frame-number">06 / 01</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-2 photo-art-night-2"><span class="film-frame-number">06 / 02</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-3 photo-art-night-3"><span class="film-frame-number">06 / 03</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-4 photo-art-night-4"><span class="film-frame-number">06 / 04</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-5 photo-art-night-5"><span class="film-frame-number">06 / 05</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-6 photo-art-night-6"><span class="film-frame-number">06 / 06</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-1 photo-art-night-1"><span class="film-frame-number">06 / 07</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-2 photo-art-night-2"><span class="film-frame-number">06 / 08</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-3 photo-art-night-3"><span class="film-frame-number">06 / 09</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span><span aria-hidden="true" class="film-frame film-frame-4 photo-art-night-4"><span class="film-frame-number">06 / 10</span><span class="film-frame-label">YOUR PHOTOS HERE</span></span></div><div class="film-shade" aria-hidden="true"></div><button type="button" data-album="s6" class="event-album-link">View album</button></div>
@@ -1626,6 +1782,85 @@ const WEDDING_PHOTOS = {
   document.addEventListener('click',function(e){if(e.target.closest('[data-open],[data-go],[data-back]'))requestAnimationFrame(schedule)});
   schedule();
   window.addEventListener('load',schedule);
+})();
+
+
+
+// RSVP backend: POST is sent as a simple form request. Because Google Apps Script
+// cannot be read cross-origin with ordinary fetch, GET JSONP confirms the unique
+// response ID was actually saved before showing success. Only a boolean is returned.
+(function(){
+  var API='https://script.google.com/macros/s/AKfycbwSPuuUlvau140q873B0y4QYR_daJabYNYTgclgQGq1GEoRkxyDlhvZBXljX4H7NxHU/exec';
+  var names={s2:'Betrothal',s5:'Celebration',s6:'Wedding'};
+  var controllers=document.querySelectorAll('[data-rsvp]');
+  function uniqueId(){
+    if(window.crypto&&crypto.randomUUID)return crypto.randomUUID();
+    var bytes=new Uint8Array(16);crypto.getRandomValues(bytes);bytes[6]=(bytes[6]&15)|64;bytes[8]=(bytes[8]&63)|128;
+    var h=Array.from(bytes,function(b){return b.toString(16).padStart(2,'0')}).join('');
+    return h.slice(0,8)+'-'+h.slice(8,12)+'-'+h.slice(12,16)+'-'+h.slice(16,20)+'-'+h.slice(20);
+  }
+  function checkSaved(id,token){
+    return new Promise(function(resolve){
+      var cb='rsvpConfirm_'+Math.random().toString(36).slice(2);
+      var script=document.createElement('script'),done=false;
+      var timer=setTimeout(function(){finish(false)},6500);
+      function finish(ok){if(done)return;done=true;clearTimeout(timer);try{delete window[cb]}catch(e){window[cb]=undefined}script.remove();resolve(Boolean(ok));}
+      window[cb]=function(v){finish(v&&v.saved===true)};
+      script.onerror=function(){finish(false)};
+      script.src=API+'?action=check&id='+encodeURIComponent(id)+'&token='+encodeURIComponent(token)+'&callback='+cb+'&_='+Date.now();
+      document.head.appendChild(script);
+    });
+  }
+  function readSaved(key){try{return localStorage.getItem(key)||''}catch(e){return ''}}
+  function writeSaved(key,id){try{localStorage.setItem(key,id)}catch(e){}}
+  controllers.forEach(function(wrap){
+    var eventId=wrap.dataset.rsvp,eventName=names[eventId],key='donreshma-rsvp-'+eventId;
+    var toggle=wrap.querySelector('.rsvp-toggle'),panel=wrap.querySelector('.rsvp-content'),form=wrap.querySelector('form');
+    var attending=wrap.querySelector('.rsvp-attending'),message=wrap.querySelector('.rsvp-feedback');
+    var success=wrap.querySelector('.rsvp-confirmation'),submit=wrap.querySelector('.rsvp-submit');
+    var savedId=readSaved(key),savedToken=readSaved(key+'-token'),sending=false;
+    function expand(open){wrap.dataset.open=open?'true':'false';toggle.setAttribute('aria-expanded',String(open));panel.hidden=!open;}
+    function status(text,isError){message.hidden=!text;message.textContent=text||'';message.style.color=isError?'#F6C0B5':'';}
+    toggle.addEventListener('click',function(){expand(panel.hidden)});
+    function update(){attending.hidden=form.elements.attendance.value==='no';status('',false);}
+    form.querySelectorAll('[name=attendance]').forEach(function(el){el.addEventListener('change',update)});
+    form.addEventListener('submit',async function(e){
+      e.preventDefault();if(sending||!form.reportValidity())return;
+      var fd=new FormData(form),attendance=fd.get('attendance');
+      var guestCount=attendance==='no'?0:Number(fd.get('guestCount'));
+      if(attendance!=='no'&&(!Number.isInteger(guestCount)||guestCount<1||guestCount>20)){status('Please enter 1 to 20 guests.',true);return;}
+      var selected=Array.from(form.querySelectorAll('[name=subevent]:checked')).map(function(el){return el.value});
+      if(eventId==='s5'&&attendance!=='no'&&!selected.length){status('Please select at least one part of January 5.',true);return;}
+      var help=Array.from(form.querySelectorAll('[name=assistance]:checked')).map(function(el){return el.value});
+      var contact=String(fd.get('contact')||'').trim();
+      if(attendance!=='no'&&help.length&&!contact){status('Please provide a contact so we can follow up about assistance.',true);form.elements.contact.focus();return;}
+      var id=savedId||uniqueId(),token=uniqueId();
+      var body=new URLSearchParams();
+      body.set('responseId',id);body.set('submissionToken',token);body.set('event',eventName);body.set('name',String(fd.get('name')||'').trim());body.set('attendance',attendance);
+      body.set('guestCount',String(guestCount));body.set('contact',contact);
+      body.set('accommodation',attendance!=='no'&&help.includes('accommodation')?'Information requested':'No');
+      body.set('transport',attendance!=='no'&&help.includes('transport')?'Guidance requested':'No');
+      body.set('notes',(eventId==='s5'&&attendance!=='no'?'January 5 plans: '+selected.join(', ')+'\n':'')+String(fd.get('notes')||''));
+      body.set('website',String(fd.get('website')||''));
+      sending=true;submit.disabled=true;submit.textContent='Sending…';status('Sending your response and checking the spreadsheet…',false);
+      try{
+        // Store the ID before sending so a retry won't create another row.
+        writeSaved(key,id);writeSaved(key+'-token',token);savedId=id;savedToken=token;
+        await fetch(API,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body.toString()});
+        var verified=false;
+        for(var attempt=0;attempt<5;attempt++){
+          await new Promise(function(r){setTimeout(r,1200+attempt*650)});
+          verified=await checkSaved(id,token);if(verified)break;
+        }
+        if(!verified){status('We couldn’t confirm receipt. Your answers are still here—please try again or contact us.',true);return;}
+        success.hidden=false;submit.textContent='Update RSVP';status('',false);expand(false);
+        // Don't imply a successful save until verification completes.
+      }catch(err){status('Could not connect. Please check your connection and try again.',true)}
+      finally{sending=false;submit.disabled=false;if(submit.textContent==='Sending…')submit.textContent='Send RSVP'}
+    });
+    update();
+    if(savedId&&savedToken){checkSaved(savedId,savedToken).then(function(saved){if(saved){success.hidden=false;submit.textContent='Update RSVP';}})}
+  });
 })();
 
 // Countdowns
